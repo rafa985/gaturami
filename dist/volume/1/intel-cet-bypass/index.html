@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="简介 Intel Control-flow Enforcement Technology (CET) 由 Shadow stack (SHSTK) 和 Indirect branch tracking (IBT) 两部分组成，它们分别实现了不同的防护： The kernel must map a region of memory for the shadow stack not writable to user space programs except by specia..."><meta name="robots" content="index,follow"><link rel="canonical" href="https://www.cubeyond.net/volume/1/intel-cet-bypass/"><link rel="alternate" type="application/rss+xml" title="Entropic RSS" href="https://www.cubeyond.net/rss.xml"><meta property="og:site_name" content="Entropic"><meta property="og:title" content="Intel Control-flow Enforcement Technology Bypass :: Entropic"><meta property="og:description" content="简介 Intel Control-flow Enforcement Technology (CET) 由 Shadow stack (SHSTK) 和 Indirect branch tracking (IBT) 两部分组成，它们分别实现了不同的防护： The kernel must map a region of memory for the shadow stack not writable to user space programs except by specia..."><meta property="og:type" content="article"><meta property="og:url" content="https://www.cubeyond.net/volume/1/intel-cet-bypass/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Intel Control-flow Enforcement Technology Bypass :: Entropic"><meta name="twitter:description" content="简介 Intel Control-flow Enforcement Technology (CET) 由 Shadow stack (SHSTK) 和 Indirect branch tracking (IBT) 两部分组成，它们分别实现了不同的防护： The kernel must map a region of memory for the shadow stack not writable to user space programs except by specia..."><meta property="article:published_time" content="2026-01-26T00:00:00.000Z"><link rel="stylesheet" href="/_astro/global.CMXalTX5.css"><style>@font-face {
+  font-family: gohu;
+  src: url("/fonts/gohu-subset.woff") format("woff");
+  font-display: block;
+  font-style: normal;
+  font-weight: 400;
+}
+:root {
+  --bg: #0c0d10;
+  --home-bg: #0a0b11;
+  --fg: #fefefe;
+  --link: #93ffd7;
+  --link-hover: #c7ffe9;
+  --link-hover-bg: #153329;
+  --particle-home: #b47ae2;
+  --particle-home-glow: #6f4b97;
+  --particle-page: #9368b8;
+  --particle-page-glow: #52376f;
+  --particle-volume: #a878d2;
+  --particle-volume-glow: #68448c;
+  --text-font: gohu;
+  --text-size: 14px;
+  --cjk-size: 13px;
+  --cjk-link-size: 15px;
+  --text-cell: 8px;
+  --home-size: 14px;
+}</style><link rel="preload" href="/fonts/gohu-subset.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/assets/cjk/wqy-cjk-body.png" as="image"><link rel="preload" href="/assets/cjk/wqy-cjk-link.png" as="image"><title>Entropic</title></head> <body data-mobile-fit-breakpoint="760" data-particles-enabled="true">  <main class="screen">  <article class="textmode-wrap phile-wrap"> <header class="phile-header" style="--phile-header-lines: 17; --phile-meta-lines: 2; --phile-title-lines: 1"> <pre class="textmode-pre phile-pre phile-header-side life-art" data-life-root><span data-life-line data-row="0">┌───────────────────────┐</span>
+<span data-life-line data-row="1">│                       │</span>
+<span data-life-line data-row="2">│                       │</span>
+<span data-life-line data-row="3">│                       │</span>
+<span data-life-line data-row="4">│                       │</span>
+<span data-life-line data-row="5">│                       │</span>
+<span data-life-line data-row="6">│                       │</span>
+<span data-life-line data-row="7">│                       │</span>
+<span data-life-line data-row="8">│                       │</span>
+<span data-life-line data-row="9">│                       │</span>
+<span data-life-line data-row="10">│                       │</span>
+<span data-life-line data-row="11">│                       │</span>
+<span data-life-line data-row="12">│                       │</span>
+<span data-life-line data-row="13">│                       │</span>
+<span data-life-line data-row="14">│                       │</span>
+<span data-life-line data-row="15">│                       │</span>
+<span data-life-line data-row="16">└───────────────────────┘</span></pre> <pre class="textmode-pre phile-pre phile-header-meta">Intel Control-flow Enforcement Technology Bypass
+~ CuB3y0nd</pre> </header> <pre class="textmode-pre phile-pre phile-body-pre"># <span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-688px">简</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-32px">介</span>
+
+[Intel Control-flow Enforcement Technology (CET)](https://en.wikipedia.org/wiki/
+Control-flow_integrity) <span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-608px">由</span> [Shadow stack (SHSTK)](https://en.wikipedia.org/wiki/
+Shadow_stack) <span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span> [Indirect branch tracking (IBT)](https://en.wikipedia.org/wiki/
+Indirect_branch_tracking) <span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:0px">两</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-880px">部</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-704px">组</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-368px">成</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-256px">它</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-112px">别</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-256px">实</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-160px">同</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-912px">防</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-384px">护</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+&gt; The kernel must map a region of memory for the shadow stack not writable to us
+er space programs except by special instructions. The shadow stack stores a copy
+ of the return address of each CALL. On a RET, the processor checks if the retur
+n address stored in the normal stack and shadow stack are equal. If the addresse
+s are not equal, the processor generates an INT #21 (Control Flow Protection Fau
+lt).
+&gt;
+&gt; Indirect branch tracking detects indirect JMP or CALL instructions to unauthor
+ized targets. It is implemented by adding a new internal state machine in the pr
+ocessor. The behavior of indirect JMP and CALL instructions is changed so that t
+hey switch the state machine from IDLE to WAIT_FOR_ENDBRANCH. In the WAIT_FOR_EN
+DBRANCH state, the next instruction to be executed is required to be the new END
+BRANCH instruction (ENDBR32 in 32-bit mode or ENDBR64 in 64-bit mode), which cha
+nges the internal state machine from WAIT_FOR_ENDBRANCH back to IDLE. Thus every
+ authorized target of an indirect JMP or CALL must begin with ENDBRANCH. If the 
+processor is in a WAIT_FOR_ENDBRANCH state (meaning, the previous instruction wa
+s an indirect JMP or CALL), and the next instruction is not an ENDBRANCH instruc
+tion, the processor generates an INT #21 (Control Flow Protection Fault). On pro
+cessors not supporting CET indirect branch tracking, ENDBRANCH instructions are 
+interpreted as NOPs and have no effect.
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-688px">简</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-144px">单</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-800px">说</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-240px">如</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-784px">表</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-368px">所</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-656px">示</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-32px">些</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+| <span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-592px">特</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-352px">性</span>         | SHSTK                  | IBT                          |
+| ------------ | ---------------------- | ---------------------------- |
+| <span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-368px">所</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-288px">属</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-64px">体</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-688px">系</span>     | Intel CET              | Intel CET                    |
+| <span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-912px">防</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-336px">御</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-880px">重</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-576px">点</span>     | <span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-112px">函</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-864px">返</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-208px">回</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-208px">址</span>           | <span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-896px">间</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-832px">跳</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-848px">转</span> / <span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-816px">调</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span>              |
+| <span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-912px">防</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-336px">御</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-432px">攻</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-112px">击</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-688px">类</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-224px">型</span> | ROP                    | JOP / COP                    |
+| <span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-496px">检</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-544px">测</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-448px">时</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-480px">机</span>     | <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-384px">执</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-784px">行</span> RET <span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-400px">指</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-48px">令</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-448px">时</span>        | <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-384px">执</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-784px">行</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-896px">间</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-832px">跳</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-848px">转</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-480px">条</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-400px">指</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-48px">令</span>   |
+| <span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-640px">硬</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-48px">件</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-256px">实</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span>     | <span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-704px">维</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-384px">护</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-592px">独</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-672px">立</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-160px">受</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-64px">保</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-384px">护</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-496px">栈</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-672px">空</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-896px">间</span> | <span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-592px">状</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-336px">态</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-480px">机</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-496px">检</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-496px">查</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-592px">特</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-832px">起</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-240px">始</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-496px">标</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-800px">记</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-400px">指</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-48px">令</span> |
+
+# <span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-496px">检</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-496px">查</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-640px">硬</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-48px">件</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-432px">支</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-400px">持</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-352px">性</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-64px">使</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-736px">脚</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-480px">本</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-544px">测</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-800px">试</span> CPU <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-176px">否</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-432px">支</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-400px">持</span> SHSTK <span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span> IBT<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+```c
+#include &lt;cpuid.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+
+int cpu_supports_cet_shadow_stack() {
+  uint32_t eax = 0, ebx = 0, ecx = 0, edx = 0;
+  __cpuid_count(7, 0, eax, ebx, ecx, edx);
+  return (ecx &amp; (1 &lt;&lt; 7)) != 0;
+}
+
+int cpu_supports_cet_ibt() {
+  uint32_t eax = 0, ebx = 0, ecx = 0, edx = 0;
+  __cpuid_count(7, 0, eax, ebx, ecx, edx);
+  return (edx &amp; (1 &lt;&lt; 20)) != 0;
+}
+
+int main() {
+  if (cpu_supports_cet_shadow_stack()) {
+    puts(&quot;CET Shadow Stack is supported&quot;);
+  }
+
+  if (cpu_supports_cet_ibt()) {
+    puts(&quot;CET IBT is supported&quot;);
+  }
+}
+```
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-608px">由</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span> CPU <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> `AMD Ryzen 7 4800H`<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-368px">所</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-640px">硬</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-48px">件</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-288px">层</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-864px">还</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-432px">支</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-400px">持</span> CET<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-160px">只</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-864px">通</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-848px">过</span> patch <span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span>
+ QEMU <span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-512px">模</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-400px">拟</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+# <span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-512px">模</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-400px">拟</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-608px">环</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-224px">境</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-432px">搭</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-320px">建</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-880px">里</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-64px">使</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> [QEMU-8.2.2-CET: A Pseudo-Intel-CET Plugin of QEMU](https://github.
+com/yikesoftware/qemu-8.2.2-cet)<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-416px">提</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-64px">供</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-48px">伪</span> Intel CET <span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-416px">插</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-48px">件</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-512px">模</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-400px">拟</span> SHSTK <span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span> I
+BT <span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-928px">项</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-640px">目</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-464px">最</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-464px">更</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-448px">新</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:0px">两</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-304px">年</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-112px">前</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-720px">而</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-96px">内</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-496px">核</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-592px">版</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-480px">本</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>`gcc` <span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span> `glibc` <span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-880px">都</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-512px">比</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-848px">较</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-448px">新</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-368px">所</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-864px">还</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-928px">需</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-736px">自</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-288px">己</span> patch <span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-112px">几</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-448px">方</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-384px">才</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-720px">编</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-800px">译</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+```plaintext showLineNumbers=false
+λ ~/ uname -a
+Linux Lux 6.18.6-zen1-1-zen #1 ZEN SMP PREEMPT_DYNAMIC Sun, 18 Jan 2026 00:33:55
+ +0000 x86_64 GNU/Linux
+λ ~/ ldd --version
+ldd (GNU libc) 2.42
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+Written by Roland McGrath and Ulrich Drepper.
+λ ~/ gcc --version
+gcc (GCC) 15.2.1 20260103
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+
+## Patch QEMU-8.2.2-CET
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-432px">改</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-448px">方</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-224px">多</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-16px">也</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:0px">三</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-448px">文</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-48px">件</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+```diff showLineNumbers=false
+diff --git a/linux-user/strace.c b/linux-user/strace.c
+index cf26e5526..a18ad1ee6 100644
+--- a/linux-user/strace.c
++++ b/linux-user/strace.c
+@@ -51,7 +51,8 @@ struct flags {
+ };
+
+ /* No 'struct flags' element should have a zero mask. */
+-#define FLAG_BASIC(V, M, N)      { V, M | QEMU_BUILD_BUG_ON_ZERO(!(M)), N }
++// #define FLAG_BASIC(V, M, N)      { V, M | QEMU_BUILD_BUG_ON_ZERO(!(M)), N }
++#define FLAG_BASIC(V, M, N)      { V, M, N }
+
+ /* common flags for all architectures */
+ #define FLAG_GENERIC_MASK(V, M)  FLAG_BASIC(V, M, #V)
+```
+
+```diff showLineNumbers=false
+diff --git a/linux-user/syscall.c b/linux-user/syscall.c
+index 189eec0ec..e0205582c 100644
+--- a/linux-user/syscall.c
++++ b/linux-user/syscall.c
+@@ -365,18 +365,19 @@ _syscall3(int, sys_sched_getaffinity, pid_t, pid, unsigned
+ int, len,
+ _syscall3(int, sys_sched_setaffinity, pid_t, pid, unsigned int, len,
+           unsigned long *, user_mask_ptr);
+ /* sched_attr is not defined in glibc */
+-struct sched_attr {
+-    uint32_t size;
+-    uint32_t sched_policy;
+-    uint64_t sched_flags;
+-    int32_t sched_nice;
+-    uint32_t sched_priority;
+-    uint64_t sched_runtime;
+-    uint64_t sched_deadline;
+-    uint64_t sched_period;
+-    uint32_t sched_util_min;
+-    uint32_t sched_util_max;
+-};
++/* Use kernel-provided struct sched_attr */
++// struct sched_attr {
++//     uint32_t size;
++//     uint32_t sched_policy;
++//     uint64_t sched_flags;
++//     int32_t sched_nice;
++//     uint32_t sched_priority;
++//     uint64_t sched_runtime;
++//     uint64_t sched_deadline;
++//     uint64_t sched_period;
++//     uint32_t sched_util_min;
++//     uint32_t sched_util_max;
++// };
+ #define __NR_sys_sched_getattr __NR_sched_getattr
+ _syscall4(int, sys_sched_getattr, pid_t, pid, struct sched_attr *, attr,
+           unsigned int, size, unsigned int, flags);
+```
+
+```diff showLineNumbers=false
+diff --git a/linux-user/signal-common.h b/linux-user/signal-common.h
+index 3e2dc604c..3f59ffe82 100644
+--- a/linux-user/signal-common.h
++++ b/linux-user/signal-common.h
+@@ -113,7 +113,9 @@ int process_sigsuspend_mask(sigset_t **pset, target_ulong si
+gset,
+ static inline void finish_sigsuspend_mask(int ret)
+ {
+     if (ret != -QEMU_ERESTARTSYS) {
+-        TaskState *ts = (TaskState *)thread_cpu-&gt;opaque;
++        // TaskState *ts = (TaskState *)thread_cpu-&gt;opaque;
++        CPUState *cpu = current_cpu;
++        TaskState *ts = (TaskState *)cpu-&gt;opaque;
+         ts-&gt;in_sigsuspend = 1;
+     }
+ }
+```
+
+## Build
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-864px">进</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-80px">入</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-928px">项</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-640px">目</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-496px">根</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-640px">目</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-320px">录</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-384px">执</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-784px">行</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-400px">指</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-48px">令</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span> build<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+```shellsession frame=none showLineNumbers=false
+mkdir build &amp;&amp; cd build
+../configure --enable-plugins --enable-seccomp --enable-tcg-interpreter --target
+-list=x86_64-linux-user --disable-docs --disable-werror
+make -j`nproc`
+```
+
+Build <span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-256px">完</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-416px">插</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-48px">件</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-608px">生</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-368px">成</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span> `./build/tests/plugin/libcet.so`<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-160px">只</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-928px">需</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-112px">创</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-320px">建</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-848px">软</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-896px">链</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+```shellsession frame=none showLineNumbers=false
+ln -s ./build/qemu-x86_64 /path/to/qemu-x86_64-cet
+ln -s ./build/tests/plugin/libcet.so /path/to/plugin/libcet.so
+```
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-64px">使</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-48px">任</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-368px">意</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-400px">指</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-48px">令</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-384px">执</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-784px">行</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-720px">编</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-800px">译</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-304px">带</span> SHSTK <span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-368px">或</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-720px">者</span> IBT <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-672px">程</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-304px">序</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-864px">进</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-784px">行</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-544px">测</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-800px">试</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+```shellsession frame=none showLineNumbers=false
+# without the plugin logs
+/path/to/qemu-x86_64-cet -plugin /path/to/plugin/libcet.so,mode=user,ibt=on,ss=o
+n,cpu_slots=128 ./test_cet
+
+# with the plugin logs
+/path/to/qemu-x86_64-cet -plugin /path/to/plugin/libcet.so,mode=user,ibt=on,ss=o
+n,cpu_slots=128 -d plugin ./test_cet
+```
+
+# Challenge
+
+```c
+#include &lt;signal.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+
+void timedout(int) {
+  puts(&quot;timedout&quot;);
+  exit(0);
+}
+
+char g_buf[256];
+
+int main() {
+  char buf[16];
+  long long int arg1 = 0;
+  long long int arg2 = 0;
+  void (*func)(long long int, long long int, long long int) = NULL;
+
+  alarm(30);
+  signal(SIGALRM, timedout);
+
+  fgets(g_buf, 256, stdin); // My mercy
+  fgets(buf, 256, stdin);
+  if (func)
+    func(arg1, arg2, 0);
+}
+```
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-640px">目</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-48px">代</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-640px">码</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-240px">如</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:0px">上</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-64px">使</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-736px">脚</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-480px">本</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-720px">编</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-800px">译</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+```shellsession frame=none showLineNumbers=false
+gcc chall.c -fno-stack-protector -fcf-protection=full -mshstk -fno-omit-frame-po
+inter -static -o chall
+```
+
+## Write-up
+
+TODO
+
+## Exploit
+
+TODO
+</pre> <pre class="textmode-pre phile-pre phile-footer-pre">
+
+ret <a href="/volume/1/">&lt;volume_1&gt;</a>
+</pre> </article> <script type="module" src="/_astro/PhileShell.astro_astro_type_script_index_0_lang.CtuB20jf.js"></script>   </main>  <vercel-analytics data-props="{}" data-params="{&quot;volume&quot;:&quot;1&quot;,&quot;slug&quot;:&quot;intel-cet-bypass&quot;}" data-pathname="/volume/1/intel-cet-bypass/"></vercel-analytics> <script type="module">var v=()=>{window.va||(window.va=function(...i){window.vaq||(window.vaq=[]),window.vaq.push(i)})},w="@vercel/analytics",h="2.0.1";function f(){return typeof window<"u"}function l(){try{const e="production"}catch{}return"production"}function m(e="auto"){if(e==="auto"){window.vam=l();return}window.vam=e}function y(){return(f()?window.vam:l())||"production"}function d(){return y()==="development"}function b(e,i){if(!e||!i)return e;let n=e;try{const t=Object.entries(i);for(const[r,s]of t)if(!Array.isArray(s)){const o=u(s);o.test(n)&&(n=n.replace(o,`/[${r}]`))}for(const[r,s]of t)if(Array.isArray(s)){const o=u(s.join("/"));o.test(n)&&(n=n.replace(o,`/[...${r}]`))}return n}catch{return e}}function u(e){return new RegExp(`/${g(e)}(?=[/?#]|$)`)}function g(e){return e.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}function E(e){return e.scriptSrc?a(e.scriptSrc):d()?"https://va.vercel-scripts.com/v1/script.debug.js":e.basePath?a(`${e.basePath}/insights/script.js`):"/_vercel/insights/script.js"}function k(e,i){var n;let t=e;if(i)try{t={...(n=JSON.parse(i))==null?void 0:n.analytics,...e}}catch{}m(t.mode);const r={sdkn:w+(t.framework?`/${t.framework}`:""),sdkv:h};return t.disableAutoTrack&&(r.disableAutoTrack="1"),t.viewEndpoint&&(r.viewEndpoint=a(t.viewEndpoint)),t.eventEndpoint&&(r.eventEndpoint=a(t.eventEndpoint)),t.sessionEndpoint&&(r.sessionEndpoint=a(t.sessionEndpoint)),d()&&t.debug===!1&&(r.debug="false"),t.dsn&&(r.dsn=t.dsn),t.endpoint?r.endpoint=t.endpoint:t.basePath&&(r.endpoint=a(`${t.basePath}/insights`)),{beforeSend:t.beforeSend,src:E(t),dataset:r}}function a(e){return e.startsWith("http://")||e.startsWith("https://")||e.startsWith("/")?e:`/${e}`}function S(e={debug:!0},i){var n;if(!f())return;const{beforeSend:t,src:r,dataset:s}=k(e,i);if(v(),t&&((n=window.va)==null||n.call(window,"beforeSend",t)),document.head.querySelector(`script[src*="${r}"]`))return;const o=document.createElement("script");o.src=r;for(const[c,p]of Object.entries(s))o.dataset[c]=p;o.defer=!0,o.onerror=()=>{const c=d()?"Please check if any ad blockers are enabled and try again.":"Be sure to enable Web Analytics for your project and deploy again. See https://vercel.com/docs/analytics/quickstart for more information.";console.log(`[Vercel Web Analytics] Failed to load script from ${r}. ${c}`)},document.head.appendChild(o)}function $({route:e,path:i}){var n;(n=window.va)==null||n.call(window,"pageview",{route:e,path:i})}function A(){try{return}catch{}}function j(){try{return}catch{}}customElements.define("vercel-analytics",class extends HTMLElement{constructor(){super();try{const i=JSON.parse(this.dataset.props??"{}"),n=JSON.parse(this.dataset.params??"{}");S({...i,disableAutoTrack:!0,framework:"astro",basePath:A(),beforeSend:window.webAnalyticsBeforeSend},j());const t=this.dataset.pathname;$({route:b(t??"",n),path:t})}catch(i){throw new Error(`Failed to parse WebAnalytics properties: ${i}`)}}});</script> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.GD05J9Fp.js"></script> </body> </html>

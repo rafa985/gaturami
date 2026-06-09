@@ -1,0 +1,728 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="极限和连续性 何为极限？ 假设对于函数 $f$ 有： $\displaystyle \lim {x\to c} f(x)=L$ 即：只要 $x$ 无限接近于 $c$, 则 $f(x)$ 必然无限接近于 $L$。 用 $\varepsilon -\delta$ 语言来描述就是： $$ \displaystyle \forall \varepsilon >0,\ \exists \delta >0,\ s.t.\ 0 0)$，总能找到一个数 $\delta ( \delta >..."><meta name="robots" content="index,follow"><link rel="canonical" href="https://www.cubeyond.net/volume/1/calculus-notes/"><link rel="alternate" type="application/rss+xml" title="Entropic RSS" href="https://www.cubeyond.net/rss.xml"><meta property="og:site_name" content="Entropic"><meta property="og:title" content="微积分笔记 :: Entropic"><meta property="og:description" content="极限和连续性 何为极限？ 假设对于函数 $f$ 有： $\displaystyle \lim {x\to c} f(x)=L$ 即：只要 $x$ 无限接近于 $c$, 则 $f(x)$ 必然无限接近于 $L$。 用 $\varepsilon -\delta$ 语言来描述就是： $$ \displaystyle \forall \varepsilon >0,\ \exists \delta >0,\ s.t.\ 0 0)$，总能找到一个数 $\delta ( \delta >..."><meta property="og:type" content="article"><meta property="og:url" content="https://www.cubeyond.net/volume/1/calculus-notes/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="微积分笔记 :: Entropic"><meta name="twitter:description" content="极限和连续性 何为极限？ 假设对于函数 $f$ 有： $\displaystyle \lim {x\to c} f(x)=L$ 即：只要 $x$ 无限接近于 $c$, 则 $f(x)$ 必然无限接近于 $L$。 用 $\varepsilon -\delta$ 语言来描述就是： $$ \displaystyle \forall \varepsilon >0,\ \exists \delta >0,\ s.t.\ 0 0)$，总能找到一个数 $\delta ( \delta >..."><meta property="article:published_time" content="2024-03-31T00:00:00.000Z"><link rel="stylesheet" href="/_astro/global.CMXalTX5.css"><style>@font-face {
+  font-family: gohu;
+  src: url("/fonts/gohu-subset.woff") format("woff");
+  font-display: block;
+  font-style: normal;
+  font-weight: 400;
+}
+:root {
+  --bg: #0c0d10;
+  --home-bg: #0a0b11;
+  --fg: #fefefe;
+  --link: #93ffd7;
+  --link-hover: #c7ffe9;
+  --link-hover-bg: #153329;
+  --particle-home: #b47ae2;
+  --particle-home-glow: #6f4b97;
+  --particle-page: #9368b8;
+  --particle-page-glow: #52376f;
+  --particle-volume: #a878d2;
+  --particle-volume-glow: #68448c;
+  --text-font: gohu;
+  --text-size: 14px;
+  --cjk-size: 13px;
+  --cjk-link-size: 15px;
+  --text-cell: 8px;
+  --home-size: 14px;
+}</style><link rel="preload" href="/fonts/gohu-subset.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/assets/cjk/wqy-cjk-body.png" as="image"><link rel="preload" href="/assets/cjk/wqy-cjk-link.png" as="image"><title>Entropic</title></head> <body data-mobile-fit-breakpoint="760" data-particles-enabled="true">  <main class="screen">  <article class="textmode-wrap phile-wrap"> <header class="phile-header" style="--phile-header-lines: 17; --phile-meta-lines: 2; --phile-title-lines: 1"> <pre class="textmode-pre phile-pre phile-header-side life-art" data-life-root><span data-life-line data-row="0">┌───────────────────────┐</span>
+<span data-life-line data-row="1">│                       │</span>
+<span data-life-line data-row="2">│                       │</span>
+<span data-life-line data-row="3">│                       │</span>
+<span data-life-line data-row="4">│                       │</span>
+<span data-life-line data-row="5">│                       │</span>
+<span data-life-line data-row="6">│                       │</span>
+<span data-life-line data-row="7">│                       │</span>
+<span data-life-line data-row="8">│                       │</span>
+<span data-life-line data-row="9">│                       │</span>
+<span data-life-line data-row="10">│                       │</span>
+<span data-life-line data-row="11">│                       │</span>
+<span data-life-line data-row="12">│                       │</span>
+<span data-life-line data-row="13">│                       │</span>
+<span data-life-line data-row="14">│                       │</span>
+<span data-life-line data-row="15">│                       │</span>
+<span data-life-line data-row="16">└───────────────────────┘</span></pre> <pre class="textmode-pre phile-pre phile-header-meta"><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-336px">微</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-672px">积</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-672px">笔</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-800px">记</span>
+~ CuB3y0nd</pre> </header> <pre class="textmode-pre phile-pre phile-body-pre"># <span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-480px">极</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-912px">限</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-864px">连</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-704px">续</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-352px">性</span>
+
+## <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-64px">何</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-480px">极</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-912px">限</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-976px">？</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-80px">假</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-800px">设</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-272px">对</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-112px">函</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span> $f$ <span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+$displaystyle lim _{xto c} f(x)=L$
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-144px">即</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-160px">只</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span> $x$ <span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-448px">无</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-912px">限</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-864px">近</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span> $c$, <span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-112px">则</span> $f(x)$ <span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-336px">必</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-448px">无</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-912px">限</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-864px">近</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span> $L$<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span> $varepsilon -delta$ <span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-800px">语</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-784px">言</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-416px">描</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-864px">述</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+$$
+displaystyle forall varepsilon  &gt;0, exists delta  &gt;0, s.t. 0&lt;|x−c|&lt; delta Longri
+ghtarrow |f(x)-L|&lt; varepsilon
+$$
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-800px">说</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-624px">白</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-448px">无</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-800px">论</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-704px">给</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-48px">任</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-64px">何</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-256px">字</span> $varepsilon (varepsilon  &gt;0)$<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-352px">总</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-384px">找</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span> $
+delta ( delta  &gt;0)$<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-64px">使</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-320px">当</span> $x$ <span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span> $c$ <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span> $delta$ <span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-752px">范</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-208px">围</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-96px">内</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-448px">时</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>$f(x)$ <span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-480px">极</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-912px">限</span> $L$ <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span> $
+varepsilon$ <span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-752px">范</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-208px">围</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-96px">内</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+---
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-64px">例</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-288px">已</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-640px">知</span> $f( x) =begin{cases}
+2x &amp; xneq 5\
+x &amp; x=5
+end{cases}$<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-800px">证</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-448px">明</span> $displaystyle lim _{xrightarrow 5} f( x) =10$
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-496px">根</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-416px">据</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-16px">义</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-704px">给</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-48px">任</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-368px">意</span> $varepsilon (varepsilon  &gt;0)$<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span> $delta ( delta  &gt;0)$<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-208px">因</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-512px">此</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-480px">本</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-816px">质</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:0px">上</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-384px">找</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span> $delta =function of varepsilon $ <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-112px">函</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+$mathnormal{Proof.}$
+
+$$
+begin{aligned}
+&amp; |x-5| &lt; delta Longrightarrow |2x-10|&lt; varepsilon \
+&amp; |2x-10| &lt; 2delta \
+&amp; 2delta =varepsilon Rightarrow delta =frac{varepsilon }{2}\
+&amp; |2x-10| &lt; varepsilon \
+&amp; forall varepsilon  &gt;0, exists delta  &gt;0 , s.t. |x-5|&lt; delta Longrightarrow |2x
+-10|&lt; varepsilon  quad Q.E.D.
+end{aligned}
+$$
+
+---
+
+## <span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-240px">夹</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-880px">逼</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-608px">理</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-800px">设</span> $I$ <span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-128px">包</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-176px">含</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-496px">某</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-576px">点</span> $c$ <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-128px">区</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-896px">间</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>$f, g, h$ <span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-16px">义</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span> $I$ <span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:0px">上</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-112px">函</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-752px">若</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-272px">对</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-368px">所</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-288px">属</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span> $I
+$ <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-720px">而</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-672px">等</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span> $c$ <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span> $x$<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+- $g( x) leqslant f( x) leqslant h( x)$
+- $displaystyle lim _{xrightarrow c} g( x) =lim _{xrightarrow c} h( x) =L$
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-112px">则</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>$displaystyle lim _{xrightarrow c} f( x) =L$<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+$g(x)$ <span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span> $h(x)$ <span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-112px">别</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-784px">被</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-672px">称</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span> $f(x)$ <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-624px">界</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:0px">上</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-624px">界</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+### Proof: $displaystyle lim _{theta rightarrow 0}frac{sin theta }{theta } =1$
+</pre><div class="phile-media"><figure class="phile-image"><button class="phile-image-trigger" type="button" data-lightbox-image aria-label="Open image preview"><img src="https://v6.gh-proxy.org/https://github.com/CuB3y0nd/picx-images-hosting/raw/master/.3gop6n1vs3.avif" alt="" loading="lazy" decoding="async" /></button></figure></div><pre class="textmode-pre phile-pre phile-body-pre">### Proof: $displaystyle lim _{theta rightarrow 0}frac{1-cos theta }{theta } =0$
+
+$mathnormal{Proof.}$
+
+$$
+begin{aligned}
+lim _{theta rightarrow 0}frac{1-cos theta }{theta } &amp; =lim _{theta rightarrow 0}
+frac{( 1-cos theta )( 1+cos theta )}{theta ( 1+cos theta )}\
+ &amp; =lim _{theta rightarrow 0}frac{sin^{2} theta }{theta ( 1+cos theta )}\
+ &amp; =lim _{theta rightarrow 0}frac{sin theta }{theta } cdot lim _{theta rightarro
+w 0}frac{sin theta }{1+cos theta }\
+ &amp; =1cdot 0\
+ &amp; =0
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+## <span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-864px">连</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-704px">续</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-352px">性</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-16px">义</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-112px">函</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-496px">某</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-576px">点</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-224px">处</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-864px">连</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-704px">续</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>$f$ is continuous at $x=cLongleftrightarrow displaystyle lim
+ _{xrightarrow c} f( x) =f( c)$
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-112px">函</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-320px">开</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-128px">区</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-896px">间</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-864px">连</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-704px">续</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>$f$ is continuous over $( a, b) Longleftrightarrow f$ is conti
+nuous over every point in the interval
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-112px">函</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-896px">闭</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-128px">区</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-896px">间</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-864px">连</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-704px">续</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>$f$ is continuous over $[ a, b] Longleftrightarrow f$ is conti
+nuous over $( a, b)$ and $displaystyle lim _{xrightarrow a^{+}} f( x) =f( a)$, $
+displaystyle lim _{xrightarrow b^{-}} f( x) =f( b)$
+
+## Intermediate Value Theorem
+
+Suppose $f$ is a continuous function at every point of the interval $[ a, b]$
+
+- $f$ will take on every value between $f( a)$ and $f( b)$ over the interval
+- For any $L$ between the values $f( a)$ and $f( b)$ , there exists a number $c$
+ in $[ a, b]$ for which $f( c) =L$
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-336px">怎</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-16px">么</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-16px">么</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-688px">简</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-144px">单</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-608px">理</span>…
+
+# <span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-272px">导</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span>
+
+## <span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-272px">导</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:0px">两</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-656px">种</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-16px">义</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-320px">形</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-320px">式</span>
+
+$displaystyle f^{prime }( x) =lim _{hrightarrow 0}frac{f( x+h) -f( x)}{h}$
+
+$displaystyle f^{prime }( c) =lim _{xrightarrow c}frac{f( x) -f( c)}{x-c}$
+
+## <span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-336px">微</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-352px">性</span>
+
+- $f$ is differentiability at $x=cLongrightarrow f$ is continuous at $x=c$
+- $f$ is not continuous at $x=cLongrightarrow f$ is not differentiability at $x=
+c$
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-336px">微</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:0px">三</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-656px">种</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-352px">情</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-96px">况</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+1. **not continuous**
+2. **vertical tangent**
+3. **&quot;sharp turn&quot;**
+
+## Proof: Differentiability implies continuity
+
+$mathnormal{Proof.}$
+
+Assume: $f$ differentiability at $x=c$
+
+$
+begin{array}{l}
+because f differentiability at x=c\
+therefore displaystyle f^{prime }( c) = lim _{xrightarrow c}frac{f( x) -f( c)}{x
+-c}
+end{array}
+$
+
+$$
+begin{aligned}
+lim _{xrightarrow c}[ f( x) -f( c)] &amp; =lim _{xrightarrow c}( x-c) cdot frac{f( x
+) -f( c)}{x-c}\
+ &amp; =lim _{xrightarrow c}( x-c) cdot lim _{xrightarrow c}frac{f( x) -f( c)}{x-c}\
+ &amp; =0cdot f^{prime }( c)\
+ &amp; =0\
+ &amp; \
+lim _{xrightarrow c}[ f( x) -f( c)] &amp; =0\
+lim _{xrightarrow c} f( x) -lim _{xrightarrow c} f( c) &amp; =0\
+lim _{xrightarrow c} f( x) -f( c) &amp; =0\
+lim _{xrightarrow c} f( x) &amp; =f( c)
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+## Justifying the power rule
+
+### Proof: $displaystyle frac{d}{dx}left( x^{n}right) =nx^{n-1}$
+
+$mathnormal{Proof.}$
+
+$displaystyle frac{d}{dx}left( x^{n}right) =lim _{Delta xrightarrow 0}frac{( x+D
+elta x)^{n} -x^{n}}{Delta x}$
+
+According to Binomial theorem:
+
+$$
+begin{aligned}
+displaystyle lim _{Delta xrightarrow 0}frac{( x+Delta x)^{n} -x^{n}}{Delta x} &amp; 
+=displaystyle lim _{Delta xrightarrow 0}frac{cancel{x^{n}} +binom{n}{1} x^{n-1} 
+Delta x+binom{n}{2} x^{n-2} Delta x^{2} +...+binom{n}{n} x^{0} Delta x^{n}cancel
+{-x^{n}}}{Delta x}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}binom{n}{1} x^{n-1} +cancel{binom{n}{
+2} x^{n-2} Delta x} +...+cancel{binom{n}{n} Delta x^{n-1}}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}binom{n}{1} x^{n-1}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}frac{n!}{cancel{1!}( n-1) !} x^{n-1}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0} nx^{n-1}
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+### Proof: $displaystyle frac{d}{dx}left(sqrt{x}right) =frac{1}{2} x^{-frac{1}{2
+}}$
+
+$mathnormal{Proof.}$
+
+$$
+begin{aligned}
+frac{d}{dx}left(sqrt{x}right) &amp; =displaystyle lim _{Delta xrightarrow 0}frac{sqr
+t{x+Delta x} -sqrt{x}}{Delta x}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}frac{left(sqrt{x+Delta x} -sqrt{x}rig
+ht)left(sqrt{x+Delta x} +sqrt{x}right)}{Delta xleft(sqrt{x+Delta x} +sqrt{x}righ
+t)}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}frac{1}{sqrt{x+Delta x} +sqrt{x}}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}frac{1}{2sqrt{x}}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}frac{1}{2} x^{-frac{1}{2}}
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+## Justifying the basic derivative rules
+
+### Proof: Constant rule ($displaystyle frac{d}{dx} k=0$)
+
+$mathnormal{Proof.}$
+
+$$
+begin{array}{l}
+because k is constant\
+therefore y does not change as x changes\
+therefore f( x+h) -f( x) =0\
+therefore displaystyle frac{d}{dx} k= lim _{hrightarrow 0}frac{f( x+h) -f( x)}{h
+} =lim _{hrightarrow 0}frac{0}{h} =0
+end{array}
+$$
+
+### Proof: Constant multiple and sum/difference rules
+
+**Constant multiple rule:** $displaystyle dfrac{d}{dx}[kcdot f(x)]=kcdotdfrac{d}
+{dx}f(x)$
+
+**Sum rule:** $displaystyle dfrac{d}{dx}[f(x)+g(x)]=dfrac{d}{dx}f(x)+dfrac{d}{dx
+}g(x)$
+
+**Difference rule:** $displaystyle dfrac{d}{dx}[f(x)-g(x)]=dfrac{d}{dx}f(x)-dfra
+c{d}{dx}g(x)$
+
+$mathnormal{Proof.}$
+
+$displaystyle 1. f( x) =kg( x) Longrightarrow f^{prime }( x) =kg^{prime }( x)$
+
+$$
+begin{aligned}
+f^{prime }( x) &amp; =displaystyle lim _{hrightarrow 0}frac{f( x+h) -f( x)}{h}\
+ &amp; =displaystyle lim _{hrightarrow 0}frac{kg( x+h) -kg( x)}{h}\
+ &amp; =displaystyle lim _{hrightarrow 0} kleft(frac{g( x+h) -g( x)}{h}right)\
+ &amp; =kdisplaystyle lim _{hrightarrow 0}frac{g( x+h) -g( x)}{h}\
+ &amp; =kg^{prime }( x)
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+$displaystyle 2. f( x) =g( x) pm j( x) Longrightarrow f^{prime }( x) =g^{prime }
+( x) pm j^{prime }( x)$
+
+$$
+begin{aligned}
+f^{prime }( x) &amp; =displaystyle lim _{hrightarrow 0}frac{g( x+h) pm j( x+h) -( g(
+ x) pm j( x))}{h}\
+ &amp; =displaystyle lim _{hrightarrow 0}left(frac{g( x+h) -g( x)}{h} pm frac{j( x+h
+) -j( x)}{h}right)\
+ &amp; =displaystyle lim _{hrightarrow 0}frac{g( x+h) -g( x)}{h} pm lim _{hrightarro
+w 0}frac{j( x+h) -j( x)}{h}\
+ &amp; =g^{prime }( x) pm j^{prime }( x)
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+## Proof: The derivatives of sin(x) and cos(x)
+
+Known $displaystyle lim _{xrightarrow 0}frac{sin x}{x} =1$ and $displaystyle lim
+ _{xrightarrow 0}frac{1-cos x}{x} =0$
+
+$mathnormal{Proof.}$
+
+$displaystyle 1. frac{d}{dx}[sin x] =cos x$
+
+$$
+begin{aligned}
+frac{d}{dx}[sin x] &amp; =displaystyle lim _{Delta xrightarrow 0}frac{sin( x+Delta x
+) -sin( x)}{Delta x}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}frac{cos xsin Delta x+sin xcos Delta 
+x-sin x}{Delta x}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}left(frac{cos xsin Delta x}{Delta x} 
++frac{sin xcos Delta x-sin x}{Delta x}right)\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}cos xleft(frac{sin Delta x}{Delta x}r
+ight) +displaystyle lim _{Delta xrightarrow 0}frac{sin x(cos Delta x-1)}{Delta x
+}\
+ &amp; =cos xdisplaystyle lim _{Delta xrightarrow 0}frac{sin Delta x}{Delta x} -sin 
+xdisplaystyle lim _{Delta xrightarrow 0}frac{1-cos Delta x}{Delta x}\
+ &amp; =cos xcdot 1-sin xcdot 0\
+ &amp; =cos x
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+$displaystyle 2. frac{d}{dx}[cos x] =-sin x$
+</pre><div class="phile-media"><figure class="phile-image"><button class="phile-image-trigger" type="button" data-lightbox-image aria-label="Open image preview"><img src="https://v6.gh-proxy.org/https://github.com/CuB3y0nd/picx-images-hosting/raw/master/.1apakvbze1.avif" alt="" loading="lazy" decoding="async" /></button></figure></div><pre class="textmode-pre phile-pre phile-body-pre">## Proof: The derivative of $e^{x}$ is $e^{x}$
+
+Know the limit definition of $mathbb{e}$ is $e=displaystyle lim _{nrightarrow in
+fty }left( 1+frac{1}{n}right)^{n} =displaystyle lim _{nrightarrow 0}( 1+n)^{frac
+{1}{n}}$
+
+$mathnormal{Proof.}$
+
+$$
+begin{aligned}
+frac{d}{dx}left( e^{x}right) &amp; =displaystyle lim _{Delta xrightarrow 0}frac{e^{x
++Delta x} -e^{x}}{Delta x}\
+ &amp; =e^{x}displaystyle lim _{Delta xrightarrow 0}frac{e^{Delta x} -1}{Delta x}
+end{aligned}
+$$
+
+$displaystyle Let n=e^{Delta x} -1, we can get n+1=e^{Delta x} , such that Delta
+ x=ln( n+1)  and as Delta xrightarrow 0=nrightarrow 0$
+
+$We can rewrite to:$
+
+$$
+begin{aligned}
+frac{d}{dx}left( e^{x}right) &amp; =e^{x}displaystyle lim _{nrightarrow 0}frac{n}{ln
+( n+1)}\
+ &amp; =e^{x}displaystyle lim _{nrightarrow 0}frac{frac{1}{n} n}{frac{1}{n}ln( n+1)}
+\
+ &amp; =e^{x}displaystyle lim _{nrightarrow 0}frac{1}{lnleft[( 1+n)^{frac{1}{n}}righ
+t]}\
+ &amp; =e^{x}frac{1}{lnleft[displaystyle lim _{nrightarrow 0}( 1+n)^{frac{1}{n}}righ
+t]}\
+ &amp; =e^{x}
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+## Proof: The derivative of $ln( x)$ is $frac{1}{x}$
+
+### Method 1 (Directly from the definition of the derivative as a limit)
+
+$mathnormal{Proof.}$
+
+$$
+begin{aligned}
+frac{d}{dx}(ln x) &amp; =displaystyle lim _{Delta xrightarrow 0}frac{ln( x+Delta x) 
+-ln( x)}{Delta x}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}frac{lnleft(frac{x+Delta x}{x}right)}
+{Delta x}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}frac{lnleft( 1+frac{Delta x}{x}right)
+}{Delta x}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}frac{1}{Delta x}lnleft( 1+frac{Delta 
+x}{x}right)\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}lnleft[left( 1+frac{Delta x}{x}right)
+^{frac{1}{Delta x}}right]
+end{aligned}
+$$
+
+$displaystyle Let n=frac{Delta x}{x} , Delta x=nx, frac{1}{Delta x} =frac{1}{n} 
+cdot frac{1}{x}  and as Delta xrightarrow 0=nrightarrow 0$
+
+$We can rewrite to:$
+
+$$
+begin{aligned}
+displaystyle lim _{Delta xrightarrow 0}lnleft[left( 1+frac{Delta x}{x}right)^{fr
+ac{1}{Delta x}}right] &amp; =frac{1}{x}displaystyle lim _{nrightarrow 0}lnleft[( 1+n
+)^{frac{1}{n}}right]\
+ &amp; =frac{1}{x}lnleft[displaystyle lim _{nrightarrow 0}( 1+n)^{frac{1}{n}}right]\
+ &amp; =frac{1}{x}
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+### Method 2 (Using the fact that $displaystyle frac{d}{dx}left( e^{x}right) =e^
+{x}$ and applying implicit differentiation)
+
+$mathnormal{Proof.}$
+
+$displaystyle Known frac{d}{dx}left( e^{x}right) =e^{x}$
+
+$displaystyle Let y=ln( x) , we can get:$
+
+$$
+begin{aligned}
+frac{d}{dx}left( e^{y}right) &amp; =frac{d}{dx}( x)\
+e^{y} cdot frac{dy}{dx} &amp; =1\
+frac{dy}{dx} &amp; =frac{1}{e^{y}}\
+ &amp; =frac{1}{e^{ln x}}\
+ &amp; =frac{1}{x}
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+## Proof: The product rule
+
+$mathnormal{Proof.}$
+
+$$
+begin{aligned}
+frac{d}{dx}[ f( x) g( x)] &amp; =displaystyle lim _{hrightarrow 0}frac{f( x+h) g( x+
+h) -f( x+h) g( x) +f( x+h) g( x) -f( x) g( x)}{h}\
+ &amp; =displaystyle lim _{hrightarrow 0}left[ f( x+h)frac{g( x+h) -g( x)}{h} +g( x)
+frac{f( x+h) -f( x)}{h}right]\
+ &amp; =left[displaystyle lim _{hrightarrow 0} f( x+h)right]left[displaystyle lim _{
+hrightarrow 0}frac{g( x+h) -g( x)}{h}right] +left[displaystyle lim _{hrightarrow
+ 0} g( x)right]left[displaystyle lim _{hrightarrow 0}frac{f( x+h) -f( x)}{h}righ
+t]\
+ &amp; =f( x) g^{prime }( x) +g( x) f^{prime }( x)
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+## Proof: The derivatives of $tan( x)$<span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:0px">、</span>$cos( x)$<span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:0px">、</span>$sec( x)$ and $csc( x)$
+
+$mathnormal{Proof.}$
+
+$$
+begin{aligned}
+frac{d}{dx}(tan x) &amp; =frac{d}{dx}left(frac{sin x}{cos x}right) &amp; frac{d}{dx}(cot
+ x) &amp; =frac{d}{dx}left(frac{cos x}{sin x}right)\
+ &amp; =frac{cos^{2} x+sin^{2} x}{cos^{2} x} &amp;  &amp; =frac{-left(sin^{2} x+cos^{2} xrig
+ht)}{sin^{2} x}\
+ &amp; =frac{1}{cos^{2} x} &amp;  &amp; =-frac{1}{sin^{2} x}\
+ &amp; =sec^{2} x &amp;  &amp; =-csc^{2} x\
+frac{d}{dx}(sec x) &amp; =frac{d}{dx}left(frac{1}{cos x}right) &amp; frac{d}{dx}(csc x) 
+&amp; =frac{d}{dx}left(frac{1}{sin x}right)\
+ &amp; =frac{0cdot cos x+1cdot sin x}{cos^{2} x} &amp;  &amp; =frac{0cdot sin x-1cdot cos x}
+{sin^{2} x}\
+ &amp; =frac{sin x}{cos^{2} x} &amp;  &amp; =-frac{cos x}{sin^{2} x}\
+ &amp; =tan xcdot sec x &amp;  &amp; =-cot xcdot csc x
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+## Proof: The derivatives of $a^{x}$ (For any positive base a)
+
+$mathnormal{Proof.}$
+
+$displaystyle Known frac{d}{dx}left( e^{x}right) =e^{x}$
+
+$displaystyle Let a=e^{ln a}$
+
+$$
+begin{aligned}
+frac{d}{dx}left( a^{x}right) &amp; =frac{d}{dx}left[left( e^{ln a}right)^{x}right]\
+ &amp; =frac{d}{dx}left[ e^{(ln a) x}right]\
+ &amp; =e^{(ln a) x} cdot ln a\
+ &amp; =a^{x} cdot ln a
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+## Proof: The derivatives of $log_{a} x$ (For any positive base $aneq 1$)
+
+$mathnormal{Proof.}$
+
+$displaystyle Known frac{d}{dx}(ln x) =frac{1}{x}$
+
+$$
+begin{aligned}
+frac{d}{dx}(log_{a} x) &amp; =frac{d}{dx}left(frac{1}{ln a} cdot ln xright)\
+ &amp; =frac{1}{xln a}
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+## Proof: Chain Rule and Quotient Rule
+
+$mathnormal{Chain Rule Proof.}$
+
+$$
+begin{aligned}
+Known:  &amp; 1. If a function is differentiable, then it is also continuous.\
+ &amp; 2. If function u is continuous at x, then Delta urightarrow 0 as Delta xright
+arrow 0
+end{aligned}
+$$
+
+For why if function $u$ is continuous at $x$, then $Delta urightarrow 0$ as $Del
+ta xrightarrow 0$:
+</pre><div class="phile-media"><figure class="phile-image"><button class="phile-image-trigger" type="button" data-lightbox-image aria-label="Open image preview"><img src="https://v6.gh-proxy.org/https://github.com/CuB3y0nd/picx-images-hosting/raw/master/.9kgh937d5y.avif" alt="" loading="lazy" decoding="async" /></button></figure></div><pre class="textmode-pre phile-pre phile-body-pre">$displaystyle The chain rule tell us: frac{d}{dx}[ y( u( x))] =frac{dy}{dx} =fra
+c{dy}{du} cdot frac{du}{dx}$
+
+Assuming $y$, $u$ differentiable at $x$. We can get:
+
+$$
+begin{aligned}
+frac{dy}{dx} &amp; =displaystyle lim _{Delta xrightarrow 0}frac{Delta y}{Delta x}\
+ &amp; =displaystyle lim _{Delta xrightarrow 0}frac{Delta y}{Delta u} cdot frac{Delt
+a u}{Delta x}\
+ &amp; =left(displaystyle lim _{Delta xrightarrow 0}frac{Delta y}{Delta u}right)left
+(displaystyle lim _{Delta xrightarrow 0}frac{Delta u}{Delta x}right)\
+ &amp; =left(displaystyle lim _{Delta urightarrow 0}frac{Delta y}{Delta u}right)left
+(displaystyle lim _{Delta xrightarrow 0}frac{Delta u}{Delta x}right)\
+ &amp; =frac{dy}{du} cdot frac{du}{dx}
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+$mathnormal{Quotient Rule Proof.}$
+
+$$
+begin{aligned}
+frac{d}{dx}left[frac{f( x)}{g( x)}right] &amp; =frac{d}{dx}left[ f( x) cdot [ g( x)]
+^{-1}right]\
+ &amp; =f^{prime }[ x]( g( x))^{-1} -f[ x]( g( x))^{-2} g^{prime }( x)\
+ &amp; =frac{f^{prime }( x)}{g( x)} -frac{f( x) g^{prime }( x)}{[ g( x)]^{2}}\
+ &amp; =frac{f^{prime }( x) g( x) -f( x) g^{prime }( x)}{[ g( x)]^{2}}
+ &amp; Q.E.D.
+end{aligned}
+$$
+
+# Proof: L'Hôpital's rule
+
+&gt; [!NOTE]
+&gt; This isn't full proof of L'Hôpital's rule, just a special case. But it should 
+give some intuition for why it works.
+
+$$
+f( a) =0, g( a) =0; f^{prime} ( a)  exists, g^{prime} ( a)  exists Longleftright
+arrow  displaystyle lim _{xrightarrow a}frac{f( x)}{g( x)} =frac{f^{prime} ( a)}
+{g^{prime} ( a)}
+$$
+
+$$
+begin{aligned}
+frac{f^{prime }( a)}{g^{prime }( a)} &amp; =frac{displaystyle lim _{xrightarrow a}fr
+ac{f( x) -f( a)}{x-a}}{displaystyle lim _{xrightarrow a}frac{g( x) -g( a)}{x-a}}
+ &amp; \
+ &amp; =displaystyle lim _{xrightarrow a}frac{f( x) -f( a)}{g( x) -g( a)} &amp; \
+ &amp; =displaystyle lim _{xrightarrow a}frac{f( x)}{g( x)} &amp; We know f( a)  and g( 
+a)  both equal to zero \
+ &amp; &amp; Q.E.D
+end{aligned}
+$$
+
+# Mean Value Theorem
+
+If $f$ is continuous over $[ a, b]$ and every point over $( a, b)$ is differenti
+able. Then there exists some $cin ( a, b)$ where $displaystyle frac{Delta y}{Del
+ta x} =frac{f( b) -f( a)}{b-a} =f^{prime }( c)$
+
+# Extreme Value Theorem
+
+$f$ continuous over $[ a, b] Longrightarrow exists  c, din [ a, b] :f( c) leqsla
+nt f( x) leqslant f( d)$ for all $xin [ a, b]$
+
+critical points exists when non endpoint point at $$x=a begin{cases} f^{prime }(
+ a) =0\ f^{prime }( a)  undefined end{cases}$$
+
+# Definite Integral &amp; Riemann Sum
+
+The definite integral of a continuous function $f$ over the interval $[ a, b]$, 
+denoted by $displaystyle int _{a}^{b} f( x) dx$, is the limit of a Riemann sum a
+s the number of subdivisions approaches infinity.
+
+$$
+displaystyle int _{a}^{b} f( x) dx=lim _{nrightarrow infty }sum _{i=1}^{n} f( x_
+{i}) Delta x
+$$
+
+Where $displaystyle Delta x=frac{b-a}{n}$ and $x_{i} =a+Delta xcdot i$
+
+# Definite integrals properties
+
+**Sum/Difference:**
+
+$$displaystyle int _{a}^{b}[ f( x) pm g( x)] dx=int _{a}^{b} f( x) dxpm int _{a}
+^{b} g( x) dx$$
+
+**Constant multiple:**
+
+$$displaystyle int _{a}^{b} kcdot f( x) dx=kint _{a}^{b} f( x) dx$$
+
+**Reverse interval:**
+
+$$displaystyle int _{a}^{b} f( x) dx=-int _{b}^{a} f( x) dx$$
+
+**Zero-length interval:**
+
+$$displaystyle int _{a}^{a} f( x) dx=0$$
+
+**Adding intervals:**
+
+$$displaystyle int _{a}^{b} f( x) dx+int _{b}^{c} f( x) dx=int _{a}^{c} f( x) dx
+$$
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-16px">么</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-688px">简</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-144px">单</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:0px">东</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-784px">西</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-640px">相</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-64px">信</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-64px">你</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-16px">也</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-640px">知</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-880px">道</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-336px">怎</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-16px">么</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-800px">证</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>~~<span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-880px">那</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-800px">证</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-448px">明</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-624px">略</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-624px">略</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-624px">略</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-176px">吧</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-976px">～</span>~~
+
+# First fundamental theorem of calculus
+
+Let $f$ be a continuous real−valued function defined on $[ a, b]$. And $F$ be th
+e function defined, for all $x$ in $[ a, b]$, by $displaystyle F( x) =int _{a}^{
+x} f( t) dt$
+
+Then $F$ is uniformly continuous on $[ a, b]$ and differentiable on the open int
+erval $( a, b)$, and $displaystyle F^{prime }( x) =f( x)$ for all $x$ in $( a, b
+)$ so $F$ is an antiderivative of $f$.
+</pre><div class="phile-media"><figure class="phile-image"><button class="phile-image-trigger" type="button" data-lightbox-image aria-label="Open image preview"><img src="https://v6.gh-proxy.org/https://github.com/CuB3y0nd/picx-images-hosting/raw/master/.icf34xh5n.avif" alt="" loading="lazy" decoding="async" /></button></figure></div><pre class="textmode-pre phile-pre phile-body-pre"># Second fundamental theorem of calculus / Newton–Leibniz theorem
+
+Let $f$ be a continuous real−valued function defined on $[ a, b]$ and $F$ is a c
+ontinuous function on $[ a, b]$ which is an antiderivative of $f$ in $( a, b)$: 
+$displaystyle F^{prime }( x) =f( x)$
+
+If $f$ is Riemann integrable on $[ a, b]$ then $displaystyle int _{a}^{b} f( x) 
+dx=F( b) -F( a)$
+</pre><div class="phile-media"><figure class="phile-image"><button class="phile-image-trigger" type="button" data-lightbox-image aria-label="Open image preview"><img src="https://v6.gh-proxy.org/https://github.com/CuB3y0nd/picx-images-hosting/raw/master/.3gop6n6enu.avif" alt="" loading="lazy" decoding="async" /></button></figure></div><pre class="textmode-pre phile-pre phile-body-pre"># Reverse power rule
+
+$$displaystyle int x^{n} dx=frac{x^{n+1}}{n+1} +C, nneq -1$$
+
+Yes that just simple!
+
+# Indefinite integration rules
+
+**Polynomials**
+
+$$displaystyle int x^{n} dx=frac{x^{n+1}}{n+1} +C$$
+
+**Radicals**
+
+$$displaystyle int sqrt[m]{x^{n}} dx=frac{x^{frac{n}{m} +1}}{frac{n}{m} +1} +C$$
+
+**Trigonometric functions**
+
+$$displaystyle int sin( x) dx=-cos( x) +C$$
+
+$$displaystyle int cos( x) dx=sin( x) +C$$
+
+$$displaystyle int sec^{2}( x) dx=tan( x) +C$$
+
+$$displaystyle int csc^{2}( x) dx=-cot( x) +C$$
+
+$$displaystyle int sec( x)tan( x) dx=sec( x) +C$$
+
+$$displaystyle int csc( x)cot( x) dx=-csc( x) +C$$
+
+$$displaystyle int sec xdx=ln| sec x+tan x| +C$$<span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-976px">（</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-256px">子</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-512px">母</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-160px">同</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-16px">乘</span> $sec x+tan x$<span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-976px">）</span>
+
+$$displaystyle int csc xdx=ln| csc x-cot x| +C$$<span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-976px">（</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-256px">子</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-512px">母</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-160px">同</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-16px">乘</span> $csc x-cot x$<span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-976px">）</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-160px">另</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-656px">种</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-448px">方</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-528px">法</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-528px">求</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:0px">两</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-672px">积</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+$$
+begin{array}{ l l l }
+displaystyle int sec xdx &amp; =displaystyle int frac{1}{cos x} dx &amp; \
+ &amp; =displaystyle int frac{cos x}{cos^{2} x} dx &amp; \
+ &amp; =displaystyle int frac{1}{1-sin^{2} x}cos xdx &amp; Let u=sin x\
+ &amp; =displaystyle int frac{1}{( 1+u)( 1-u)} du &amp; \
+ &amp; =displaystyle frac{1}{2}int left(frac{1}{1+u} +frac{1}{1-u}right) du &amp; Partia
+l fractions\
+ &amp; =displaystyle frac{1}{2}lnleft| frac{1+u}{1-u}right| +C &amp; \
+ &amp; =displaystyle frac{1}{2}lnleft| frac{1+sin x}{1-sin x}right| +C &amp;
+end{array}
+$$
+
+$$
+begin{array}{ l l l }
+displaystyle int csc xdx &amp; =displaystyle int frac{1}{sin x} dx &amp; \
+ &amp; =displaystyle int frac{sin x}{sin^{2} x} dx &amp; \
+ &amp; =displaystyle int frac{1}{1-cos^{2} x}sin xdx &amp; Let u=cos x\
+ &amp; =displaystyle -int frac{1}{( 1+u)( 1-u)} du &amp; \
+ &amp; =displaystyle -frac{1}{2}int left(frac{1}{1+u} +frac{1}{1-u}right) du &amp; Parti
+al fractions\
+ &amp; =displaystyle -frac{1}{2}lnleft| frac{1+u}{1-u}right| +C &amp; \
+ &amp; =displaystyle -frac{1}{2}lnleft| frac{1+cos x}{1-cos x}right| +C &amp;
+end{array}
+$$
+
+**Exponential functions**
+
+$$displaystyle int e^{x} dx=e^{x} +C$$
+
+$$displaystyle int a^{x} dx=frac{a^{x}}{ln( a)} +C$$
+
+**Logarithmic functions**
+
+$$displaystyle int frac{1}{x} dx=ln |x|+C$$
+
+**Inverse trigonometric functions**
+
+$$displaystyle int frac{1}{sqrt{a^{2} -x^{2}}} dx=arcsinleft(frac{x}{a}right) +C
+$$
+
+$$displaystyle int frac{1}{a^{2} +x^{2}} dx=frac{1}{a}arctanleft(frac{x}{a}right
+) +C$$
+
+# Integration by parts
+
+$$displaystyle int uvdx=uint vdx-int left( u^{prime }int vdxright) dx$$
+
+# Integration by reduction formulae
+
+$$displaystyle int sin^{n} xdx=-frac{1}{n}sin^{n-1} xcos x+frac{n-1}{n}int sin^{
+n-2} xdx$$
+
+$$displaystyle int cos^{n} xdx=frac{1}{n}cos^{n-1} xsin x+frac{n-1}{n}int cos^{n
+-2} xdx$$
+
+$$displaystyle int tan^{n} xdx=frac{1}{n-1}tan^{n-1} x-int tan^{n-2} xdx$$
+
+$$displaystyle int (ln x)^{n} dx=x(ln x)^{n} -nint (ln x)^{n-1} dx$$
+</pre> <pre class="textmode-pre phile-pre phile-footer-pre">
+
+ret <a href="/volume/1/">&lt;volume_1&gt;</a>
+</pre> </article> <script type="module" src="/_astro/PhileShell.astro_astro_type_script_index_0_lang.CtuB20jf.js"></script> <script type="module" src="/_astro/PhileShell.astro_astro_type_script_index_1_lang.Ceyiygv_.js"></script>  </main>  <vercel-analytics data-props="{}" data-params="{&quot;volume&quot;:&quot;1&quot;,&quot;slug&quot;:&quot;calculus-notes&quot;}" data-pathname="/volume/1/calculus-notes/"></vercel-analytics> <script type="module">var v=()=>{window.va||(window.va=function(...i){window.vaq||(window.vaq=[]),window.vaq.push(i)})},w="@vercel/analytics",h="2.0.1";function f(){return typeof window<"u"}function l(){try{const e="production"}catch{}return"production"}function m(e="auto"){if(e==="auto"){window.vam=l();return}window.vam=e}function y(){return(f()?window.vam:l())||"production"}function d(){return y()==="development"}function b(e,i){if(!e||!i)return e;let n=e;try{const t=Object.entries(i);for(const[r,s]of t)if(!Array.isArray(s)){const o=u(s);o.test(n)&&(n=n.replace(o,`/[${r}]`))}for(const[r,s]of t)if(Array.isArray(s)){const o=u(s.join("/"));o.test(n)&&(n=n.replace(o,`/[...${r}]`))}return n}catch{return e}}function u(e){return new RegExp(`/${g(e)}(?=[/?#]|$)`)}function g(e){return e.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}function E(e){return e.scriptSrc?a(e.scriptSrc):d()?"https://va.vercel-scripts.com/v1/script.debug.js":e.basePath?a(`${e.basePath}/insights/script.js`):"/_vercel/insights/script.js"}function k(e,i){var n;let t=e;if(i)try{t={...(n=JSON.parse(i))==null?void 0:n.analytics,...e}}catch{}m(t.mode);const r={sdkn:w+(t.framework?`/${t.framework}`:""),sdkv:h};return t.disableAutoTrack&&(r.disableAutoTrack="1"),t.viewEndpoint&&(r.viewEndpoint=a(t.viewEndpoint)),t.eventEndpoint&&(r.eventEndpoint=a(t.eventEndpoint)),t.sessionEndpoint&&(r.sessionEndpoint=a(t.sessionEndpoint)),d()&&t.debug===!1&&(r.debug="false"),t.dsn&&(r.dsn=t.dsn),t.endpoint?r.endpoint=t.endpoint:t.basePath&&(r.endpoint=a(`${t.basePath}/insights`)),{beforeSend:t.beforeSend,src:E(t),dataset:r}}function a(e){return e.startsWith("http://")||e.startsWith("https://")||e.startsWith("/")?e:`/${e}`}function S(e={debug:!0},i){var n;if(!f())return;const{beforeSend:t,src:r,dataset:s}=k(e,i);if(v(),t&&((n=window.va)==null||n.call(window,"beforeSend",t)),document.head.querySelector(`script[src*="${r}"]`))return;const o=document.createElement("script");o.src=r;for(const[c,p]of Object.entries(s))o.dataset[c]=p;o.defer=!0,o.onerror=()=>{const c=d()?"Please check if any ad blockers are enabled and try again.":"Be sure to enable Web Analytics for your project and deploy again. See https://vercel.com/docs/analytics/quickstart for more information.";console.log(`[Vercel Web Analytics] Failed to load script from ${r}. ${c}`)},document.head.appendChild(o)}function $({route:e,path:i}){var n;(n=window.va)==null||n.call(window,"pageview",{route:e,path:i})}function A(){try{return}catch{}}function j(){try{return}catch{}}customElements.define("vercel-analytics",class extends HTMLElement{constructor(){super();try{const i=JSON.parse(this.dataset.props??"{}"),n=JSON.parse(this.dataset.params??"{}");S({...i,disableAutoTrack:!0,framework:"astro",basePath:A(),beforeSend:window.webAnalyticsBeforeSend},j());const t=this.dataset.pathname;$({route:b(t??"",n),path:t})}catch(i){throw new Error(`Failed to parse WebAnalytics properties: ${i}`)}}});</script> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.GD05J9Fp.js"></script> </body> </html>

