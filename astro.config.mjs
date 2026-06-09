@@ -1,19 +1,9 @@
-import { defineConfig } from "astro/config";
-import sitemap from "@astrojs/sitemap";
-import mdx from "@astrojs/mdx";
-import pagefind from "astro-pagefind";
 import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
 
-// https://astro.build/config
 export default defineConfig({
-  site: "https://astro-micro.vercel.app",
-  integrations: [sitemap(), mdx(), pagefind()],
+  site: "https://www.cubeyond.net/",
   vite: {
-    plugins: [tailwindcss()],
-  },
-  markdown: {
-    shikiConfig: {
-      theme: "css-variables",
-    },
-  },
+    plugins: [tailwindcss()]
+  }
 });
