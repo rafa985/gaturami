@@ -1,21 +1,23 @@
-import type { APIRoute } from "astro";
-import { siteConfig } from "../config";
-import { getAllPhiles } from "../modules/philes/repository";
-import { requireSite, xmlHeaders } from "../modules/seo/http";
-import { renderRss } from "../modules/seo/xml";
+import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
+import type { APIContext } from 'astro';
 
-export const GET: APIRoute = async ({ site }) => {
-  const philes = await getAllPhiles();
-
-  return new Response(
-    renderRss({
-      site: requireSite(site, "RSS"),
-      title: siteConfig.name,
-      description: siteConfig.description,
-      philes
-    }),
-    {
-      headers: xmlHeaders("application/xml")
-    }
+export async function GET(context: APIContext) {
+  const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+    (a, b) => +b.data.date - +a.data.date,
   );
-};
+
+  return rss({
+    title: 'Self Esteem',
+    description: 'A magazine on attention, motivation, and the inner life.',
+    site: context.site ?? 'https://example.com',
+    items: posts.map((post) => ({
+      title: post.data.title,
+      pubDate: post.data.date,
+      description: post.data.excerpt,
+      author: post.data.author,
+      link: `/blog/${post.id}`,
+      categories: post.data.tags,
+    })),
+  });
+}
