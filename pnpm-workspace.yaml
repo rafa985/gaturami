@@ -1,7 +1,0 @@
-allowBuilds:
-  esbuild: true
-  sharp: true
-  workerd: true
-
-overrides:
-  yaml: 2.9.0
