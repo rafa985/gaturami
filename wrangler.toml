@@ -1,0 +1,6 @@
+name = "gaturami"
+compatibility_date = "2026-06-09"
+pages_build_output_dir = "./dist"
+
+# Keep this project as static Pages output with no worker bindings.
+# Intentionally no kv_namespaces, d1_databases, r2_buckets, or durable_objects.
