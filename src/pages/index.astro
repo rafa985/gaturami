@@ -1,45 +1,29 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Menu from '../components/Menu.astro';
-import StickyHeader from '../components/StickyHeader.astro';
-import FeaturedArticle from '../components/FeaturedArticle.astro';
-import Sidebar from '../components/Sidebar.astro';
-
-const posts = await getCollection('posts', ({ data }) => data.featured);
-const featured = await getCollection('featured');
-
-const pinned = posts[0];
-posts.sort((a, b) => +b.data.date - +a.data.date);
+import Section from "@/components/static/Section.astro";
+import Introduction from "@/components/static/Introduction.astro";
+import site_config from "@/site-config.json";
+import FeaturedBlog from "@/components/static/FeaturedBlog.astro";
+import FeaturedPortfolio from "@/components/static/FeaturedPortfolio.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<BaseLayout>
-  <div class="blog">
-    <Menu />
-    <StickyHeader
-      title="Self"
-      pinnedLabel="Pinned Issue"
-      pageNumber={pinned?.data.pageNumber ?? 'NO. 01'}
-    />
+<BaseLayout title="Ryze" description="A minimalist Astro starter for personal portfolio and blogs" image="/og/default.png">
+    <div transition:animate="fade" class="pt-10">
+        {/* Introduction Section */}
+        {site_config.bIntroduction && <Introduction />}
 
-    <div class="blog-header-container">
-      {
-        posts.map((post) => (
-          <FeaturedArticle
-            bigTitle={post.data.bigTitle}
-            date={post.data.date}
-            emphasis={post.data.emphasis}
-            headline={post.data.headline}
-            cover={post.data.cover}
-            author={post.data.author}
-            readTime={post.data.readTime}
-            excerpt={post.data.excerpt}
-            href={`/blog/${post.id}`}
-          />
-        ))
-      }
+        {
+            site_config.featured.important === "portfolio" ? (
+                <>
+                    <FeaturedPortfolio />
+                    <FeaturedBlog />
+                </>
+            ) : (
+                <>
+                    <FeaturedBlog />
+                    <FeaturedPortfolio />
+                </>
+            )
+        }
     </div>
-
-    <Sidebar entries={featured} />
-  </div>
 </BaseLayout>

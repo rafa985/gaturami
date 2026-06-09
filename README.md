@@ -1,95 +1,335 @@
-# Self Esteem (Astro Template)
+<div align="center">
+  <h1>Ryze</h1>
+  <p>A modern blog & portfolio starter built with Astro 6</p>
+  <p>
+    <a href="#features">Features</a> •
+    <a href="#quick-start">Quick Start</a> •
+    <a href="#configuration">Configuration</a> •
+    <a href="#customization">Customization</a> •
+    <a href="#deployment">Deployment</a>
+  </p>
+  <p>
+    <img src="https://img.shields.io/badge/Astro_6-FF5D01?logo=astro&logoColor=white" alt="Astro 6" />
+    <img src="https://img.shields.io/badge/React_19-61DAFB?logo=react&logoColor=black" alt="React 19" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4" />
+    <img src="https://img.shields.io/badge/shadcn/ui-000000?logo=shadcnui&logoColor=white" alt="shadcn/ui" />
+    <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
+  </p>
+</div>
 
-![Magazine cover homepage](public/hero.jpeg)
+Ryze is a production-ready starter for personal portfolio and blog sites. It ships with a blog engine, portfolio system, resume page, RSS feed, full-text search, dark mode, dynamic OG images, and interactive components - all configurable from JSON files.
 
-[![Live preview](https://img.shields.io/badge/▶_Live_preview-121418?style=for-the-badge&labelColor=121418&color=e9e6e4)](https://miro.build/templates/self-esteem)
+Built on [Astro 6](https://astro.build), [React 19](https://react.dev), [Tailwind CSS 4](https://tailwindcss.com), and [shadcn/ui](https://ui.shadcn.com).
 
-A magazine-style editorial template built with [Astro](https://astro.build). Original layout by [Aysenur Turk](https://codepen.io/TurkAysenur/pen/gOmMgpx), re-implemented here as a full project.
-
-## Quick start
-
-Scaffold a new project from this template:
-
-```bash
-# npm
-npm create astro@latest -- --template m-durana/self-esteem-astro
-
-# pnpm
-pnpm create astro@latest --template m-durana/self-esteem-astro
-
-# yarn
-yarn create astro --template m-durana/self-esteem-astro
-
-# bun
-bun create astro@latest --template m-durana/self-esteem-astro
-```
-
-Or use the "Use template" button in the top right or clone directly:
-
-```bash
-git clone https://github.com/m-durana/self-esteem-astro.git
-cd self-esteem-astro
-npm install
-```
-
-Then:
-
-```bash
-npm run dev      # http://localhost:4321
-npm run build    # static output to ./dist
-```
+---
 
 ## Features
 
-- Full-viewport magazine homepage (`/`)
-- `/blog` index + `/blog/[slug]` MDX post pages with prev/next
-- `/tags/[tag]` pages generated from post frontmatter
-- `/studio`, `/contact`, `/work` (data-driven), `/404`
-- RSS at `/rss.xml`, OG/Twitter meta in `BaseLayout`
-- `PageLayout` + `_template.astro.example` for creating new pages
+### Pages & Routes
 
-## Structure
+| Page | Route | Description |
+|------|-------|-------------|
+| Home | `/` | Configurable hero introduction, featured blog posts, featured portfolio projects |
+| Blog | `/blog` | Filterable listing of all posts |
+| Blog Post | `/blog/:id` | Full markdown-rendered article |
+| Portfolio | `/portfolio` | Filterable project gallery |
+| Portfolio Project | `/portfolio/:id` | Full project detail with image gallery and tabbed content |
+| Resume | `/resume` | Full resume page driven by JSON config |
+| 404 | `/404` | Custom error page with navigation links |
 
-```
-src/
-├── components/      Menu, Footer, FeaturedArticle, Sidebar, Marquee, Circle, StickyHeader
-├── content/         posts/ (md+mdx), featured/, work/
-├── content.config.ts
-├── layouts/         BaseLayout, PageLayout
-├── pages/           index, blog/, tags/, studio, contact, work, 404, rss.xml
-└── styles/global.scss
-```
+Plus a **dynamic robots.txt** and **RSS feed** at `/rss.xml`.
 
-See [STYLEGUIDE.md](STYLEGUIDE.md) for tokens, type scale, and a guide for staying on-brand.
+### Blog Engine
 
-## Authoring a post
+- Markdown and MDX content via [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/)
+- Zod-validated frontmatter schema
+- Draft post support (set `draft: true` to hide from production)
+- Categories: `engineering`, `workflow`, `strategy`, `devlog`
+- Tag system with multi-select filtering
+- Previous / next post navigation
+- Date-sorted listing (newest first)
 
-Drop a `.md` or `.mdx` file in `src/content/posts/`:
+### Markdown Rendering
 
-```md
+Every blog post gets these features automatically - no per-post configuration:
+
+- **KaTeX math** - inline `$...$`, display `$$...$$`
+- **Shiki syntax highlighting** - dual-theme (`github-light` / `github-dark`)
+- **Mermaid diagrams** - write fenced ` ```mermaid ` blocks rendered as flowcharts, sequence diagrams, and more with automatic light/dark theme switching
+- **Auto `<figure>` elements** - images wrapped with `alt` text as `<figcaption>`
+- **External link handling** - opens in new tab with `rel="nofollow noopener noreferrer"`
+- **GFM** - tables, task lists, strikethrough, autolinks
+- **Heading anchor links** - hover any heading for a permalink
+- **Styled elements** - `<details>`, `<summary>`, `<kbd>`, `<mark>`, `<abbr>`, blockquotes, inline code
+
+### Portfolio System
+
+- JSON-driven project data - no database or CMS
+- Categories: `ai`, `analytics`, `gameplay`, `hardware`, `software`, `robotics`
+- Tag system per project
+- Image galleries with thumbnail strip navigation
+- YouTube video embedding
+- Pure CSS tabbed project details (Introduction / Capabilities / Architecture)
+- Previous / next project navigation
+- Project links bar with social/project links
+- Glob-based image loading - images organized per project directory
+
+### Filtering & Search
+
+- **Pagefind** full-text search - indexes all blog posts at build time, keyboard shortcut `mod+k`
+- Category / tag / sort filtering for both blog and portfolio listing pages
+- Popover-based filter controls with select all / none for tags
+
+### SEO & Metadata
+
+- **Open Graph tags** - locale, title, description, URL, type, site name, image
+- **Twitter Card** - `summary_large_image` card
+- **Canonical URLs** - prevents duplicate content issues
+- **Article metadata** - `article:published_time`, `article:tag` for each tag on blog posts
+- **XML Sitemap** - auto-generated by `@astrojs/sitemap`
+- **Dynamic robots.txt** - allows all crawlers, points to sitemap
+- **RSS feed** - full-content feed with all non-draft posts
+- **Google site verification** - via `PUBLIC_GOOGLE_SITE_VERIFICATION` environment variable
+- **Author meta** tag
+
+### Dynamic OG Images
+
+Every page gets a unique Open Graph image generated at build time:
+
+- **Engine**: [Satori](https://github.com/vercel/satori) (JSX to SVG) + [Sharp](https://sharp.pixelplumbing.com) (SVG to PNG)
+- **Default**: `/og/default.png` - site-wide fallback
+- **Per-post**: `/og/blog/[id].png` - title, description, category, date
+- **Per-project**: `/og/portfolio/[id].png` - title, description, category, date
+- **Design**: Dark background (`#18181b`), Geist fonts, orange accent, responsive title sizing
+
+Shared generation logic lives in `src/lib/og.ts`.
+
+### UI Component Kit
+
+Curated [shadcn/ui](https://ui.shadcn.com) components in the `base-vega` style, built on [Base UI React](https://base-ui.com) for accessibility:
+
+- **Button** - 6 variants (default, outline, secondary, ghost, destructive, link), 8 sizes
+- **Breadcrumb** - semantic nav with active states, separators, ellipsis
+- **Checkbox** - with indeterminate state support
+- **Popover** - portal-based with animations and positioning control
+
+All icons via [Remixicon](https://remixicon.com).
+
+### Interactive Components
+
+Client-side React islands - JavaScript only loads when they become interactive.
+
+### Styling
+
+- **Tailwind CSS 4** - CSS-first configuration (no `tailwind.config.js`)
+- **Light / dark mode** - persisted via localStorage, respects `prefers-color-scheme`
+- **Reduced motion support** - respects `prefers-reduced-motion`
+- Typography system in `typography.css` for blog prose (headings, blockquotes, code blocks, tables, lists, math, images, details)
+
+### Developer Tooling
+
+- **Husky git hooks** - commit message validation (conventional commits), pre-push version bump
+- **GitHub Actions release workflow** - auto-creates releases on `v*` tags with generated release notes
+- **GitHub issue templates** - Bug Report, Feature Request (blank issues disabled)
+- **GitHub pull request template** - structured description, change type, testing checklist
+- **Code of Conduct** - Contributor Covenant v2.0
+- **Strict TypeScript** - full type safety across all components and configs
+- **`@/` path aliases** - clean imports (`@/components`, `@/lib/utils`, etc.)
+
+### Performance
+
+- **View transitions** - fade animation between pages via Astro Client Router
+- **Prefetch on hover** - all links preloaded on pointer hover (`prefetchAll: true`)
+- **Astro islands** - zero JavaScript by default, only interactive components ship JS
+- **Static HTML output** - deployable to any CDN or static host
+
 ---
-title: 'Your Article Title'
-bigTitle: 'Hero'
-emphasis: 'Word' # optional, italicised inside the headline
-headline: 'Sharing The {emphasis} Acclaim About Motivation'
-excerpt: 'Teaser shown on the cover and in /blog.'
-author: 'Jane Doe'
-date: 2026-01-01
-cover: 'https://images.unsplash.com/...'
-tags: ['attention', 'quiet']
-featured: true # appear on the magazine cover
-pageNumber: 'NO. 01' # optional, used by the sticky header
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | [Astro 6](https://astro.build) |
+| UI Library | [React 19](https://react.dev) |
+| Styling | [Tailwind CSS 4](https://tailwindcss.com) |
+| UI Kit | [shadcn/ui](https://ui.shadcn.com) (base-vega) |
+| Primitives | [Base UI React](https://base-ui.com) |
+| Icons | [Remixicon](https://remixicon.com) |
+| Search | [Pagefind](https://pagefind.app) |
+| OG Images | [Satori](https://github.com/vercel/satori) + [Sharp](https://sharp.pixelplumbing.com) |
+| Math | [KaTeX](https://katex.org) |
+| Diagrams | [Mermaid](https://mermaid.js.org) |
+| Syntax | [Shiki](https://shiki.style) |
+| Date | [date-fns](https://date-fns.org) |
+| Fonts | Geist Variable, Geist Mono Variable, JetBrains Mono Variable |
+| Git Hooks | [Husky](https://typicode.github.io/husky) |
+
 ---
 
-Long-form body.
+## Quick Start
+
+### Prerequisites
+
+- **Node.js** 22.12 or later
+- **pnpm** (recommended)
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/A58361/ryze.git
+
+# Navigate to the project
+cd ryze
+
+# Install dependencies
+pnpm install
+
+# Start the development server
+pnpm dev
 ```
 
-Sidebar entries (`src/content/featured/`) and portfolio items (`src/content/work/`) use smaller schemas; see `content.config.ts`.
+Your site will be available at `http://localhost:4321`.
 
-## Adding a subpage
+### Build for Production
 
-Copy `src/pages/_template.astro.example` to `src/pages/<name>.astro`, edit the props, add a link in `src/components/Menu.astro` if it should appear in nav.
+```bash
+pnpm build
+```
+
+Outputs static files to `dist/` and indexes content with Pagefind for search.
+
+### Preview Build
+
+```bash
+pnpm preview
+```
+
+---
+
+## Configuration
+
+Ryze is configured through three JSON files - no editing of components needed for basic customization.
+
+### `src/site-config.json`
+
+Controls site-wide settings: domain, navigation, feature toggles, hero introduction, social links, CTA buttons, support/sponsor link, and featured section ordering.
+
+```json
+{
+  "domain": "https://your-site.com",
+  "navigationItems": ["portfolio", "blog"],
+  "introduction": {
+    "heading": "Your Name",
+    "badges": ["Your Title"],
+    "subHeadingItems": [
+      { "type": "mail", "label": "email@example.com", "url": "mailto:email@example.com" }
+    ],
+    "socialItems": [
+      { "type": "github", "url": "https://github.com/yourhandle" }
+    ],
+    "description": "Your bio...",
+    "ctaItems": [
+      { "label": "Resume", "url": "/resume", "variant": "default" }
+    ],
+    "support": {
+      "label": "Sponsor",
+      "url": "https://github.com/sponsors/yourhandle",
+      "variant": "outline"
+    }
+  },
+  "featured": {
+    "portfolio": { "visible": true },
+    "blog": { "visible": true },
+    "important": "blog"
+  }
+}
+```
+
+Toggle features on/off with boolean flags: `bNavigation`, `bPageFind`, `bThemeToggle`, `bRssFeed`, `bIntroduction`.
+
+### `src/portfolio-config.json`
+
+Array of project objects with id, date, category, title, description, tags, introduction text, links, optional video URL, and architecture brief.
+
+Add project images to `src/assets/portfolio/<id>/` (loaded automatically via glob).
+
+### `src/resume-config.json`
+
+Complete resume data: personal info, social links, work experience, education, skills, projects, certifications, courses, languages, volunteering, publications.
+
+The resume page automatically hides sections with empty data.
+
+---
+
+## Customization
+
+### Theme Colors
+
+Edit the color variables in `src/styles/global.css` under `:root` (light mode) and `.dark` (dark mode). All shadcn components respect these variables.
+
+### Typography
+
+Blog prose styles are in `src/styles/typography.css` - headings, blockquotes, code blocks, tables, details, and more.
+
+### Add Blog Posts
+
+Create `.md` or `.mdx` files in `src/content/blog/` with the required frontmatter:
+
+```yaml
+---
+draft: false
+date: "24-05-2026"
+title: "Your Post Title"
+description: "A short summary"
+category: "engineering"  # "engineering" | "workflow" | "strategy" | "devlog"
+tags: ["tag1", "tag2"]
+author: "Your Name"
+---
+```
+
+Posts are automatically discovered by Astro Content Collections - no registration needed.
+
+### Remove Features
+
+Each feature is independently removable:
+- **Portfolio**: Set `"visible": false` in `site-config.json` and remove from `navigationItems`
+- **Search**: Set `"bPageFind": false`
+- **Theme toggle**: Set `"bThemeToggle": false`
+- **RSS**: Set `"bRssFeed": false`
+- **Navigation**: Set `"bNavigation": false`
+- **Introduction**: Set `"bIntroduction": false`
+
+### Update Domain
+
+Before deploying, update the `site` field in `astro.config.mjs` and the `domain` field in `site-config.json` to your production URL. This ensures canonical URLs, sitemap URLs, and OG image URLs point to the correct domain.
+
+---
+
+## Commands
+
+| Command | Action |
+|---------|--------|
+| `pnpm install` | Install dependencies |
+| `pnpm dev` | Start local dev server at `localhost:4321` |
+| `pnpm build` | Build production site to `dist/` + index with Pagefind |
+| `pnpm preview` | Preview production build locally |
+| `pnpm astro ...` | Run Astro CLI commands |
+
+---
+
+## Deployment
+
+Ryze produces static files - deploy to any static host:
+
+1. Update `site` in `astro.config.mjs` and `domain` in `site-config.json` to your domain
+2. Run `pnpm build`
+3. Deploy the `dist/` directory
+
+**Recommended hosts**: Cloudflare Pages, Netlify, Vercel, GitHub Pages.
+
+---
 
 ## License
 
-MIT License. Original CodePen layout © Aysenur Turk
+[GNU General Public License v3.0](LICENSE.md)
